@@ -1,0 +1,617 @@
+[
+    {
+        "id": 9,
+        "site_root_id": 5,
+        "title": "Warum blockbasierte Inhalte gewinnen",
+        "slug": "why-block-based-content-wins",
+        "is_enabled": 1,
+        "published_at": "2026-06-02 09:00:00",
+        "excerpt": "Ein riesiges WYSIWYG-Feld altert schlecht. Typisierte, selbstbeschreibende Blöcke halten Seiten markenkonform, portabel und leicht umzugestalten.",
+        "cover": "dawn/autumn-sunrays.jpg",
+        "meta_title": "Warum blockbasierte Inhalte gewinnen | Dawn",
+        "meta_description": "Wie typisierte Inhaltsblöcke das monolithische WYSIWYG-Feld bei Wartbarkeit, Portabilität und Designkonsistenz schlagen.",
+        "category": 5,
+        "tags": [
+            7,
+            9,
+            13
+        ],
+        "content": {
+            "blocks": [
+                {
+                    "type": "richtext",
+                    "data": {
+                        "html": "<p>Jahrelang kämpften Teams mit einem einzigen riesigen WYSIWYG-Feld: brüchiges Markup, kopierte Styles und Seiten, die sich vom Designsystem entfernten, sobald ein neuer Redakteur sie anfasste. Blockbasiertes Editieren stellt dieses Modell auf den Kopf. Statt eines undurchsichtigen HTML-Blobs wird eine Seite zu einer geordneten Liste typisierter, selbstbeschreibender Blöcke.</p><p>Jeder Block weiß, wie er sich rendert, welche Felder er akzeptiert und wie er sich auf kleinen Bildschirmen verhält. Redakteure komponieren Seiten aus einer Palette vertrauenswürdiger Komponenten — und das Ergebnis bleibt markenkonform, weil die Blöcke, nicht die Person, die Präsentation besitzen.</p>",
+                        "variant": ""
+                    },
+                    "id": "b_653a09dd"
+                },
+                {
+                    "type": "info-banner",
+                    "data": {
+                        "level": "success",
+                        "title": "Portabel von Haus aus",
+                        "text": "Block-Dokumente sind schlichtes, strukturiertes JSON — deine Inhalte überleben Redesigns, Theme-Wechsel und sogar CMS-Migrationen ohne Neuschreiben.",
+                        "animated": "yes"
+                    },
+                    "settings": {},
+                    "id": "b_019bedd9"
+                },
+                {
+                    "type": "image",
+                    "data": {
+                        "image": "dawn/autumn-sunrays.jpg",
+                        "alt": "Abstrakter blauer Farbverlauf",
+                        "caption": "Blöcke fügen sich zu Seiten wie Kacheln zu einem Mosaik.",
+                        "aspect": "16x9",
+                        "fit": "cover",
+                        "focus": "center"
+                    },
+                    "settings": {
+                        "spacing_top": "sm",
+                        "spacing_bottom": "sm"
+                    },
+                    "id": "b_3186f1f4"
+                },
+                {
+                    "type": "richtext",
+                    "data": {
+                        "html": "<p>Der Gewinn zeigt sich überall: Inhalte sind als strukturiertes JSON portabel, Migrationen werden trivial, und du kannst eine ganze Website neu gestalten, ohne einen einzigen Artikel umzuschreiben. Genau dieses Versprechen löst Renick.Content auf OctoberCMS ein.</p>",
+                        "variant": ""
+                    },
+                    "id": "b_9438447f"
+                },
+                {
+                    "type": "quote",
+                    "data": {
+                        "text": "Strukturierte Inhalte sind der Unterschied zwischen einer Website, die du pflegst, und einer Website, die dich pflegt.",
+                        "author": "Dawn",
+                        "role": "Redaktionsteam"
+                    },
+                    "settings": {
+                        "spacing_top": "md",
+                        "spacing_bottom": "md"
+                    },
+                    "id": "b_1c0608e7"
+                },
+                {
+                    "type": "accordion",
+                    "children": [
+                        {
+                            "type": "accordion-item",
+                            "data": {
+                                "title": "Ist es schwer, bestehende Seiten zu migrieren?"
+                            },
+                            "children": [
+                                {
+                                    "type": "richtext",
+                                    "data": {
+                                        "html": "<p>Eigentlich nicht. Weil Blöcke reine Daten sind, kannst du einen einmaligen Import skripten, der dein altes Markup auf die passendsten Blocktypen abbildet — und dort von Hand nachschärfen, wo es zählt.</p>",
+                                        "variant": ""
+                                    },
+                                    "id": "b_06a84f40"
+                                }
+                            ],
+                            "id": "b_ff01a771"
+                        },
+                        {
+                            "type": "accordion-item",
+                            "data": {
+                                "title": "Können Entwickler eigene Blöcke hinzufügen?"
+                            },
+                            "children": [
+                                {
+                                    "type": "richtext",
+                                    "data": {
+                                        "html": "<p>Ja. Ein Block ist ein kleiner, klar definierter Vertrag: ein Schema plus ein Template. Neue Blöcke fügen sich in denselben Editor und dieselbe Combiner-Pipeline ein wie die mitgelieferten.</p>",
+                                        "variant": ""
+                                    },
+                                    "id": "b_915c5ae3"
+                                }
+                            ],
+                            "id": "b_6ed4f6e9"
+                        }
+                    ],
+                    "id": "b_63eb2b81"
+                },
+                {
+                    "type": "heading",
+                    "data": {
+                        "text": "Die Forschung dahinter",
+                        "level": "h3"
+                    },
+                    "settings": {
+                        "spacing_top": "md",
+                        "spacing_bottom": "xs"
+                    },
+                    "id": "b_9867c924"
+                },
+                {
+                    "type": "richtext",
+                    "data": {
+                        "html": "<p>Lieber die Langfassung? Die einseitige Forschungsnotiz unten wird vom PDF-Block direkt eingebettet, mit Download-Fallback. (Demo-Dokument — der Text ist Platzhalter-Lorem-ipsum.)</p>",
+                        "variant": ""
+                    },
+                    "id": "b_cba718b6"
+                },
+                {
+                    "type": "pdf",
+                    "data": {
+                        "file": "dawn/research-paper.pdf",
+                        "title": "Research Paper — Blockbasierte Inhalte im großen Maßstab"
+                    },
+                    "settings": {
+                        "spacing_top": "sm",
+                        "spacing_bottom": "sm"
+                    },
+                    "id": "b_f343382a"
+                },
+                {
+                    "type": "cta",
+                    "data": {
+                        "variant": "panel",
+                        "title": "Bereit zum Komponieren?",
+                        "text": "Entdecke jeden Block im Live-Showcase.",
+                        "button_label": "Blöcke ansehen",
+                        "button_url": "october://cms-page@link/page?path=pricing",
+                        "button_style": "primary"
+                    },
+                    "settings": {
+                        "spacing_top": "lg"
+                    },
+                    "id": "b_e2d81ba0"
+                }
+            ]
+        }
+    },
+    {
+        "id": 10,
+        "site_root_id": 6,
+        "title": "Was dieses Quartal erschienen ist",
+        "slug": "what-shipped-this-quarter",
+        "is_enabled": 1,
+        "published_at": "2026-06-18 09:00:00",
+        "excerpt": "Ein schnellerer Editor, ein schlankerer Combiner und ein aufgeräumter Inspektor. Was sich geändert hat und warum es für deine Seiten zählt.",
+        "cover": "dawn/autumn-meadow.jpg",
+        "meta_title": "Was dieses Quartal erschienen ist | Dawn",
+        "meta_description": "Release-Highlights: schnelleres Editieren, Tastaturnavigation und ein Combiner, der nur die Assets ausliefert, die eine Seite braucht.",
+        "category": 7,
+        "tags": [
+            9,
+            15
+        ],
+        "content": {
+            "blocks": [
+                {
+                    "type": "richtext",
+                    "data": {
+                        "html": "<p>Dieses Release hatte ein Ziel: den Editor schneller griffbereit und schwerer kaputtzumachen. Wir haben die Blockpalette gestrafft, die Tastaturnavigation verbessert und die gerenderte Ausgabe verschlankt, damit deine Core Web Vitals grün bleiben.</p>",
+                        "variant": ""
+                    },
+                    "id": "b_419ebc26"
+                },
+                {
+                    "type": "grid",
+                    "children": [
+                        {
+                            "type": "column",
+                            "data": {
+                                "width": 6
+                            },
+                            "children": [
+                                {
+                                    "type": "heading",
+                                    "data": {
+                                        "text": "Für Redakteure",
+                                        "level": "h3"
+                                    },
+                                    "settings": {
+                                        "spacing_bottom": "xs"
+                                    },
+                                    "id": "b_9e14348f"
+                                },
+                                {
+                                    "type": "richtext",
+                                    "data": {
+                                        "html": "<p>Sortieren per Drag-and-drop, Medienauswahl direkt im Block und ein aufgeräumter Inspektor. Weniger Klicks zwischen einer Idee und einer veröffentlichten Seite.</p>",
+                                        "variant": ""
+                                    },
+                                    "id": "b_bcdf101a"
+                                }
+                            ],
+                            "id": "b_5ffba176"
+                        },
+                        {
+                            "type": "column",
+                            "data": {
+                                "width": 6
+                            },
+                            "children": [
+                                {
+                                    "type": "heading",
+                                    "data": {
+                                        "text": "Für Entwickler",
+                                        "level": "h3"
+                                    },
+                                    "settings": {
+                                        "spacing_bottom": "xs"
+                                    },
+                                    "id": "b_d75550fe"
+                                },
+                                {
+                                    "type": "richtext",
+                                    "data": {
+                                        "html": "<p>Ein dokumentierter Block-Vertrag, eine Twig-Komponente, die Bootstrap und Block-Assets über den Combiner einbindet, und eine REST-Schnittstelle für Headless-Einsatz.</p>",
+                                        "variant": ""
+                                    },
+                                    "id": "b_76ef4630"
+                                }
+                            ],
+                            "id": "b_ab17b7f7"
+                        }
+                    ],
+                    "id": "b_bafa55dd"
+                },
+                {
+                    "type": "image",
+                    "data": {
+                        "image": "dawn/autumn-meadow.jpg",
+                        "alt": "Grüne Felder unter offenem Himmel",
+                        "caption": "Schlanke Ausgabe hält Seiten auf jedem Gerät schnell.",
+                        "aspect": "16x9",
+                        "fit": "cover",
+                        "focus": "center"
+                    },
+                    "settings": {
+                        "spacing_top": "sm",
+                        "spacing_bottom": "sm"
+                    },
+                    "id": "b_7b22e0fb"
+                },
+                {
+                    "type": "richtext",
+                    "data": {
+                        "html": "<p>Unter der Haube liefert der Asset-Combiner jetzt nur noch das CSS und JS aus, das die Blöcke einer Seite tatsächlich nutzen. Kleinere Payloads, schnellere Renderings, zufriedenere Besucher.</p>",
+                        "variant": ""
+                    },
+                    "id": "b_eff250c4"
+                },
+                {
+                    "type": "info-banner",
+                    "data": {
+                        "level": "warning",
+                        "title": "Upgrade von einer älteren Version?",
+                        "text": "Führe die Plugin-Migration aus, bevor du das Theme wechselst: Ältere Dokumente werden beim ersten Speichern normalisiert, und Vorlagen aus früheren Releases sollten neu exportiert werden.",
+                        "animated": "yes"
+                    },
+                    "settings": {
+                        "spacing_top": "md"
+                    },
+                    "id": "b_3bf1f0ec"
+                },
+                {
+                    "type": "cta",
+                    "data": {
+                        "variant": "hero",
+                        "title": "In Minuten aktualisiert",
+                        "text": "Zieh das neueste Release und führe die Migration erneut aus — deine Inhalte bleiben unangetastet.",
+                        "button_label": "Zum Changelog",
+                        "button_url": "october://cms-page@link/blog",
+                        "button_style": "light"
+                    },
+                    "settings": {
+                        "spacing_top": "lg"
+                    },
+                    "id": "b_e8c0647c"
+                }
+            ]
+        }
+    },
+    {
+        "id": 11,
+        "site_root_id": 7,
+        "title": "Gestalten mit einer lebendigen Typo-Skala",
+        "slug": "designing-with-a-living-type-scale",
+        "is_enabled": 1,
+        "published_at": "2026-06-28 09:00:00",
+        "excerpt": "Redaktionelles Design ist vor allem Zurückhaltung. Eine straffe Typo-Skala und ein einziger Akzent-Verlauf tragen eine Seite weiter als ein Dutzend Stile.",
+        "cover": "dawn/autumn-castle.jpg",
+        "meta_title": "Gestalten mit einer lebendigen Typo-Skala | Dawn",
+        "meta_description": "Wie CSS Custom Properties und eine disziplinierte Typo-Skala ein ganzes Theme konsistent halten — von Überschriften bis zu Chips.",
+        "category": 9,
+        "tags": [
+            11,
+            7
+        ],
+        "content": {
+            "blocks": [
+                {
+                    "type": "image",
+                    "data": {
+                        "image": "dawn/autumn-castle.jpg",
+                        "alt": "Violetter Dunst-Farbverlauf",
+                        "caption": "Rhythmus und Kontrast leisten die meiste Arbeit.",
+                        "aspect": "21x9",
+                        "fit": "cover",
+                        "focus": "center"
+                    },
+                    "settings": {
+                        "spacing_top": "sm",
+                        "spacing_bottom": "sm"
+                    },
+                    "id": "b_076202c8"
+                },
+                {
+                    "type": "richtext",
+                    "data": {
+                        "html": "<p>Gutes redaktionelles Design ist vor allem Zurückhaltung. Eine straffe Typo-Skala, großzügige Zeilenhöhe und ein einziger Akzent-Verlauf tragen eine Seite weiter, als es ein Dutzend konkurrierender Stile je könnten. Wenn jeder Block aus denselben Tokens schöpft, ist Konsistenz keine Fleißarbeit mehr, sondern der Normalzustand.</p><p>Das Dawn-Theme setzt für Palette und Abstände auf CSS Custom Properties. Ändere eine Variable und die ganze Site zieht mit — Überschriften, Chips, Buttons und Karten folgen im Gleichschritt.</p>",
+                        "variant": ""
+                    },
+                    "id": "b_6892bc05"
+                },
+                {
+                    "type": "info-banner",
+                    "data": {
+                        "level": "secondary",
+                        "title": "Tipp",
+                        "text": "Jedes Token auf dieser Seite lebt in einer einzigen CSS-Datei — kopiere die Palette, tausche die Farbtöne und das ganze Theme zieht mit.",
+                        "animated": "yes"
+                    },
+                    "settings": {},
+                    "id": "b_95b2258b"
+                },
+                {
+                    "type": "quote",
+                    "data": {
+                        "text": "Typografie ist das Aussehen der Sprache. Behandle sie mit derselben Sorgfalt wie deine Worte.",
+                        "author": "Ellen Lupton",
+                        "role": "Designerin & Autorin"
+                    },
+                    "settings": {
+                        "spacing_top": "md",
+                        "spacing_bottom": "md"
+                    },
+                    "id": "b_491f5898"
+                },
+                {
+                    "type": "accordion",
+                    "children": [
+                        {
+                            "type": "accordion-item",
+                            "data": {
+                                "title": "Wie viele Schriftgrößen brauche ich wirklich?"
+                            },
+                            "children": [
+                                {
+                                    "type": "richtext",
+                                    "data": {
+                                        "html": "<p>Meist fünf oder sechs. Eine Display-Größe, ein bis zwei Überschriftengrößen, Fließtext und eine kleine Meta-Größe decken fast jedes Layout ab, ohne zu überladen.</p>",
+                                        "variant": ""
+                                    },
+                                    "id": "b_c30b27ee"
+                                }
+                            ],
+                            "id": "b_90952ab5"
+                        }
+                    ],
+                    "id": "b_9ed16e23"
+                },
+                {
+                    "type": "cta",
+                    "data": {
+                        "variant": "minimal",
+                        "title": "Klau dir diese Palette",
+                        "text": "Die Dawn-Tokens darfst du gerne remixen.",
+                        "button_label": "Theme öffnen",
+                        "button_url": "october://cms-page@link/index",
+                        "button_style": "outline-primary"
+                    },
+                    "settings": {
+                        "spacing_top": "lg"
+                    },
+                    "id": "b_4997922c"
+                }
+            ]
+        }
+    },
+    {
+        "id": 12,
+        "site_root_id": 8,
+        "title": "Eine praktische Checkliste für schnelle Content-Seiten",
+        "slug": "checklist-for-fast-content-pages",
+        "is_enabled": 1,
+        "published_at": "2026-07-06 09:00:00",
+        "excerpt": "Geschwindigkeit ist ein Feature. Die meisten Performance-Gewinne auf Content-Sites sind strukturell — einmal eingerichtet, zahlen sie sich dauerhaft aus.",
+        "cover": "dawn/autumn-coffee.jpg",
+        "meta_title": "Eine Checkliste für schnelle Content-Seiten | Dawn",
+        "meta_description": "Weniger ausliefern, Bilder richtig dimensionieren, konsequent cachen. Eine praktische Performance-Checkliste für contentlastige OctoberCMS-Sites.",
+        "category": 5,
+        "tags": [
+            15,
+            11,
+            13
+        ],
+        "content": {
+            "blocks": [
+                {
+                    "type": "richtext",
+                    "data": {
+                        "html": "<p>Geschwindigkeit ist ein Feature. Besucher spüren eine langsame Seite, lange bevor sie benennen können, warum sie gegangen sind. Die gute Nachricht: Die meisten Performance-Gewinne auf einer Content-Site sind strukturell, nicht heroisch — du richtest sie einmal ein und sie zahlen sich dauerhaft aus.</p>",
+                        "variant": ""
+                    },
+                    "id": "b_ccc43a88"
+                },
+                {
+                    "type": "info-banner",
+                    "data": {
+                        "level": "danger",
+                        "title": "Erst messen, dann liefern",
+                        "text": "Schiebe ungetestete Performance-Tweaks nie direkt in die Produktion — ein falsch dimensionierter Cache oder ein kaputtes Lazy-Loading schadet mehr, als es nützt. Prüfe zuerst auf einer Staging-Kopie.",
+                        "animated": "yes"
+                    },
+                    "settings": {},
+                    "id": "b_174825ac"
+                },
+                {
+                    "type": "grid",
+                    "children": [
+                        {
+                            "type": "column",
+                            "data": {
+                                "width": 4
+                            },
+                            "children": [
+                                {
+                                    "type": "heading",
+                                    "data": {
+                                        "text": "Weniger ausliefern",
+                                        "level": "h3"
+                                    },
+                                    "settings": {
+                                        "spacing_bottom": "xs"
+                                    },
+                                    "id": "b_f320878e"
+                                },
+                                {
+                                    "type": "richtext",
+                                    "data": {
+                                        "html": "<p>Lade nur das CSS und JS, das eine Seite nutzt. Der Block-Combiner erledigt das für dich.</p>",
+                                        "variant": ""
+                                    },
+                                    "id": "b_a2e24b2d"
+                                }
+                            ],
+                            "id": "b_1cb7a56c"
+                        },
+                        {
+                            "type": "column",
+                            "data": {
+                                "width": 4
+                            },
+                            "children": [
+                                {
+                                    "type": "heading",
+                                    "data": {
+                                        "text": "Bilder dimensionieren",
+                                        "level": "h3"
+                                    },
+                                    "settings": {
+                                        "spacing_bottom": "xs"
+                                    },
+                                    "id": "b_9b722a19"
+                                },
+                                {
+                                    "type": "richtext",
+                                    "data": {
+                                        "html": "<p>Liefere die richtigen Abmessungen und lass den Browser unterhalb des Folds lazy-loaden.</p>",
+                                        "variant": ""
+                                    },
+                                    "id": "b_ce558d8d"
+                                }
+                            ],
+                            "id": "b_321e3d79"
+                        },
+                        {
+                            "type": "column",
+                            "data": {
+                                "width": 4
+                            },
+                            "children": [
+                                {
+                                    "type": "heading",
+                                    "data": {
+                                        "text": "Konsequent cachen",
+                                        "level": "h3"
+                                    },
+                                    "settings": {
+                                        "spacing_bottom": "xs"
+                                    },
+                                    "id": "b_26653146"
+                                },
+                                {
+                                    "type": "richtext",
+                                    "data": {
+                                        "html": "<p>Strukturierte Inhalte lassen sich sauber cachen, weil sie deterministisch rendern.</p>",
+                                        "variant": ""
+                                    },
+                                    "id": "b_e562bfa9"
+                                }
+                            ],
+                            "id": "b_0edbdce1"
+                        }
+                    ],
+                    "id": "b_b9fef10d"
+                },
+                {
+                    "type": "image",
+                    "data": {
+                        "image": "dawn/autumn-coffee.jpg",
+                        "alt": "Oranger Sonnenuntergang über Hügeln",
+                        "caption": "Miss auf einem echten Gerät, nicht nur auf deinem Laptop.",
+                        "aspect": "16x9",
+                        "fit": "cover",
+                        "focus": "center"
+                    },
+                    "settings": {
+                        "spacing_top": "sm",
+                        "spacing_bottom": "sm"
+                    },
+                    "id": "b_a322490b"
+                },
+                {
+                    "type": "richtext",
+                    "data": {
+                        "html": "<p>Lass Lighthouse gegen einen repräsentativen Artikel laufen, nicht gegen die Startseite. Auf Artikel-Templates landet der Großteil deines Traffics — und es sind die Seiten, die Redakteure am häufigsten anfassen.</p>",
+                        "variant": ""
+                    },
+                    "id": "b_517987ae"
+                },
+                {
+                    "type": "quote",
+                    "data": {
+                        "text": "Der schnellste Request ist der, den du nie machst.",
+                        "author": "Webperformance-Folklore",
+                        "role": ""
+                    },
+                    "settings": {
+                        "spacing_top": "md",
+                        "spacing_bottom": "md"
+                    },
+                    "id": "b_3b5681e6"
+                },
+                {
+                    "type": "download",
+                    "data": {
+                        "files": [
+                            {
+                                "file": "dawn/research-paper.pdf",
+                                "label": "Performance-Checkliste (PDF)"
+                            },
+                            {
+                                "file": "dawn/autumn-desk.jpg",
+                                "label": ""
+                            }
+                        ]
+                    },
+                    "settings": {},
+                    "id": "b_1a6e9a18"
+                },
+                {
+                    "type": "cta",
+                    "data": {
+                        "variant": "bookmark",
+                        "title": "Checkliste speichern",
+                        "text": "Merke sie dir für deinen nächsten Content-Sprint.",
+                        "button_label": "Zurück zum Blog",
+                        "button_url": "october://cms-page@link/blog",
+                        "button_style": "primary"
+                    },
+                    "settings": {
+                        "spacing_top": "lg"
+                    },
+                    "id": "b_0e633192"
+                }
+            ]
+        }
+    }
+]

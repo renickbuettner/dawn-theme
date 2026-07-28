@@ -1,0 +1,81 @@
+# Labels are theme lang keys (lang/{en,de}.json), resolved by the plugin's
+# BlockLabelTranslator at serialization time.
+handle: hero
+name: dawn.block.hero.name
+icon: icon-flag
+group: Dawn
+version: 1
+settings: true
+fields:
+  layout:
+    label: dawn.block.hero.layout
+    type: dropdown
+    options:
+      split: dawn.block.hero.layout_split
+      left: dawn.block.hero.layout_left
+      centered: dawn.block.hero.layout_centered
+    default: split
+  eyebrow:
+    label: dawn.block.hero.eyebrow
+    type: text
+    commentAbove: dawn.block.hero.eyebrow_comment
+  title:
+    label: dawn.block.hero.title
+    type: text
+  title_accent:
+    label: dawn.block.hero.title_accent
+    type: text
+    commentAbove: dawn.block.hero.title_accent_comment
+  lead:
+    label: dawn.block.hero.lead
+    type: textarea
+    size: small
+  primary_label:
+    label: dawn.block.hero.primary_label
+    type: text
+  primary_url:
+    label: dawn.block.hero.primary_url
+    type: text
+  secondary_label:
+    label: dawn.block.hero.secondary_label
+    type: text
+  secondary_url:
+    label: dawn.block.hero.secondary_url
+    type: text
+  media:
+    label: dawn.block.hero.media
+    type: dropdown
+    options:
+      none: dawn.block.hero.media_none
+      image: dawn.block.hero.media_image
+      video: dawn.block.hero.media_video
+      slider: dawn.block.hero.media_slider
+    default: none
+  image:
+    label: dawn.block.hero.image
+    type: mediafinder
+    mode: image
+    maxItems: 1
+  video:
+    label: dawn.block.hero.video
+    type: mediafinder
+    maxItems: 1
+    commentAbove: dawn.block.hero.video_comment
+  video_poster:
+    label: dawn.block.hero.video_poster
+    type: mediafinder
+    mode: image
+    maxItems: 1
+  slides:
+    label: dawn.block.hero.slides
+    type: repeater
+    titleFrom: alt
+    fields:
+      image:
+        label: dawn.block.hero.image
+        type: mediafinder
+        mode: image
+        maxItems: 1
+      alt:
+        label: dawn.block.hero.slides_alt
+        type: text

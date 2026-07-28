@@ -1,0 +1,32 @@
+[
+    {
+        "code": "dawn_en",
+        "name": "Dawn (English)",
+        "locale": "en",
+        "timezone": "UTC",
+        "sort_order": 1,
+        "is_primary": true,
+        "is_enabled": true,
+        "is_enabled_edit": true,
+        "is_prefixed": false,
+        "route_prefix": "",
+        "is_styled": true,
+        "color_background": "#5b5bf6",
+        "color_foreground": "#ffffff"
+    },
+    {
+        "code": "dawn_de",
+        "name": "Dawn (Deutsch)",
+        "locale": "de",
+        "timezone": "Europe/Berlin",
+        "sort_order": 10,
+        "is_primary": false,
+        "is_enabled": true,
+        "is_enabled_edit": true,
+        "is_prefixed": true,
+        "route_prefix": "/de",
+        "is_styled": true,
+        "color_background": "#111827",
+        "color_foreground": "#ffffff"
+    }
+]

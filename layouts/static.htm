@@ -1,0 +1,87 @@
+description = "Static page — usable by RainLab.Pages, renders block-editor documents"
+
+[staticPage]
+useContent = 1
+
+[renickContent]
+includeAssets = 0
+==
+function onStart()
+{
+    // Same folder resolution as layouts/default.htm; see partials/site/paths.php.
+    $dawnTheme = $this->controller->getTheme();
+    while ($parentTheme = $dawnTheme->getParentTheme()) {
+        $dawnTheme = $parentTheme;
+    }
+    require_once $dawnTheme->getPath() . '/partials/site/paths.php';
+    dawn_paths_use($dawnTheme);
+
+    require_once dawn_path('partials/site/alternates.php');
+    $this['dawnAlternates'] = dawn_alternates();
+
+    // Canonical/OG URL, query string excluded.
+    $this['seoUrl'] = \Request::url();
+
+    $this['dawnCss'] = \System\Classes\CombineAssets::combine([
+        '$/renick/content/assets/frontend/bootstrap.css',
+        '$/renick/content/assets/frontend/renick-content.css',
+        dawn_asset('css/theme.css'),
+    ]);
+    $this['dawnScripts'] = \System\Classes\CombineAssets::combine([
+        '$/renick/content/assets/frontend/renick-content.js',
+        dawn_asset('js/theme.js'),
+    ]);
+
+    // Same cached chrome contract as layouts/default.htm.
+    require_once dawn_path('partials/site/chrome.php');
+    $chrome = dawn_chrome();
+    $this['dawnNavPages'] = $chrome['nav'];
+    $this['dawnFooterPages'] = $chrome['footer'];
+    $this['dawnSettings'] = $chrome['settings'];
+    $this['dawnMegaItems'] = $chrome['mega'];
+
+    $this['dawnCurrentUrl'] = rtrim(\Request::url(), '/');
+}
+==
+<!DOCTYPE html>
+<html lang="{{ this.site.locale|default('en') }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#c2410c">
+    {# Turbo View Transitions (October v4.3+): turbo-visit-control enables the
+       router; turbo-view-transition = same-origin cross-fades same-origin
+       navigations (no View Transitions API → instant swap). Gated on the theme
+       setting (default on).
+       null = never customised → default on; only an explicit false (user opted
+       out) disables. `|default` can't tell the two apart — it swallows false. #}
+    {% if this.theme.view_transitions is same as(null) or this.theme.view_transitions %}
+        <meta name="turbo-visit-control" content="enable">
+        <meta name="turbo-view-transition" content="same-origin">
+    {% endif %}
+    {% partial 'seo/head' %}
+    <link rel="stylesheet" href="{{ dawnCss }}">
+    {% styles %}
+</head>
+<body>
+    <a class="dawn-skip-link" href="#main">{{ 'dawn.front.common.skip_to_content'|_ }}</a>
+    {% partial 'site/header' %}
+
+    <main id="main">
+        <div class="dawn-section">
+            <div class="container">
+                {% page %}
+            </div>
+        </div>
+    </main>
+
+    {% partial 'site/footer' %}
+
+    <script src="{{ dawnScripts }}" defer></script>
+    {# framework-bundle.js (turbo flavour) boots the Turbo router so the head's
+       turbo-view-transition meta animates navigations; plain `{% framework %}`
+       omits turbo. #}
+    {% framework turbo %}
+    {% scripts %}
+</body>
+</html>

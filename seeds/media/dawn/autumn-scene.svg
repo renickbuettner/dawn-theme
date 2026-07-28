@@ -1,0 +1,120 @@
+<svg viewBox="105 265 430 355" xmlns="http://www.w3.org/2000/svg" role="img"
+     aria-label="Isometrische Herbstszene: kleiner Baum mit fallenden Blättern und leuchtender Laterne">
+  <defs>
+    <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"  stop-color="#FFE7AE" stop-opacity="0.9"/>
+      <stop offset="45%" stop-color="#FFC463" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#FFB84D" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="glassGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#FFEFC2"/>
+      <stop offset="55%" stop-color="#FFC978"/>
+      <stop offset="100%" stop-color="#F6A63E"/>
+    </linearGradient>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+
+    <!-- one reusable leaf -->
+    <g id="leaf">
+      <path d="M0,-6 C3.6,-4.6 3.9,3.2 0,7.4 C-3.9,3.2 -3.6,-4.6 0,-6 Z"/>
+      <path d="M0,-4.4 L0,6.4" stroke="rgba(92,42,22,0.35)" stroke-width="0.8" fill="none"/>
+    </g>
+
+    <style>
+      .fall, .spin { transform-box: fill-box; transform-origin: center; }
+      .canopy { transform-box: fill-box; transform-origin: 50% 92%;
+                animation: sway 6s ease-in-out infinite; }
+      .glow  { transform-box: fill-box; transform-origin: center;
+               animation: glowPulse 3.4s ease-in-out infinite; }
+      .flame { transform-box: fill-box; transform-origin: center bottom;
+               animation: flicker 1.6s ease-in-out infinite; }
+
+      @keyframes sway { 0%,100%{transform:rotate(-1.6deg)} 50%{transform:rotate(1.6deg)} }
+      @keyframes glowPulse { 0%,100%{opacity:.5;transform:scale(1)} 50%{opacity:.92;transform:scale(1.14)} }
+      @keyframes flicker { 0%,100%{opacity:.9;transform:scale(1,1)} 30%{opacity:1;transform:scale(1.05,1.08)} 65%{opacity:.82;transform:scale(.97,.95)} }
+
+      @keyframes fallA {
+        0%{transform:translate(0,0);opacity:0} 8%{opacity:.95}
+        30%{transform:translate(20px,52px)} 55%{transform:translate(-16px,104px)}
+        80%{transform:translate(18px,152px);opacity:.85}
+        100%{transform:translate(-8px,190px);opacity:0} }
+      @keyframes fallB {
+        0%{transform:translate(0,0);opacity:0} 10%{opacity:.95}
+        32%{transform:translate(-22px,56px)} 58%{transform:translate(14px,110px)}
+        82%{transform:translate(-18px,158px);opacity:.85}
+        100%{transform:translate(10px,196px);opacity:0} }
+      @keyframes fallC {
+        0%{transform:translate(0,0);opacity:0} 9%{opacity:.95}
+        34%{transform:translate(16px,50px)} 60%{transform:translate(-12px,108px)}
+        84%{transform:translate(20px,156px);opacity:.85}
+        100%{transform:translate(-4px,192px);opacity:0} }
+      @keyframes spinA { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+      @keyframes spinB { from{transform:rotate(0)} to{transform:rotate(-360deg)} }
+
+      @media (prefers-reduced-motion: reduce) {
+        .fall,.spin,.canopy,.glow,.flame{animation:none!important}
+        .fall{opacity:.95}
+      }
+    </style>
+  </defs>
+
+  <!-- ground platform -->
+  <ellipse cx="320" cy="586" rx="196" ry="30" fill="#E9DFCD" opacity="0.55" filter="url(#soft)"/>
+  <polygon points="140,470 320,560 320,584 140,494" fill="#E3D7BF"/>
+  <polygon points="500,470 320,560 320,584 500,494" fill="#D9CBAE"/>
+  <polygon points="320,380 500,470 320,560 140,470" fill="#F6EFE1"/>
+
+  <!-- contact shadows -->
+  <ellipse cx="276" cy="456" rx="62" ry="15" fill="#B79A6E" opacity="0.22"/>
+  <ellipse cx="398" cy="470" rx="26" ry="8" fill="#B79A6E" opacity="0.22"/>
+
+  <!-- tree -->
+  <g>
+    <polygon points="266,452 276,456 276,404 266,400" fill="#8A5C33"/>
+    <polygon points="276,456 286,452 286,400 276,404" fill="#6E4726"/>
+    <g class="canopy">
+      <ellipse cx="276" cy="374" rx="78" ry="66" fill="#B23A2A"/>
+      <ellipse cx="316" cy="392" rx="40" ry="36" fill="#C15528"/>
+      <ellipse cx="240" cy="390" rx="46" ry="40" fill="#D9682E"/>
+      <ellipse cx="278" cy="360" rx="52" ry="46" fill="#E08A34"/>
+      <ellipse cx="302" cy="352" rx="26" ry="24" fill="#E89B3C"/>
+      <ellipse cx="256" cy="344" rx="32" ry="28" fill="#EDB24A"/>
+      <ellipse cx="276" cy="420" rx="60" ry="16" fill="#A8331F" opacity="0.35"/>
+    </g>
+  </g>
+
+  <!-- lantern -->
+  <g>
+    <circle class="glow" cx="398" cy="356" r="62" fill="url(#glowGrad)"/>
+    <ellipse cx="398" cy="466" rx="17" ry="8" fill="#26262D"/>
+    <rect x="394" y="372" width="8" height="92" fill="#31313A"/>
+    <rect x="394" y="372" width="3" height="92" fill="#4B4B57"/>
+    <!-- housing -->
+    <polygon points="398,326 416,346 380,346" fill="#2C2C34"/>
+    <circle cx="398" cy="324" r="3.4" fill="#3A3A44"/>
+    <rect x="378" y="344" width="40" height="5" fill="#2C2C34"/>
+    <path d="M382,349 h32 v20 l-16,8 l-16,-8 Z" fill="url(#glassGrad)"/>
+    <g class="flame">
+      <ellipse cx="398" cy="360" rx="6" ry="9" fill="#FFB84D"/>
+      <ellipse cx="398" cy="361" rx="3" ry="5" fill="#FFF0C4"/>
+    </g>
+    <line x1="382" y1="349" x2="398" y2="376" stroke="#2C2C34" stroke-width="2.6"/>
+    <line x1="414" y1="349" x2="398" y2="376" stroke="#2C2C34" stroke-width="2.6"/>
+    <line x1="398" y1="349" x2="398" y2="376" stroke="#2C2C34" stroke-width="2.2"/>
+    <rect x="378" y="367" width="40" height="5" fill="#2C2C34"/>
+    <rect x="395" y="376" width="6" height="6" fill="#2C2C34"/>
+  </g>
+
+  <!-- falling leaves -->
+  <g transform="translate(250,350) scale(1.1)"><g class="fall" style="animation:fallA 7s linear infinite"><g class="spin" style="animation:spinA 4s linear infinite"><use href="#leaf" fill="#D9682E"/></g></g></g>
+  <g transform="translate(300,356) scale(0.9)"><g class="fall" style="animation:fallB 8s linear infinite;animation-delay:-1.2s"><g class="spin" style="animation:spinB 4.6s linear infinite"><use href="#leaf" fill="#E89B3C"/></g></g></g>
+  <g transform="translate(228,372) scale(1.0)"><g class="fall" style="animation:fallC 6.5s linear infinite;animation-delay:-2.4s"><g class="spin" style="animation:spinA 3.6s linear infinite"><use href="#leaf" fill="#B23A2A"/></g></g></g>
+  <g transform="translate(322,368) scale(1.15)"><g class="fall" style="animation:fallA 7.5s linear infinite;animation-delay:-3.1s"><g class="spin" style="animation:spinB 5s linear infinite"><use href="#leaf" fill="#E0A32E"/></g></g></g>
+  <g transform="translate(272,340) scale(0.85)"><g class="fall" style="animation:fallB 8.5s linear infinite;animation-delay:-0.6s"><g class="spin" style="animation:spinA 4.2s linear infinite"><use href="#leaf" fill="#C85A2A"/></g></g></g>
+  <g transform="translate(256,384) scale(1.05)"><g class="fall" style="animation:fallC 7s linear infinite;animation-delay:-4s"><g class="spin" style="animation:spinB 3.8s linear infinite"><use href="#leaf" fill="#F2C14E"/></g></g></g>
+  <g transform="translate(306,382) scale(0.95)"><g class="fall" style="animation:fallA 6.8s linear infinite;animation-delay:-5.2s"><g class="spin" style="animation:spinA 4.4s linear infinite"><use href="#leaf" fill="#D9682E"/></g></g></g>
+  <g transform="translate(238,356) scale(1.1)"><g class="fall" style="animation:fallB 7.8s linear infinite;animation-delay:-2s"><g class="spin" style="animation:spinB 4.8s linear infinite"><use href="#leaf" fill="#E89B3C"/></g></g></g>
+  <g transform="translate(290,372) scale(0.9)"><g class="fall" style="animation:fallC 8.2s linear infinite;animation-delay:-3.6s"><g class="spin" style="animation:spinA 4s linear infinite"><use href="#leaf" fill="#B23A2A"/></g></g></g>
+  <g transform="translate(320,352) scale(1.0)"><g class="fall" style="animation:fallA 7.2s linear infinite;animation-delay:-1.6s"><g class="spin" style="animation:spinB 4.6s linear infinite"><use href="#leaf" fill="#E0A32E"/></g></g></g>
+</svg>

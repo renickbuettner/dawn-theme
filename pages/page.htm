@@ -1,0 +1,43 @@
+url = "/:path*"
+layout = "default"
+title = "Page"
+is_hidden = 0
+
+[section]
+handle = "Dawn\Page"
+isDefault = 1
+==
+function onStart()
+{
+    // The [section] component above is declared ONLY to bind this page as the
+    // Dawn\Page page-finder target (blueprint maps :path ← fullslug); its record
+    // lookup is unused — routing stays with the manual fullslug query below.
+    $path = trim((string) $this->param('path'), '/');
+    if ($path === '') {
+        $path = 'home';
+    }
+
+    // `home` is served at the site root (pages/index.htm); redirect /home there
+    // so the home page has a single canonical URL.
+    if ($path === 'home') {
+        return \Redirect::to($this->controller->pageUrl('index'), 301);
+    }
+
+    $entry = \Tailor\Models\EntryRecord::inSection('Dawn\\Page')
+        ->applyPublishedStatus()
+        ->where('fullslug', $path)
+        ->first();
+
+    if (!$entry) {
+        $this->setStatusCode(404);
+        return $this->controller->run('404');
+    }
+
+    $this['entry'] = $entry;
+
+    // SEO + JSON-LD for partials/seo/head.htm (sets seoTitle/…/seoJsonLd).
+    require_once dawn_path('partials/site/page-seo.php');
+    dawn_page_seo($this, $entry, $this->site->locale ?? 'en');
+}
+==
+{% partial 'site/page-render' entry=entry %}

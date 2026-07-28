@@ -1,0 +1,39 @@
+# Labels are theme lang keys (lang/{en,de}.json), resolved by the plugin's
+# BlockLabelTranslator at serialization time.
+handle: data-table
+name: dawn.block.data-table.name
+icon: icon-table
+group: Dawn
+version: 1
+settings: true
+fields:
+  caption:
+    label: dawn.block.data-table.caption
+    type: text
+    commentAbove: dawn.block.data-table.caption_comment
+  header:
+    label: dawn.block.data-table.header
+    type: text
+    commentAbove: dawn.block.data-table.header_comment
+  rows:
+    label: dawn.block.data-table.rows
+    type: repeater
+    fields:
+      cells:
+        label: dawn.block.data-table.cells
+        type: text
+        commentAbove: dawn.block.data-table.cells_comment
+  striped:
+    label: dawn.block.data-table.striped
+    type: dropdown
+    options:
+      'yes': dawn.block.data-table.opt_yes
+      'no': dawn.block.data-table.opt_no
+    default: 'yes'
+  first_col_header:
+    label: dawn.block.data-table.first_col_header
+    type: dropdown
+    options:
+      'no': dawn.block.data-table.opt_no
+      'yes': dawn.block.data-table.opt_yes
+    default: 'no'
