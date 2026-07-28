@@ -1,0 +1,30 @@
+{# Data table — responsive Dawn-styled table. Header and cells are authored
+   as pipe-separated plain text and rendered fully autoescaped (no |raw on
+   any cell content). first_col_header=yes promotes the first cell of each
+   row to <th scope="row">. #}
+{% set striped = data.striped|default('yes') != 'no' %}
+{% set firstColHeader = data.first_col_header|default('no') == 'yes' %}
+{% set headerCells = data.header|default('')|trim ? data.header|split('|') : [] %}
+<div {{ attributes|raw }}>
+    <div class="table-responsive">
+        <table class="table dawn-table{{ striped ? ' table-striped' : '' }}">
+            {% if data.caption|default('') %}<caption>{{ data.caption }}</caption>{% endif %}
+            {% if headerCells %}
+            <thead>
+                <tr>
+                    {% for cell in headerCells %}<th scope="col">{{ cell|trim }}</th>{% endfor %}
+                </tr>
+            </thead>
+            {% endif %}
+            <tbody>
+                {% for row in data.rows|default([]) %}
+                <tr>
+                    {% for cell in row.cells|default('')|split('|') %}
+                        {% if loop.first and firstColHeader %}<th scope="row">{{ cell|trim }}</th>{% else %}<td>{{ cell|trim }}</td>{% endif %}
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+# Labels are theme lang keys (lang/{en,de}.json), resolved by the plugin's
+# BlockLabelTranslator at serialization time.
+handle: pricing-table
+name: dawn.block.pricing-table.name
+icon: icon-money
+group: Dawn
+version: 1
+settings: true
+fields:
+  tiers:
+    label: dawn.block.pricing-table.tiers
+    type: repeater
+    fields:
+      name:
+        label: dawn.block.pricing-table.tier_name
+        type: text
+        commentAbove: dawn.block.pricing-table.tier_name_comment
+      price:
+        label: dawn.block.pricing-table.price
+        type: text
+        commentAbove: dawn.block.pricing-table.price_comment
+      period:
+        label: dawn.block.pricing-table.period
+        type: text
+        commentAbove: dawn.block.pricing-table.period_comment
+      tagline:
+        label: dawn.block.pricing-table.tagline
+        type: text
+        commentAbove: dawn.block.pricing-table.tagline_comment
+      features:
+        label: dawn.block.pricing-table.features
+        type: textarea
+        size: small
+        commentAbove: dawn.block.pricing-table.features_comment
+      cta_label:
+        label: dawn.block.pricing-table.cta_label
+        type: text
+      cta_url:
+        label: dawn.block.pricing-table.cta_url
+        type: text
+      featured:
+        label: dawn.block.pricing-table.featured
+        type: dropdown
+        options:
+          'no': dawn.block.pricing-table.featured_no
+          'yes': dawn.block.pricing-table.featured_yes
+        default: 'no'

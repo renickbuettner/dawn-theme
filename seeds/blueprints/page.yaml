@@ -1,0 +1,315 @@
+uuid: dawnpage00005a1b8c2d9e3f00000005
+handle: Dawn\Page
+type: structure
+name: Page
+drafts: true
+multisite: all
+
+# `slug`/`fullslug` come from StructureRecord; the theme routes on `fullslug`
+# (pages/page.htm) so nested pages get path-style URLs.
+structure:
+    maxDepth: 2
+
+# Pagefinder: resolves against pages/page.htm ([section]); the wildcard :path
+# param is filled from the record's fullslug.
+pagefinder:
+    replacements:
+        path: fullslug
+
+# Font icon only, deliberately no `iconSvg`. Blueprints are copied verbatim into
+# app/blueprints/ by theme:seed, so an SVG path here would have to hardcode the
+# theme folder — which is `dawn` from this repo but `renick-dawn` on a
+# Marketplace/Composer install, rendering a broken <img> in the main menu (the
+# `icon` below is only used as a fallback when `iconSvg` is empty).
+primaryNavigation:
+    label: dawn.page.nav.pages
+    icon: icon-copy
+    order: 500
+
+navigation:
+    label: dawn.page.nav.pages
+    icon: icon-file-o
+    order: 100
+
+fields:
+    content:
+        label: dawn.page.field.content
+        type: contenteditor
+        tab: dawn.page.tab.content
+        span: adaptive
+        column: false
+
+    title:
+        label: dawn.page.field.title
+        type: text
+        tab: dawn.page.tab.details
+        required: true
+        span: left
+
+    hide_from_nav:
+        label: dawn.page.field.hide_from_nav
+        type: switch
+        tab: dawn.page.tab.details
+        span: right
+        comment: dawn.page.field.hide_from_nav_comment
+        column: false
+
+    show_in_footer:
+        label: dawn.page.field.show_in_footer
+        type: switch
+        tab: dawn.page.tab.details
+        span: right
+        comment: dawn.page.field.show_in_footer_comment
+        column: false
+
+    meta_title:
+        label: dawn.page.field.meta_title
+        type: text
+        tab: dawn.page.tab.seo
+        span: left
+        column: false
+
+    meta_description:
+        label: dawn.page.field.meta_description
+        type: textarea
+        size: small
+        tab: dawn.page.tab.seo
+        span: full
+        column: false
+
+    og_image:
+        label: dawn.page.field.og_image
+        type: mediafinder
+        mode: image
+        maxItems: 1
+        tab: dawn.page.tab.seo
+        span: left
+        comment: dawn.page.field.og_image_comment
+        column: false
+
+    canonical_url:
+        label: dawn.page.field.canonical_url
+        type: text
+        tab: dawn.page.tab.seo
+        span: right
+        comment: dawn.page.field.canonical_url_comment
+        column: false
+
+    seo_noindex:
+        label: dawn.page.field.seo_noindex
+        type: switch
+        tab: dawn.page.tab.seo
+        span: full
+        comment: dawn.page.field.seo_noindex_comment
+        column: false
+
+    schema_type:
+        label: dawn.page.field.schema_type
+        type: dropdown
+        tab: dawn.page.tab.seo
+        span: left
+        default: WebPage
+        comment: dawn.page.field.schema_type_comment
+        column: false
+        options:
+            WebPage: dawn.page.field.schema_type_webpage
+            AboutPage: dawn.page.field.schema_type_aboutpage
+            ContactPage: dawn.page.field.schema_type_contactpage
+            BlogPosting: dawn.page.field.schema_type_blogposting
+            Organization: dawn.page.field.schema_type_organization
+            LocalBusiness: dawn.page.field.schema_type_localbusiness
+
+    # ── BlogPosting (schema_type = BlogPosting) ──────────────────────
+    article_author:
+        label: dawn.page.field.article_author
+        type: text
+        tab: dawn.page.tab.seo
+        span: left
+        column: false
+        trigger:
+            action: show
+            field: schema_type
+            condition: value[BlogPosting]
+
+    article_author_url:
+        label: dawn.page.field.article_author_url
+        type: text
+        tab: dawn.page.tab.seo
+        span: right
+        column: false
+        trigger:
+            action: show
+            field: schema_type
+            condition: value[BlogPosting]
+
+    # ── Organization (schema_type = Organization) ────────────────────
+    org_name:
+        label: dawn.page.field.org_name
+        type: text
+        tab: dawn.page.tab.seo
+        span: left
+        comment: dawn.page.field.org_name_comment
+        column: false
+        trigger:
+            action: show
+            field: schema_type
+            condition: value[Organization]
+
+    org_logo:
+        label: dawn.page.field.org_logo
+        type: mediafinder
+        mode: image
+        maxItems: 1
+        tab: dawn.page.tab.seo
+        span: right
+        column: false
+        trigger:
+            action: show
+            field: schema_type
+            condition: value[Organization]
+
+    org_email:
+        label: dawn.page.field.org_email
+        type: text
+        tab: dawn.page.tab.seo
+        span: left
+        column: false
+        trigger:
+            action: show
+            field: schema_type
+            condition: value[Organization]
+
+    org_phone:
+        label: dawn.page.field.org_phone
+        type: text
+        tab: dawn.page.tab.seo
+        span: right
+        column: false
+        trigger:
+            action: show
+            field: schema_type
+            condition: value[Organization]
+
+    org_same_as:
+        label: dawn.page.field.org_same_as
+        type: textarea
+        size: small
+        tab: dawn.page.tab.seo
+        span: full
+        commentAbove: dawn.page.field.org_same_as_comment
+        column: false
+        trigger:
+            action: show
+            field: schema_type
+            condition: value[Organization]
+
+    # ── LocalBusiness (schema_type = LocalBusiness) ──────────────────
+    lb_street:
+        label: dawn.page.field.lb_street
+        type: text
+        tab: dawn.page.tab.seo
+        span: left
+        column: false
+        trigger:
+            action: show
+            field: schema_type
+            condition: value[LocalBusiness]
+
+    lb_city:
+        label: dawn.page.field.lb_city
+        type: text
+        tab: dawn.page.tab.seo
+        span: right
+        column: false
+        trigger:
+            action: show
+            field: schema_type
+            condition: value[LocalBusiness]
+
+    lb_zip:
+        label: dawn.page.field.lb_zip
+        type: text
+        tab: dawn.page.tab.seo
+        span: left
+        column: false
+        trigger:
+            action: show
+            field: schema_type
+            condition: value[LocalBusiness]
+
+    lb_country:
+        label: dawn.page.field.lb_country
+        type: text
+        tab: dawn.page.tab.seo
+        span: right
+        comment: dawn.page.field.lb_country_comment
+        column: false
+        trigger:
+            action: show
+            field: schema_type
+            condition: value[LocalBusiness]
+
+    lb_phone:
+        label: dawn.page.field.lb_phone
+        type: text
+        tab: dawn.page.tab.seo
+        span: left
+        column: false
+        trigger:
+            action: show
+            field: schema_type
+            condition: value[LocalBusiness]
+
+    lb_price_range:
+        label: dawn.page.field.lb_price_range
+        type: dropdown
+        tab: dawn.page.tab.seo
+        span: right
+        emptyOption: dawn.page.field.lb_price_range_empty
+        column: false
+        options:
+            '$': '$'
+            '$$': '$$'
+            '$$$': '$$$'
+            '$$$$': '$$$$'
+        trigger:
+            action: show
+            field: schema_type
+            condition: value[LocalBusiness]
+
+    lb_lat:
+        label: dawn.page.field.lb_lat
+        type: text
+        tab: dawn.page.tab.seo
+        span: left
+        comment: dawn.page.field.lb_geo_comment
+        column: false
+        trigger:
+            action: show
+            field: schema_type
+            condition: value[LocalBusiness]
+
+    lb_lng:
+        label: dawn.page.field.lb_lng
+        type: text
+        tab: dawn.page.tab.seo
+        span: right
+        comment: dawn.page.field.lb_geo_comment
+        column: false
+        trigger:
+            action: show
+            field: schema_type
+            condition: value[LocalBusiness]
+
+    lb_hours:
+        label: dawn.page.field.lb_hours
+        type: textarea
+        size: small
+        tab: dawn.page.tab.seo
+        span: full
+        commentAbove: dawn.page.field.lb_hours_comment
+        column: false
+        trigger:
+            action: show
+            field: schema_type
+            condition: value[LocalBusiness]

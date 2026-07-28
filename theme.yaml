@@ -1,0 +1,35 @@
+name: 'Renick.Dawn'
+description: 'A modern, minimalist showcase theme for the Renick.Content block editor. Bootstrap 5, multisite (EN/DE), Tailor-powered blog. Branded "Dawn" in the frontend.'
+author: 'Renick'
+authorCode: Renick
+homepage: 'https://www.renick.io/en/content-plugin'
+code: dawn
+
+# Both are hard dependencies: blocks render through renickContent, and the
+# layout's language picker plus the `|_` filter need RainLab.Translate. October
+# auto-installs these on first theme install. Tailor is core, so no entry.
+require:
+    - 'Renick.Content'
+    - 'RainLab.Translate'
+
+# `php artisan translate:scan` imports these into the message store so the |_
+# filter resolves the keys.
+translate:
+    en: translate/en.yaml
+    de: translate/de.yaml
+    es: translate/es.yaml
+
+form:
+    fields:
+        brand_name:
+            tab: dawn.theme.form.branding_tab
+            label: dawn.theme.form.brand_name.label
+            comment: dawn.theme.form.brand_name.comment
+            type: text
+            default: 'Dawn'
+        view_transitions:
+            tab: dawn.theme.form.behavior_tab
+            label: dawn.theme.form.view_transitions.label
+            comment: dawn.theme.form.view_transitions.comment
+            type: checkbox
+            default: true

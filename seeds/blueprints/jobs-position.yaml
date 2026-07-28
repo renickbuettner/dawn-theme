@@ -1,0 +1,178 @@
+uuid: dawnjobpos00085a1b8c2d9e3f00000008
+handle: Dawn\JobsPosition
+type: stream
+name: Position
+drafts: true
+multisite: all
+
+# Pagefinder: resolves against pages/job.htm ([section]), :slug from the record.
+pagefinder:
+    replacements:
+        slug: slug
+
+navigation:
+    parent: Dawn\Page
+    label: dawn.jobs.nav.positions
+    icon: icon-id-badge
+    order: 320
+
+fields:
+    # previewWrapClass must mirror the page's frontend wrapper (.dawn-article).
+    content:
+        label: dawn.jobs.position.field.content
+        type: contenteditor
+        tab: dawn.jobs.position.tab.content
+        span: adaptive
+        column: false
+        previewWrapClass: 'dawn-section container dawn-article'
+        previewVar: position
+
+    title:
+        label: dawn.jobs.position.field.title
+        type: text
+        tab: dawn.jobs.position.tab.details
+        required: true
+        span: left
+
+    department:
+        label: dawn.jobs.position.field.department
+        type: text
+        tab: dawn.jobs.position.tab.details
+        span: right
+        comment: dawn.jobs.position.field.department_comment
+
+    excerpt:
+        label: dawn.jobs.position.field.excerpt
+        type: textarea
+        size: small
+        tab: dawn.jobs.position.tab.details
+        span: full
+        comment: dawn.jobs.position.field.excerpt_comment
+
+    cover:
+        label: dawn.jobs.position.field.cover
+        type: mediafinder
+        mode: image
+        maxItems: 1
+        tab: dawn.jobs.position.tab.details
+        span: left
+        comment: dawn.jobs.position.field.cover_comment
+
+    employment_type:
+        label: dawn.jobs.position.field.employment_type
+        type: dropdown
+        tab: dawn.jobs.position.tab.details
+        span: right
+        default: FULL_TIME
+        options:
+            FULL_TIME: dawn.jobs.position.employment.full_time
+            PART_TIME: dawn.jobs.position.employment.part_time
+            CONTRACTOR: dawn.jobs.position.employment.contractor
+            TEMPORARY: dawn.jobs.position.employment.temporary
+            INTERN: dawn.jobs.position.employment.intern
+
+    valid_through:
+        label: dawn.jobs.position.field.valid_through
+        type: datepicker
+        mode: date
+        tab: dawn.jobs.position.tab.details
+        span: left
+        comment: dawn.jobs.position.field.valid_through_comment
+
+    workplace_type:
+        label: dawn.jobs.position.field.workplace_type
+        type: dropdown
+        tab: dawn.jobs.position.tab.location
+        span: left
+        default: onsite
+        options:
+            onsite: dawn.jobs.position.workplace.onsite
+            hybrid: dawn.jobs.position.workplace.hybrid
+            remote: dawn.jobs.position.workplace.remote
+
+    applicant_location:
+        label: dawn.jobs.position.field.applicant_location
+        type: text
+        tab: dawn.jobs.position.tab.location
+        span: right
+        comment: dawn.jobs.position.field.applicant_location_comment
+
+    job_city:
+        label: dawn.jobs.position.field.job_city
+        type: text
+        tab: dawn.jobs.position.tab.location
+        span: left
+
+    job_region:
+        label: dawn.jobs.position.field.job_region
+        type: text
+        tab: dawn.jobs.position.tab.location
+        span: right
+
+    job_country:
+        label: dawn.jobs.position.field.job_country
+        type: text
+        tab: dawn.jobs.position.tab.location
+        span: left
+        comment: dawn.jobs.position.field.job_country_comment
+
+    salary_min:
+        label: dawn.jobs.position.field.salary_min
+        type: number
+        tab: dawn.jobs.position.tab.compensation
+        span: left
+
+    salary_max:
+        label: dawn.jobs.position.field.salary_max
+        type: number
+        tab: dawn.jobs.position.tab.compensation
+        span: right
+
+    salary_currency:
+        label: dawn.jobs.position.field.salary_currency
+        type: text
+        tab: dawn.jobs.position.tab.compensation
+        span: left
+        comment: dawn.jobs.position.field.salary_currency_comment
+
+    salary_unit:
+        label: dawn.jobs.position.field.salary_unit
+        type: dropdown
+        tab: dawn.jobs.position.tab.compensation
+        span: right
+        default: YEAR
+        options:
+            HOUR: dawn.jobs.position.salary_unit.hour
+            DAY: dawn.jobs.position.salary_unit.day
+            WEEK: dawn.jobs.position.salary_unit.week
+            MONTH: dawn.jobs.position.salary_unit.month
+            YEAR: dawn.jobs.position.salary_unit.year
+
+    hiring_org_name:
+        label: dawn.jobs.position.field.hiring_org_name
+        type: text
+        tab: dawn.jobs.position.tab.organization
+        span: left
+        comment: dawn.jobs.position.field.hiring_org_name_comment
+
+    apply_url:
+        label: dawn.jobs.position.field.apply_url
+        type: text
+        tab: dawn.jobs.position.tab.organization
+        span: right
+        comment: dawn.jobs.position.field.apply_url_comment
+
+    meta_title:
+        label: dawn.jobs.position.field.meta_title
+        type: text
+        tab: dawn.jobs.position.tab.seo
+        span: left
+        column: false
+
+    meta_description:
+        label: dawn.jobs.position.field.meta_description
+        type: textarea
+        size: small
+        tab: dawn.jobs.position.tab.seo
+        span: full
+        column: false

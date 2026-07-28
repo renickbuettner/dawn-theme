@@ -1,0 +1,105 @@
+# Multisite global: one record per site. Every field needs a template-side
+# fallback (partials/site/header.htm + footer.htm) — the record may not exist yet.
+uuid: dawntheme00065a1b8c2d9e3f00000006
+handle: Dawn\Theme
+type: global
+name: Theme
+multisite: all
+
+navigation:
+    parent: Dawn\Page
+    label: dawn.settings.nav.theme
+    icon: icon-paint-brush
+    order: 300
+
+fields:
+    # ── Branding ─────────────────────────────────────────────────────────
+    brand_name:
+        label: dawn.settings.field.brand_name
+        type: text
+        tab: dawn.settings.tab.branding
+        span: left
+        comment: dawn.settings.field.brand_name_comment
+
+    brand_logo:
+        label: dawn.settings.field.brand_logo
+        type: mediafinder
+        mode: image
+        maxItems: 1
+        tab: dawn.settings.tab.branding
+        span: right
+        comment: dawn.settings.field.brand_logo_comment
+
+    # ── Header ───────────────────────────────────────────────────────────
+    show_header_cta:
+        label: dawn.settings.field.show_header_cta
+        type: switch
+        default: true
+        tab: dawn.settings.tab.header
+        span: left
+        comment: dawn.settings.field.show_header_cta_comment
+
+    show_language_chooser:
+        label: dawn.settings.field.show_language_chooser
+        type: switch
+        default: true
+        tab: dawn.settings.tab.header
+        span: right
+        comment: dawn.settings.field.show_language_chooser_comment
+
+    header_cta_label:
+        label: dawn.settings.field.header_cta_label
+        type: text
+        tab: dawn.settings.tab.header
+        span: left
+        comment: dawn.settings.field.header_cta_label_comment
+
+    header_cta_url:
+        label: dawn.settings.field.header_cta_url
+        type: text
+        tab: dawn.settings.tab.header
+        span: right
+        comment: dawn.settings.field.header_cta_url_comment
+
+    # ── Blog ─────────────────────────────────────────────────────────────
+    blog_layout:
+        label: dawn.settings.field.blog_layout
+        type: dropdown
+        options:
+            grid: dawn.settings.field.blog_layout_grid
+            list: dawn.settings.field.blog_layout_list
+        default: grid
+        tab: dawn.settings.tab.blog
+        span: left
+        comment: dawn.settings.field.blog_layout_comment
+
+    blog_per_page:
+        label: dawn.settings.field.blog_per_page
+        type: dropdown
+        options:
+            3: '3'
+            6: '6'
+            9: '9'
+            12: '12'
+        default: 6
+        tab: dawn.settings.tab.blog
+        span: right
+        comment: dawn.settings.field.blog_per_page_comment
+
+    # ── Footer ───────────────────────────────────────────────────────────
+    footer_links:
+        label: dawn.settings.field.footer_links
+        type: repeater
+        tab: dawn.settings.tab.footer
+        span: full
+        commentAbove: dawn.settings.field.footer_links_comment
+        form:
+            fields:
+                label:
+                    label: dawn.settings.field.footer_link_label
+                    type: text
+                    span: left
+                url:
+                    label: dawn.settings.field.footer_link_url
+                    type: text
+                    span: right
