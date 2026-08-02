@@ -1,0 +1,22 @@
+# Data comes from the plugin's guarded rc_entries()/rc_page_url() helpers.
+# Labels are theme lang keys (lang/{en,de}.json), resolved by the plugin's
+# BlockLabelTranslator at serialization time.
+handle: blog-slider
+name: dawn.block.blog-slider.name
+icon: icon-newspaper-o
+group: Dawn
+version: 1
+settings: true
+fields:
+  count:
+    label: dawn.block.blog-slider.count
+    type: dropdown
+    options:
+      '3': '3'
+      '6': '6'
+      '9': '9'
+    default: '6'
+  show_excerpt:
+    label: dawn.block.blog-slider.show_excerpt
+    type: switch
+    default: true

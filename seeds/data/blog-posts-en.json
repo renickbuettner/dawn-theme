@@ -1,0 +1,617 @@
+[
+    {
+        "id": 5,
+        "site_root_id": 5,
+        "title": "Why block-based content wins",
+        "slug": "why-block-based-content-wins",
+        "is_enabled": 1,
+        "published_at": "2026-06-02 09:00:00",
+        "excerpt": "One giant WYSIWYG field ages badly. Typed, self-describing blocks keep pages on-brand, portable, and easy to re-theme.",
+        "cover": "dawn/autumn-sunrays.jpg",
+        "meta_title": "Why block-based content wins | Dawn",
+        "meta_description": "How typed content blocks beat the monolithic WYSIWYG field for maintainability, portability and design consistency.",
+        "category": 4,
+        "tags": [
+            6,
+            8,
+            12
+        ],
+        "content": {
+            "blocks": [
+                {
+                    "type": "richtext",
+                    "data": {
+                        "html": "<p>For years, teams wrestled with a single giant WYSIWYG field: brittle markup, copy-pasted styles, and pages that drifted from the design system the moment a new editor touched them. Block-based editing flips that model on its head. Instead of one opaque blob of HTML, a page becomes an ordered list of typed, self-describing blocks.</p><p>Each block knows how to render itself, which fields it accepts, and how it should behave on small screens. Editors compose pages from a palette of trusted components, and the output stays on-brand because the blocks — not the person — own the presentation.</p>",
+                        "variant": ""
+                    },
+                    "id": "b_b38d206f"
+                },
+                {
+                    "type": "info-banner",
+                    "data": {
+                        "level": "success",
+                        "title": "Portable by design",
+                        "text": "Block documents are plain, structured JSON — your content survives redesigns, re-themes and even CMS migrations without a rewrite.",
+                        "animated": "yes"
+                    },
+                    "settings": {},
+                    "id": "b_e6687a7a"
+                },
+                {
+                    "type": "image",
+                    "data": {
+                        "image": "dawn/autumn-sunrays.jpg",
+                        "alt": "Abstract blue gradient",
+                        "caption": "Blocks compose into pages the way tiles compose into a mosaic.",
+                        "aspect": "16x9",
+                        "fit": "cover",
+                        "focus": "center"
+                    },
+                    "settings": {
+                        "spacing_top": "sm",
+                        "spacing_bottom": "sm"
+                    },
+                    "id": "b_91661932"
+                },
+                {
+                    "type": "richtext",
+                    "data": {
+                        "html": "<p>The payoff shows up everywhere: content is portable as structured JSON, migrations become trivial, and you can re-theme an entire site without rewriting a single article. That is the promise Renick.Content delivers on top of OctoberCMS.</p>",
+                        "variant": ""
+                    },
+                    "id": "b_94b9c3f0"
+                },
+                {
+                    "type": "quote",
+                    "data": {
+                        "text": "Structured content is the difference between a website you maintain and a website that maintains you.",
+                        "author": "Dawn",
+                        "role": "Editorial team"
+                    },
+                    "settings": {
+                        "spacing_top": "md",
+                        "spacing_bottom": "md"
+                    },
+                    "id": "b_8dd2dbce"
+                },
+                {
+                    "type": "accordion",
+                    "children": [
+                        {
+                            "type": "accordion-item",
+                            "data": {
+                                "title": "Is it hard to migrate existing pages?"
+                            },
+                            "children": [
+                                {
+                                    "type": "richtext",
+                                    "data": {
+                                        "html": "<p>Not really. Because blocks are plain data, you can script a one-time import that maps your old markup onto the closest block types, then refine by hand where it matters.</p>",
+                                        "variant": ""
+                                    },
+                                    "id": "b_f1b76e1e"
+                                }
+                            ],
+                            "id": "b_ce4cbdfa"
+                        },
+                        {
+                            "type": "accordion-item",
+                            "data": {
+                                "title": "Can developers add custom blocks?"
+                            },
+                            "children": [
+                                {
+                                    "type": "richtext",
+                                    "data": {
+                                        "html": "<p>Yes. A block is a small, well-defined contract: a schema plus a template. New blocks slot into the same editor and combiner pipeline as the built-in ones.</p>",
+                                        "variant": ""
+                                    },
+                                    "id": "b_0d428aa3"
+                                }
+                            ],
+                            "id": "b_0cd21c3e"
+                        }
+                    ],
+                    "id": "b_57a59f65"
+                },
+                {
+                    "type": "heading",
+                    "data": {
+                        "text": "The research behind it",
+                        "level": "h3"
+                    },
+                    "settings": {
+                        "spacing_top": "md",
+                        "spacing_bottom": "xs"
+                    },
+                    "id": "b_7138eec2"
+                },
+                {
+                    "type": "richtext",
+                    "data": {
+                        "html": "<p>Prefer the long form? The one-page research note below is rendered inline by the PDF block, with a download fallback. (Demo document — the text is placeholder Lorem ipsum.)</p>",
+                        "variant": ""
+                    },
+                    "id": "b_a8678701"
+                },
+                {
+                    "type": "pdf",
+                    "data": {
+                        "file": "dawn/research-paper.pdf",
+                        "title": "Research Paper — Block-Based Content at Scale"
+                    },
+                    "settings": {
+                        "spacing_top": "sm",
+                        "spacing_bottom": "sm"
+                    },
+                    "id": "b_be5912e0"
+                },
+                {
+                    "type": "cta",
+                    "data": {
+                        "variant": "panel",
+                        "title": "Ready to compose?",
+                        "text": "Explore every block in the live showcase.",
+                        "button_label": "See the blocks",
+                        "button_url": "october://cms-page@link/page?path=pricing",
+                        "button_style": "primary"
+                    },
+                    "settings": {
+                        "spacing_top": "lg"
+                    },
+                    "id": "b_7089ee32"
+                }
+            ]
+        }
+    },
+    {
+        "id": 6,
+        "site_root_id": 6,
+        "title": "What shipped this quarter",
+        "slug": "what-shipped-this-quarter",
+        "is_enabled": 1,
+        "published_at": "2026-06-18 09:00:00",
+        "excerpt": "A faster editor, a leaner combiner, and a cleaner inspector. Here is what changed and why it matters for your pages.",
+        "cover": "dawn/autumn-meadow.jpg",
+        "meta_title": "What shipped this quarter | Dawn",
+        "meta_description": "Release highlights: faster editing, keyboard navigation, and a combiner that ships only the assets a page needs.",
+        "category": 6,
+        "tags": [
+            8,
+            14
+        ],
+        "content": {
+            "blocks": [
+                {
+                    "type": "richtext",
+                    "data": {
+                        "html": "<p>This release focused on making the editor faster to reach for and harder to break. We tightened the block palette, improved keyboard navigation, and made the rendered output leaner so your Core Web Vitals stay green.</p>",
+                        "variant": ""
+                    },
+                    "id": "b_05eb1b75"
+                },
+                {
+                    "type": "grid",
+                    "children": [
+                        {
+                            "type": "column",
+                            "data": {
+                                "width": 6
+                            },
+                            "children": [
+                                {
+                                    "type": "heading",
+                                    "data": {
+                                        "text": "For editors",
+                                        "level": "h3"
+                                    },
+                                    "settings": {
+                                        "spacing_bottom": "xs"
+                                    },
+                                    "id": "b_de44445d"
+                                },
+                                {
+                                    "type": "richtext",
+                                    "data": {
+                                        "html": "<p>Drag-and-drop reordering, inline media picking, and a cleaner inspector. Fewer clicks between an idea and a published page.</p>",
+                                        "variant": ""
+                                    },
+                                    "id": "b_3c44c4c0"
+                                }
+                            ],
+                            "id": "b_0bf313c7"
+                        },
+                        {
+                            "type": "column",
+                            "data": {
+                                "width": 6
+                            },
+                            "children": [
+                                {
+                                    "type": "heading",
+                                    "data": {
+                                        "text": "For developers",
+                                        "level": "h3"
+                                    },
+                                    "settings": {
+                                        "spacing_bottom": "xs"
+                                    },
+                                    "id": "b_211ae4ee"
+                                },
+                                {
+                                    "type": "richtext",
+                                    "data": {
+                                        "html": "<p>A documented block contract, a Twig component that injects Bootstrap and per-block assets through the combiner, and a REST surface for headless use.</p>",
+                                        "variant": ""
+                                    },
+                                    "id": "b_c29a7391"
+                                }
+                            ],
+                            "id": "b_5843d6ae"
+                        }
+                    ],
+                    "id": "b_c3aab024"
+                },
+                {
+                    "type": "image",
+                    "data": {
+                        "image": "dawn/autumn-meadow.jpg",
+                        "alt": "Green fields under open sky",
+                        "caption": "Lean output keeps pages fast on every device.",
+                        "aspect": "16x9",
+                        "fit": "cover",
+                        "focus": "center"
+                    },
+                    "settings": {
+                        "spacing_top": "sm",
+                        "spacing_bottom": "sm"
+                    },
+                    "id": "b_e8cb1f23"
+                },
+                {
+                    "type": "richtext",
+                    "data": {
+                        "html": "<p>Under the hood, the asset combiner now ships only the CSS and JS the blocks on a given page actually use. Smaller payloads, faster paints, happier visitors.</p>",
+                        "variant": ""
+                    },
+                    "id": "b_f8afc5fd"
+                },
+                {
+                    "type": "info-banner",
+                    "data": {
+                        "level": "warning",
+                        "title": "Upgrading from an older release?",
+                        "text": "Run the plugin migration before you switch themes: older documents are normalized on their first save, and templates created before this release should be re-exported.",
+                        "animated": "yes"
+                    },
+                    "settings": {
+                        "spacing_top": "md"
+                    },
+                    "id": "b_5a073d01"
+                },
+                {
+                    "type": "cta",
+                    "data": {
+                        "variant": "hero",
+                        "title": "Upgrade in minutes",
+                        "text": "Pull the latest release and re-run the migration — your content comes along untouched.",
+                        "button_label": "Read the changelog",
+                        "button_url": "october://cms-page@link/blog",
+                        "button_style": "light"
+                    },
+                    "settings": {
+                        "spacing_top": "lg"
+                    },
+                    "id": "b_14b4050c"
+                }
+            ]
+        }
+    },
+    {
+        "id": 7,
+        "site_root_id": 7,
+        "title": "Designing with a living type scale",
+        "slug": "designing-with-a-living-type-scale",
+        "is_enabled": 1,
+        "published_at": "2026-06-28 09:00:00",
+        "excerpt": "Editorial design is mostly restraint. A tight type scale and a single accent gradient carry a page further than a dozen styles.",
+        "cover": "dawn/autumn-castle.jpg",
+        "meta_title": "Designing with a living type scale | Dawn",
+        "meta_description": "How CSS custom properties and a disciplined type scale keep an entire theme consistent from headings to chips.",
+        "category": 8,
+        "tags": [
+            10,
+            6
+        ],
+        "content": {
+            "blocks": [
+                {
+                    "type": "image",
+                    "data": {
+                        "image": "dawn/autumn-castle.jpg",
+                        "alt": "Purple haze gradient",
+                        "caption": "Rhythm and contrast do most of the heavy lifting.",
+                        "aspect": "21x9",
+                        "fit": "cover",
+                        "focus": "center"
+                    },
+                    "settings": {
+                        "spacing_top": "sm",
+                        "spacing_bottom": "sm"
+                    },
+                    "id": "b_584119c5"
+                },
+                {
+                    "type": "richtext",
+                    "data": {
+                        "html": "<p>Good editorial design is mostly restraint. A tight type scale, generous line-height, and a single accent gradient carry a page further than a dozen competing styles ever could. When every block draws from the same tokens, consistency stops being a chore and becomes the default.</p><p>The Dawn theme leans on CSS custom properties for its palette and spacing. Change one variable and the whole site shifts in step — headings, chips, buttons, and cards all follow.</p>",
+                        "variant": ""
+                    },
+                    "id": "b_644eecfa"
+                },
+                {
+                    "type": "info-banner",
+                    "data": {
+                        "level": "secondary",
+                        "title": "Tip",
+                        "text": "Every token on this page lives in one CSS file — copy the palette, swap the hues and the whole theme follows.",
+                        "animated": "yes"
+                    },
+                    "settings": {},
+                    "id": "b_2acc2ee2"
+                },
+                {
+                    "type": "quote",
+                    "data": {
+                        "text": "Typography is what language looks like. Treat it with the same care you give your words.",
+                        "author": "Ellen Lupton",
+                        "role": "Designer & author"
+                    },
+                    "settings": {
+                        "spacing_top": "md",
+                        "spacing_bottom": "md"
+                    },
+                    "id": "b_d57e1f67"
+                },
+                {
+                    "type": "accordion",
+                    "children": [
+                        {
+                            "type": "accordion-item",
+                            "data": {
+                                "title": "How many type sizes do I really need?"
+                            },
+                            "children": [
+                                {
+                                    "type": "richtext",
+                                    "data": {
+                                        "html": "<p>Usually five or six. A display size, a heading size or two, body, and a small meta size cover almost every layout without clutter.</p>",
+                                        "variant": ""
+                                    },
+                                    "id": "b_97ca044e"
+                                }
+                            ],
+                            "id": "b_fe497950"
+                        }
+                    ],
+                    "id": "b_fe4676e4"
+                },
+                {
+                    "type": "cta",
+                    "data": {
+                        "variant": "minimal",
+                        "title": "Steal this palette",
+                        "text": "The Dawn tokens are yours to remix.",
+                        "button_label": "Open the theme",
+                        "button_url": "october://cms-page@link/index",
+                        "button_style": "outline-primary"
+                    },
+                    "settings": {
+                        "spacing_top": "lg"
+                    },
+                    "id": "b_b580b791"
+                }
+            ]
+        }
+    },
+    {
+        "id": 8,
+        "site_root_id": 8,
+        "title": "A practical checklist for fast content pages",
+        "slug": "checklist-for-fast-content-pages",
+        "is_enabled": 1,
+        "published_at": "2026-07-06 09:00:00",
+        "excerpt": "Speed is a feature. Most performance wins on a content site are structural — set them up once and they keep paying off.",
+        "cover": "dawn/autumn-coffee.jpg",
+        "meta_title": "A checklist for fast content pages | Dawn",
+        "meta_description": "Ship less, size your images, and cache hard. A practical performance checklist for content-heavy OctoberCMS sites.",
+        "category": 4,
+        "tags": [
+            14,
+            10,
+            12
+        ],
+        "content": {
+            "blocks": [
+                {
+                    "type": "richtext",
+                    "data": {
+                        "html": "<p>Speed is a feature. Visitors feel a slow page long before they can articulate why they left. The good news: most performance wins on a content site are structural, not heroic — you set them up once and they keep paying off.</p>",
+                        "variant": ""
+                    },
+                    "id": "b_ea7739fc"
+                },
+                {
+                    "type": "info-banner",
+                    "data": {
+                        "level": "danger",
+                        "title": "Measure before you ship",
+                        "text": "Never push untested performance tweaks straight to production — a mis-sized cache or a broken lazy-load hurts more than it helps. Verify on a staging copy first.",
+                        "animated": "yes"
+                    },
+                    "settings": {},
+                    "id": "b_ac248148"
+                },
+                {
+                    "type": "grid",
+                    "children": [
+                        {
+                            "type": "column",
+                            "data": {
+                                "width": 4
+                            },
+                            "children": [
+                                {
+                                    "type": "heading",
+                                    "data": {
+                                        "text": "Ship less",
+                                        "level": "h3"
+                                    },
+                                    "settings": {
+                                        "spacing_bottom": "xs"
+                                    },
+                                    "id": "b_cb120e73"
+                                },
+                                {
+                                    "type": "richtext",
+                                    "data": {
+                                        "html": "<p>Only load the CSS and JS a page uses. The block combiner does this for you.</p>",
+                                        "variant": ""
+                                    },
+                                    "id": "b_893d4ea9"
+                                }
+                            ],
+                            "id": "b_5e1aab01"
+                        },
+                        {
+                            "type": "column",
+                            "data": {
+                                "width": 4
+                            },
+                            "children": [
+                                {
+                                    "type": "heading",
+                                    "data": {
+                                        "text": "Size images",
+                                        "level": "h3"
+                                    },
+                                    "settings": {
+                                        "spacing_bottom": "xs"
+                                    },
+                                    "id": "b_faea661f"
+                                },
+                                {
+                                    "type": "richtext",
+                                    "data": {
+                                        "html": "<p>Serve the right dimensions and let the browser lazy-load below the fold.</p>",
+                                        "variant": ""
+                                    },
+                                    "id": "b_c2eb1196"
+                                }
+                            ],
+                            "id": "b_bfc611c5"
+                        },
+                        {
+                            "type": "column",
+                            "data": {
+                                "width": 4
+                            },
+                            "children": [
+                                {
+                                    "type": "heading",
+                                    "data": {
+                                        "text": "Cache hard",
+                                        "level": "h3"
+                                    },
+                                    "settings": {
+                                        "spacing_bottom": "xs"
+                                    },
+                                    "id": "b_ef39264d"
+                                },
+                                {
+                                    "type": "richtext",
+                                    "data": {
+                                        "html": "<p>Structured content caches cleanly because it renders deterministically.</p>",
+                                        "variant": ""
+                                    },
+                                    "id": "b_076de810"
+                                }
+                            ],
+                            "id": "b_f9099901"
+                        }
+                    ],
+                    "id": "b_74ed09b5"
+                },
+                {
+                    "type": "image",
+                    "data": {
+                        "image": "dawn/autumn-coffee.jpg",
+                        "alt": "Orange sunset over hills",
+                        "caption": "Measure on a real device, not just your laptop.",
+                        "aspect": "16x9",
+                        "fit": "cover",
+                        "focus": "center"
+                    },
+                    "settings": {
+                        "spacing_top": "sm",
+                        "spacing_bottom": "sm"
+                    },
+                    "id": "b_5ab8d8d9"
+                },
+                {
+                    "type": "richtext",
+                    "data": {
+                        "html": "<p>Run Lighthouse against a representative article, not the homepage. Article templates are where most of your traffic actually lands, and they are the pages editors touch most often.</p>",
+                        "variant": ""
+                    },
+                    "id": "b_4a3e0612"
+                },
+                {
+                    "type": "quote",
+                    "data": {
+                        "text": "The fastest request is the one you never make.",
+                        "author": "Web performance folklore",
+                        "role": ""
+                    },
+                    "settings": {
+                        "spacing_top": "md",
+                        "spacing_bottom": "md"
+                    },
+                    "id": "b_f8dbd8f6"
+                },
+                {
+                    "type": "download",
+                    "data": {
+                        "files": [
+                            {
+                                "file": "dawn/research-paper.pdf",
+                                "label": "Performance checklist (PDF)"
+                            },
+                            {
+                                "file": "dawn/autumn-desk.jpg",
+                                "label": ""
+                            }
+                        ]
+                    },
+                    "settings": {},
+                    "id": "b_a29bb4ff"
+                },
+                {
+                    "type": "cta",
+                    "data": {
+                        "variant": "bookmark",
+                        "title": "Save this checklist",
+                        "text": "Bookmark it for your next content sprint.",
+                        "button_label": "Back to the blog",
+                        "button_url": "october://cms-page@link/blog",
+                        "button_style": "primary"
+                    },
+                    "settings": {
+                        "spacing_top": "lg"
+                    },
+                    "id": "b_31013bcc"
+                }
+            ]
+        }
+    }
+]

@@ -1,0 +1,64 @@
+{# dawnSettings may be null — same fallback contract as the header partial. #}
+{% set dawnBrand = dawnSettings.brand_name|default(this.theme.brand_name)|default('Dawn') %}
+{% set dawnLogo = dawnSettings.brand_logo|default('') %}
+{% set dawnShowLang = dawnSettings.show_language_chooser ?? true %}
+<footer class="dawn-footer">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <a class="dawn-brand-mark mb-3 d-inline-flex" href="{{ 'index'|page }}">
+                    {% if dawnLogo %}
+                        <img class="dawn-brand-logo" src="{{ dawnLogo|media }}" alt="{{ dawnBrand }}">
+                    {% else %}
+                        <span class="dawn-brand-dot"></span> {{ dawnBrand }}
+                    {% endif %}
+                </a>
+                <p class="dawn-footer-tagline mb-0">{{ 'dawn.front.footer.tagline'|_ }}</p>
+            </div>
+            <div class="col-6 col-lg-2">
+                <div class="dawn-footer-label mb-3">{{ 'dawn.front.footer.explore'|_ }}</div>
+                <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                    <li><a href="{{ 'index'|page }}">{{ 'dawn.front.nav.home'|_ }}</a></li>
+                    {% for navPage in dawnNavPages|default([]) %}
+                        <li><a href="{{ 'page'|page({ path: navPage.fullslug }) }}">{{ navPage.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-6 col-lg-2">
+                <div class="dawn-footer-label mb-3">{{ 'dawn.front.footer.more'|_ }}</div>
+                <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                    <li><a href="{{ 'blog'|page }}">{{ 'dawn.front.nav.blog'|_ }}</a></li>
+                    {# Custom links from the Dawn\Theme footer_links repeater #}
+                    {% for link in dawnSettings.footer_links|default([]) %}
+                        {% if link.label and link.url %}
+                            <li><a href="{{ link.url }}">{{ link.label }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-lg-4">
+                {% if dawnShowLang %}
+                    <div class="dawn-footer-label mb-3">{{ 'dawn.front.footer.languages'|_ }}</div>
+                    <div class="dawn-lang d-flex gap-2">
+                        {% for alt in dawnAlternates|default([]) %}
+                            <a class="{{ alt.active ? 'active' }}" href="{{ alt.url }}" hreflang="{{ alt.hreflang }}">{{ alt.label }}</a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="dawn-footer-line"></div>
+        <div class="dawn-footer-meta d-flex flex-column flex-sm-row justify-content-between gap-2">
+            <span>&copy; {{ "now"|date("Y") }} {{ dawnBrand }}. {{ 'dawn.front.footer.rights'|_ }}</span>
+            {# Pages flagged "show in footer" — footer-only, never in the header nav. #}
+            {% if dawnFooterPages|default([])|length %}
+                <span class="dawn-footer-legal d-flex flex-wrap gap-3">
+                    {% for legalPage in dawnFooterPages %}
+                        <a href="{{ 'page'|page({ path: legalPage.fullslug }) }}">{{ legalPage.title }}</a>
+                    {% endfor %}
+                </span>
+            {% endif %}
+            <span>{{ 'dawn.front.footer.built_with'|_ }}</span>
+        </div>
+    </div>
+</footer>

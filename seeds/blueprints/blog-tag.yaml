@@ -1,0 +1,18 @@
+uuid: dawnblogtag00014a1b8c2d9e3f00000001
+handle: Dawn\BlogTag
+type: entry
+name: Tag
+drafts: false
+multisite: all
+
+navigation:
+    parent: Dawn\BlogPost
+    label: dawn.blog.nav.tags
+    icon: icon-tags
+    order: 300
+
+fields:
+    title:
+        label: dawn.blog.tag.field.name
+        type: text
+        required: true

@@ -1,0 +1,6 @@
+1.0.0: First version of Renick Dawn.
+1.0.1: Fix the frontend erroring out on Marketplace installs — layouts, pages and the combined assets no longer assume the theme folder is named "dawn" (Composer installs it as "renick-dawn").
+1.0.2: Install in one pass on a Marketplace install — "theme:seed" now creates the dawn_en and dawn_de sites instead of assuming they exist, binds them to the child theme October generates for the locked Composer theme, and imports the frontend translations itself, so neither "theme:use" nor "translate:scan" is needed. Requires Renick.Content 1.0.3.
+1.0.3: Use Renick.Content 1.0.4 pagefinder fields for theme navigation links, so hero and pricing buttons and menu entries resolve CMS pages, Tailor pages, blog posts and free URLs through the editor without split label/URL fields. Requires Renick.Content 1.0.4.
+1.0.4: Honor Tailor preview tokens on the manually routed pages so backend draft previews render for editors (visitors without a valid token still get 404), and stack the page Details switches in the left column under Title.
+1.0.5: Compatibility release for Renick.Content 1.0.6 — background sections now render full-bleed with contained content on Dawn pages.

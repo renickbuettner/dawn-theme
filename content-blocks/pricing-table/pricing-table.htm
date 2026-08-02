@@ -1,0 +1,39 @@
+{# Pricing table — reproduces the original Dawn pricing cards (.dawn-price,
+   .dawn-price--featured, inline SVG checkmark per feature). Feature lists are
+   authored one-per-line in a textarea; URLs go through rc_url; everything
+   else stays autoescaped. #}
+{% set check %}<svg class="dawn-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>{% endset %}
+{% set tiers = data.tiers|default([]) %}
+{% set colLg = tiers|length >= 4 ? 3 : 4 %}
+<div {{ attributes|raw }}>
+    <div class="row g-4 justify-content-center">
+        {% for tier in tiers %}
+        {% set isFeatured = tier.featured|default('no') == 'yes' %}
+        {% set url = tier.cta_url|default('')|rc_url %}
+        <div class="col-md-6 col-lg-{{ colLg }}">
+            <div class="dawn-price{{ isFeatured ? ' dawn-price--featured' : '' }} dawn-reveal">
+                {% if tier.name|default('') %}<div class="dawn-kicker mb-2">{{ tier.name }}</div>{% endif %}
+                {% if tier.price|default('') %}<div class="dawn-price__amount mb-1">{{ tier.price }}</div>{% endif %}
+                {% if tier.period|default('') %}
+                <div class="{{ isFeatured ? 'dawn-price__note' : 'text-muted' }} {{ tier.tagline|default('') ? 'mb-1' : 'mb-4' }}">{{ tier.period }}</div>
+                {% endif %}
+                {% if tier.tagline|default('') %}<div class="{{ isFeatured ? 'dawn-price__note' : 'text-muted' }} mb-4">{{ tier.tagline }}</div>{% endif %}
+                {% set features = [] %}
+                {% for line in tier.features|default('')|split("\n") %}
+                    {% if line|trim %}{% set features = features|merge([line|trim]) %}{% endif %}
+                {% endfor %}
+                {% if features %}
+                <ul class="list-unstyled d-flex flex-column gap-2 mb-4">
+                    {% for feature in features %}
+                    <li class="d-flex align-items-center gap-2">{{ check|raw }}{{ feature }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% if tier.cta_label|default('') and url %}
+                <a class="{{ isFeatured ? 'dawn-btn-grad w-100 text-center' : 'btn btn-outline-dark w-100 rounded-3' }}" href="{{ url }}">{{ tier.cta_label }}</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

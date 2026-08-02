@@ -1,0 +1,28 @@
+url = "/"
+layout = "default"
+title = "Home"
+is_hidden = 0
+==
+function onStart()
+{
+    // The site root renders the Dawn\Page entry with slug `home`, so the home
+    // page is edited in the backend like any other page. Backend draft preview:
+    // a valid `_preview_token` wins over the slug lookup (see site/preview.php).
+    require_once dawn_path('partials/site/preview.php');
+    $entry = dawn_preview_entry('Dawn\\Page')
+        ?: \Tailor\Models\EntryRecord::inSection('Dawn\\Page')
+            ->applyPublishedStatus()
+            ->whereNull('parent_id')
+            ->where('slug', 'home')
+            ->first();
+
+    if ($entry) {
+        $this['entry'] = $entry;
+
+        // SEO + JSON-LD for partials/seo/head.htm (sets seoTitle/…/seoJsonLd).
+        require_once dawn_path('partials/site/page-seo.php');
+        dawn_page_seo($this, $entry, $this->site->locale ?? 'en');
+    }
+}
+==
+{% partial 'site/page-render' entry=entry %}

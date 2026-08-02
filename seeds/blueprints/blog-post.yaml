@@ -1,0 +1,84 @@
+uuid: dawnblogpost00034a1b8c2d9e3f00000003
+handle: Dawn\BlogPost
+type: stream
+name: Post
+drafts: true
+multisite: all
+
+# Pagefinder: resolves against pages/blog-post.htm ([section]), :slug from the record.
+pagefinder:
+    replacements:
+        slug: slug
+
+primaryNavigation:
+    label: dawn.blog.nav.blog
+    icon: icon-pencil
+    order: 600
+
+navigation:
+    label: dawn.blog.nav.posts
+    icon: icon-file-text
+    order: 100
+
+fields:
+    content:
+        label: dawn.blog.post.field.content
+        type: contenteditor
+        tab: dawn.blog.post.tab.content
+        span: adaptive
+        column: false
+        # Must mirror the page's frontend wrapper, or preview blocks render edge-to-edge.
+        previewWrapClass: 'dawn-section container dawn-article'
+
+    title:
+        label: dawn.blog.post.field.title
+        type: text
+        tab: dawn.blog.post.tab.details
+        required: true
+        span: left
+
+    excerpt:
+        label: dawn.blog.post.field.excerpt
+        type: textarea
+        size: small
+        tab: dawn.blog.post.tab.details
+        span: full
+        comment: dawn.blog.post.field.excerpt_comment
+
+    cover:
+        label: dawn.blog.post.field.cover
+        type: mediafinder
+        mode: image
+        maxItems: 1
+        tab: dawn.blog.post.tab.details
+        span: full
+
+    category:
+        label: dawn.blog.post.field.category
+        type: entries
+        source: dawnblogcat00024a1b8c2d9e3f00000002
+        maxItems: 1
+        tab: dawn.blog.post.tab.taxonomy
+        span: left
+
+    tags:
+        label: dawn.blog.post.field.tags
+        type: entries
+        source: dawnblogtag00014a1b8c2d9e3f00000001
+        displayMode: taglist
+        tab: dawn.blog.post.tab.taxonomy
+        span: right
+
+    meta_title:
+        label: dawn.blog.post.field.meta_title
+        type: text
+        tab: dawn.blog.post.tab.seo
+        span: left
+        column: false
+
+    meta_description:
+        label: dawn.blog.post.field.meta_description
+        type: textarea
+        size: small
+        tab: dawn.blog.post.tab.seo
+        span: full
