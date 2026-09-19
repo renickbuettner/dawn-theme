@@ -1,0 +1,144 @@
+url = "/blog/:slug"
+layout = "default"
+title = "Blog post"
+is_hidden = 0
+
+[section]
+handle = "Dawn\BlogPost"
+isDefault = 1
+==
+function onStart()
+{
+    // The [section] component only binds this page as the Dawn\BlogPost
+    // page-finder target (see pages/page.htm) — routing stays manual.
+    $slug = $this->param('slug');
+
+    // Backend draft preview: a valid `_preview_token` wins over the slug
+    // lookup (see site/preview.php).
+    require_once dawn_path('partials/site/preview.php');
+    $post = dawn_preview_entry('Dawn\BlogPost')
+        ?: \Tailor\Models\EntryRecord::inSection('Dawn\BlogPost')
+            ->applyPublishedStatus()
+            ->with(['tags', 'category'])
+            ->where('slug', $slug)
+            ->first();
+
+    if (!$post) {
+        $this->setStatusCode(404);
+        return $this->controller->run('404');
+    }
+
+    $this['post'] = $post;
+
+    // Prev / next by publish date (older = prev, newer = next). Unpublished
+    // drafts (preview) have no published_at to anchor on.
+    $this['prevPost'] = $post->published_at ? \Tailor\Models\EntryRecord::inSection('Dawn\BlogPost')
+        ->applyPublishedStatus()
+        ->where('published_at', '<', $post->published_at)
+        ->orderBy('published_at', 'desc')->first() : null;
+
+    $this['nextPost'] = $post->published_at ? \Tailor\Models\EntryRecord::inSection('Dawn\BlogPost')
+        ->applyPublishedStatus()
+        ->where('published_at', '>', $post->published_at)
+        ->orderBy('published_at', 'asc')->first() : null;
+
+    // SEO variables consumed by partials/seo/head.htm.
+    $this['seoTitle'] = $post->meta_title ?: $post->title;
+    $this['seoDescription'] = $post->meta_description ?: $post->excerpt;
+    $this['seoType'] = 'article';
+    $this['seoImage'] = $post->cover ? '/storage/app/media/' . $post->cover : null;
+    $this['seoPublished'] = $post->published_at ? $post->published_at->toIso8601String() : null;
+    $this['seoModified'] = $post->updated_at ? $post->updated_at->toIso8601String() : null;
+    $this['seoTags'] = $post->tags->pluck('title')->all();
+
+    // BlogPosting JSON-LD. Brand name: cached Dawn\Theme settings → theme
+    // customize form → default.
+    require_once dawn_path('partials/site/chrome.php');
+    $globalBrand = dawn_chrome()['settings']['brand_name'] ?? null;
+    $themeData = \Cms\Classes\Theme::getActiveTheme()?->getCustomData();
+    $brandName = trim((string) ($globalBrand ?? '')) ?: (trim((string) ($themeData->brand_name ?? '')) ?: 'Dawn');
+    $imageUrl = $post->cover ? url('/storage/app/media/' . $post->cover) : null;
+    $jsonLd = [
+        '@context' => 'https://schema.org',
+        '@type' => 'BlogPosting',
+        'headline' => $post->title,
+        'description' => $post->meta_description ?: $post->excerpt,
+        'mainEntityOfPage' => ['@type' => 'WebPage', '@id' => \Request::url()],
+        'datePublished' => $post->published_at ? $post->published_at->toIso8601String() : null,
+        'dateModified' => $post->updated_at ? $post->updated_at->toIso8601String() : null,
+        'author' => ['@type' => 'Organization', 'name' => $brandName],
+        'publisher' => ['@type' => 'Organization', 'name' => $brandName],
+        'inLanguage' => dawn_locale(),
+    ];
+    if ($imageUrl) { $jsonLd['image'] = $imageUrl; }
+    if ($post->category) { $jsonLd['articleSection'] = $post->category->title; }
+    if ($post->tags->count()) { $jsonLd['keywords'] = $post->tags->pluck('title')->implode(', '); }
+    // JSON_HEX_TAG|JSON_HEX_AMP: emitted |raw inside <script>, so a `</script>`
+    // in the title/description/tags must be escaped or it breaks out.
+    $this['seoJsonLd'] = json_encode(
+        $jsonLd,
+        JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP
+    );
+}
+==
+{# German reads numeric dates (06.07.2026); everyone else gets the EN long form. #}
+{% set dateFormat = (this.site.locale|default('en')) starts with 'de' ? 'd.m.Y' : 'F j, Y' %}
+{% if post %}
+<article>
+    {# Cover hero #}
+    <header class="dawn-hero dawn-post-hero">
+        <div class="container position-relative">
+            <a class="dawn-eyebrow text-decoration-none" href="{{ 'blog'|page }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="dawn-icon-inline me-1"><path d="M19 12H5m7 7-7-7 7-7"/></svg>{{ 'dawn.front.nav.blog'|_ }}</a>
+            {% if post.category %}
+                <span class="dawn-kicker d-block mt-3">{{ post.category.title }}</span>
+            {% endif %}
+            <h1 class="display-5 mt-2 mb-3">{{ post.title }}</h1>
+            <div class="dawn-meta d-flex flex-wrap align-items-center gap-2 mb-4">
+                {% if post.published_at %}
+                    <time datetime="{{ post.published_at|date('Y-m-d') }}">{{ post.published_at|date(dateFormat) }}</time>
+                {% endif %}
+                {% for tag in post.tags %}
+                    <a class="dawn-chip" href="{{ 'blog'|page }}?tag={{ tag.slug }}">{{ tag.title }}</a>
+                {% endfor %}
+            </div>
+            {% if post.cover %}
+                <img src="{{ post.cover|media|resize(1400, 640, { mode: 'crop' }) }}" alt="{{ post.title }}"
+                     class="img-fluid rounded-4 dawn-post-hero-img" loading="eager"
+                     width="1400" height="640">
+            {% endif %}
+        </div>
+    </header>
+
+    {# Rendered block document #}
+    <div class="dawn-section pt-4">
+        <div class="container">
+            <div class="dawn-article">
+                {% component 'renickContent' document=post.content %}
+            </div>
+        </div>
+    </div>
+
+    {# Prev / next #}
+    <div class="container pb-5">
+        <div class="dawn-article">
+            <div class="row g-3 border-top pt-4">
+                <div class="col-6">
+                    {% if prevPost %}
+                        <span class="dawn-meta d-block">{{ 'dawn.front.blog.older'|_ }}</span>
+                        <a href="{{ 'blog-post'|page({ slug: prevPost.slug }) }}">{{ prevPost.title }}</a>
+                    {% endif %}
+                </div>
+                <div class="col-6 text-end">
+                    {% if nextPost %}
+                        <span class="dawn-meta d-block">{{ 'dawn.front.blog.newer'|_ }}</span>
+                        <a href="{{ 'blog-post'|page({ slug: nextPost.slug }) }}">{{ nextPost.title }}</a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a class="btn btn-outline-dark rounded-3 px-4" href="{{ 'blog'|page }}">{{ 'dawn.front.blog.back_to_all'|_ }}</a>
+            </div>
+        </div>
+    </div>
+</article>
+{% endif %}

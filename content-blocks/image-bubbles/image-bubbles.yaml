@@ -1,0 +1,55 @@
+# Labels are theme lang keys (lang/{en,de}.json), resolved by the plugin's
+# BlockLabelTranslator at serialization time.
+handle: image-bubbles
+name: dawn.block.image-bubbles.name
+icon: icon-comments
+group: Dawn
+version: 1
+settings: true
+fields:
+  image:
+    label: dawn.block.image-bubbles.image
+    type: mediafinder
+    mode: image
+    maxItems: 1
+    commentAbove: dawn.block.image-bubbles.image_comment
+  alt:
+    label: dawn.block.image-bubbles.alt
+    type: text
+  backdrop:
+    label: dawn.block.image-bubbles.backdrop
+    type: dropdown
+    options:
+      circle: dawn.block.image-bubbles.backdrop_circle
+      glow: dawn.block.image-bubbles.backdrop_glow
+      none: dawn.block.image-bubbles.backdrop_none
+    default: circle
+  bubbles:
+    label: dawn.block.image-bubbles.bubbles
+    type: repeater
+    titleFrom: text
+    maxItems: 6
+    commentAbove: dawn.block.image-bubbles.bubbles_comment
+    fields:
+      text:
+        label: dawn.block.image-bubbles.text
+        type: text
+      style:
+        label: dawn.block.image-bubbles.style
+        type: dropdown
+        options:
+          ink: dawn.block.image-bubbles.style_ink
+          accent: dawn.block.image-bubbles.style_accent
+          light: dawn.block.image-bubbles.style_light
+        default: ink
+      position:
+        label: dawn.block.image-bubbles.position
+        type: dropdown
+        options:
+          top-left: dawn.block.image-bubbles.pos_top_left
+          top-right: dawn.block.image-bubbles.pos_top_right
+          middle-left: dawn.block.image-bubbles.pos_middle_left
+          middle-right: dawn.block.image-bubbles.pos_middle_right
+          bottom-left: dawn.block.image-bubbles.pos_bottom_left
+          bottom-right: dawn.block.image-bubbles.pos_bottom_right
+        default: top-left

@@ -1,0 +1,1114 @@
+/* Renick Dawn — theme layer on top of the Renick.Content bundled Bootstrap 5 + block CSS. */
+
+:root {
+    --dawn-bg: #ffffff;
+    --dawn-ink: #14151a;
+    --dawn-muted: #5c6270;
+    --dawn-line: #e7e9ef;
+    --dawn-brand: #c2410c;
+    --dawn-brand-2: #9a3412;
+    --dawn-accent: #d97706;
+    --dawn-grad: linear-gradient(120deg, #9a3412 0%, #c2410c 45%, #e08c1e 100%);
+    --dawn-grad-soft: linear-gradient(120deg, rgba(154, 52, 18, .12), rgba(194, 65, 12, .1) 55%, rgba(224, 140, 30, .14));
+    --dawn-radius: 16px;
+    --dawn-shadow: 0 10px 40px -18px rgba(20, 21, 26, .35);
+    --dawn-nav-h: 68px;
+
+    /* Re-point Bootstrap's primary to the autumn brand so every block that
+       leans on it (bg-primary CTAs, .rc-card-icon, text-primary) follows the
+       theme. This wins because the theme CSS is combined LAST (see layout). */
+    --bs-primary: #c2410c;
+    --bs-primary-rgb: 194, 65, 12;
+    --bs-link-color: var(--dawn-brand);
+    --bs-link-color-rgb: 194, 65, 12;
+    --bs-link-hover-color: var(--dawn-brand-2);
+    /* Subtle/emphasis primaries (used by e.g. the open accordion header) — warm
+       them so no Bootstrap default blue leaks through. */
+    --bs-primary-bg-subtle: #fbe9dd;
+    --bs-primary-border-subtle: #f0c3a6;
+    --bs-primary-text-emphasis: #7c2d12;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--dawn-nav-h) + 12px); overflow-x: hidden; scrollbar-gutter: stable; }
+
+/* Sticky footer: body is a flex column so #main grows to fill any short page
+   (e.g. 404) and the footer is pushed to the viewport bottom instead of
+   floating mid-page. #main gets flex:1 0 auto below; the footer partial keeps
+   its natural flex:0 0 auto (the default initial value — no rule needed). */
+body {
+    background: var(--dawn-bg);
+    color: var(--dawn-ink);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+#main { flex: 1 0 auto; }
+
+a { color: var(--dawn-brand); text-underline-offset: 3px; -webkit-tap-highlight-color: transparent; }
+a:hover { color: var(--dawn-brand-2); }
+/* Keep link colour on-brand while tapping/active — no UA blue/purple flash. */
+a:active { color: var(--dawn-brand-2); }
+
+h1, h2, h3, h4 { letter-spacing: -.02em; font-weight: 700; }
+
+/* Skip-to-content link — visually hidden until focused, then a floating pill
+   above the sticky nav. */
+.dawn-skip-link {
+    position: absolute;
+    left: -9999px;
+    top: .75rem;
+    z-index: 2000;
+    background: var(--dawn-ink);
+    color: #fff;
+    font-weight: 600;
+    padding: .6rem 1.1rem;
+    border-radius: 10px;
+    text-decoration: none;
+}
+.dawn-skip-link:focus { left: .75rem; color: #fff; }
+/* Programmatic focus target for the skip link (tabindex=-1) — no ring on <main>. */
+main:focus { outline: 0; }
+
+.dawn-gradient-text {
+    background: var(--dawn-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+/* ── Navbar ─────────────────────────────────────────────── */
+.dawn-nav {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    height: var(--dawn-nav-h);
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, .78);
+    backdrop-filter: saturate(150%) blur(14px);
+    -webkit-backdrop-filter: saturate(150%) blur(14px);
+    border-bottom: 1px solid var(--dawn-line);
+}
+.dawn-brand-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    font-weight: 800;
+    letter-spacing: -.03em;
+    font-size: 1.2rem;
+    color: var(--dawn-ink);
+    text-decoration: none;
+}
+.dawn-brand-dot {
+    width: 22px; height: 22px;
+    border-radius: 8px;
+    background: var(--dawn-grad);
+    box-shadow: 0 4px 14px -4px rgba(194, 65, 12, .6);
+}
+/* Brand logo (Dawn\Theme global): replaces dot + wordmark when set. Height-
+   capped so any aspect ratio sits cleanly in header and footer rows. */
+.dawn-brand-logo {
+    display: block;
+    height: 32px;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+}
+.dawn-nav .nav-link {
+    color: var(--dawn-muted);
+    font-weight: 550;
+    font-size: .95rem;
+    padding: .4rem .8rem;
+    border-radius: 10px;
+    transition: color .18s ease, background .18s ease;
+}
+.dawn-nav .nav-link:hover,
+.dawn-nav .nav-link.active { color: var(--dawn-ink); background: var(--dawn-grad-soft); }
+
+.dawn-lang a {
+    color: var(--dawn-muted);
+    text-decoration: none;
+    font-size: .85rem;
+    font-weight: 600;
+    padding: .15rem .45rem;
+    border-radius: 8px;
+}
+.dawn-lang a.active { color: #fff; background: var(--dawn-brand); }
+
+/* ── Mega menu (Dawn\Menu global, mega mode) ─────────────────────────
+   Disclosure widgets: a category renders as a label-only chevron button (no
+   link) opening a panel of sub-links plus an optional content card. Desktop:
+   full-width layer under the sticky header (anchored to .dawn-nav, the
+   nearest positioned ancestor). Mobile: the panel sits in the normal
+   off-canvas flow as an accordion, links and card stacked. */
+.dawn-nav-disclosure {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    border: 0;
+    background: transparent;
+    color: var(--dawn-muted);
+    padding: .4rem .45rem;
+    border-radius: 10px;
+    transition: color .18s ease, background .18s ease;
+}
+.dawn-nav-disclosure:hover,
+.dawn-nav-disclosure[aria-expanded="true"] { color: var(--dawn-ink); background: var(--dawn-grad-soft); }
+.dawn-nav-disclosure__chevron { transition: transform .18s ease; }
+.dawn-nav-disclosure[aria-expanded="true"] .dawn-nav-disclosure__chevron { transform: rotate(180deg); }
+/* Optional Lucide icon in front of nav labels (rciconpicker field). */
+.dawn-nav-icon { vertical-align: -3px; margin-right: .4rem; }
+.dawn-nav-disclosure .dawn-nav-icon { margin-right: 0; }
+.dawn-megapanel__link {
+    display: block;
+    text-decoration: none;
+    padding: .55rem .75rem;
+    border-radius: 10px;
+    transition: background .18s ease;
+}
+/* Iconed panel links: icon column spans label + description rows. */
+.dawn-megapanel__link--icon {
+    display: grid;
+    grid-template-columns: 26px 1fr;
+    column-gap: .4rem;
+    align-items: start;
+}
+.dawn-megapanel__icon { grid-row: 1 / span 2; color: var(--dawn-brand); margin-top: .1rem; }
+.dawn-megapanel__link--icon .dawn-megapanel__label,
+.dawn-megapanel__link--icon .dawn-megapanel__desc { grid-column: 2; }
+.dawn-megapanel__link:hover { background: var(--dawn-grad-soft); }
+.dawn-megapanel__label { display: block; color: var(--dawn-ink); font-weight: 600; font-size: .95rem; }
+.dawn-megapanel__link:hover .dawn-megapanel__label { color: var(--dawn-brand); }
+.dawn-megapanel__desc { display: block; color: var(--dawn-muted); font-size: .85rem; margin-top: .1rem; }
+
+/* Hero content card inside a category panel (image + formatted text + button). */
+.dawn-megapanel__card {
+    background: linear-gradient(180deg, #fdf7f1, var(--dawn-bg));
+    border: 1px solid var(--dawn-line);
+    border-radius: var(--dawn-radius);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    align-items: flex-start;
+}
+.dawn-megapanel__card-img { width: 100%; height: auto; border-radius: calc(var(--dawn-radius) - 6px); display: block; }
+.dawn-megapanel__card-text { color: var(--dawn-muted); font-size: .9rem; }
+.dawn-megapanel__card-text :last-child { margin-bottom: 0; }
+.dawn-megapanel__card-btn { font-size: .9rem; padding: .45rem 1rem; }
+
+@media (min-width: 992px) {
+    .dawn-megapanel {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--dawn-bg);
+        border-bottom: 1px solid var(--dawn-line);
+        box-shadow: var(--dawn-shadow);
+        padding: 1.5rem 0 1.75rem;
+        opacity: 0;
+        transform: translateY(-6px);
+        transition: opacity .18s ease, transform .18s ease;
+    }
+    .dawn-megapanel.open { opacity: 1; transform: none; }
+    .dawn-megapanel__list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: .35rem 1.5rem;
+        align-content: start;
+    }
+    /* Panel grid: sub-links + optional content card, card side configurable
+       per item. DOM keeps list-then-card; `order` flips the visual side. */
+    .dawn-megapanel__grid { display: grid; gap: 2rem; align-items: start; }
+    .dawn-megapanel__grid--card-right { grid-template-columns: 1fr 340px; }
+    .dawn-megapanel__grid--card-left { grid-template-columns: 340px 1fr; }
+    .dawn-megapanel__grid--card-left .dawn-megapanel__card { order: -1; }
+}
+
+@media (max-width: 991.98px) {
+    /* Accordion inside the off-canvas: full-width label + chevron button;
+       panel is static flow, indented, no chrome. Links and content card
+       stack below each other (DOM order: links first). */
+    .dawn-nav-disclosure--labelled { width: 100%; justify-content: space-between; text-align: left; }
+    .dawn-megapanel { padding-left: .75rem; }
+    .dawn-megapanel .container { padding: 0; }
+    .dawn-megapanel__grid { display: flex; flex-direction: column; gap: 1rem; }
+    .dawn-megapanel__card { margin-top: .25rem; margin-bottom: .75rem; }
+}
+
+/* ── Language picker (dropdown) ─────────────────────────── */
+.dawn-langpicker { position: relative; }
+.dawn-langpicker__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    background: transparent;
+    border: 1px solid var(--dawn-line);
+    color: var(--dawn-muted);
+    font-size: .85rem;
+    font-weight: 600;
+    padding: .35rem .7rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: color .18s ease, border-color .18s ease, background .18s ease;
+}
+.dawn-langpicker__toggle:hover { color: var(--dawn-ink); border-color: var(--dawn-brand); }
+.dawn-langpicker__caret { transition: transform .18s ease; }
+.dawn-langpicker.open .dawn-langpicker__caret { transform: rotate(180deg); }
+.dawn-langpicker__menu {
+    position: absolute;
+    right: 0;
+    top: calc(100% + .4rem);
+    min-width: 11rem;
+    margin: 0;
+    padding: .35rem;
+    list-style: none;
+    background: #fff;
+    border: 1px solid var(--dawn-line);
+    border-radius: 12px;
+    box-shadow: var(--dawn-shadow);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity .16s ease, transform .16s ease, visibility .16s;
+    z-index: 1040;
+}
+.dawn-langpicker.open .dawn-langpicker__menu { opacity: 1; visibility: visible; transform: none; }
+.dawn-langpicker__menu a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: .5rem .7rem;
+    border-radius: 8px;
+    font-size: .9rem;
+    font-weight: 600;
+    color: var(--dawn-ink);
+    text-decoration: none;
+}
+.dawn-langpicker__menu a:hover { background: var(--dawn-grad-soft); }
+.dawn-langpicker__menu a.active { color: var(--dawn-brand); }
+.dawn-langpicker__name { color: var(--dawn-muted); font-weight: 500; font-size: .82rem; }
+@media (max-width: 991.98px) {
+    .dawn-langpicker__menu { position: static; box-shadow: none; border: 0; padding: .25rem 0 0; min-width: 0; opacity: 1; visibility: visible; transform: none; display: none; }
+    .dawn-langpicker.open .dawn-langpicker__menu { display: block; }
+}
+
+/* ── Buttons (harmonise plugin buttons with the theme) ──── */
+.btn-primary {
+    --bs-btn-bg: var(--dawn-brand);
+    --bs-btn-border-color: var(--dawn-brand);
+    --bs-btn-hover-bg: #a83a0a;
+    --bs-btn-hover-border-color: #a83a0a;
+    --bs-btn-active-bg: #992f06;
+    --bs-btn-disabled-bg: var(--dawn-brand);
+    --bs-btn-disabled-border-color: var(--dawn-brand);
+}
+/* Buttons never underline their label, in any state. */
+.btn, .dawn-btn-grad, a.btn { text-decoration: none; }
+.btn:hover, .btn:focus, .dawn-btn-grad:hover, .dawn-btn-grad:focus, a.btn:hover, a.btn:focus { text-decoration: none; }
+
+.dawn-btn-grad {
+    background: var(--dawn-grad);
+    background-size: 220% 220%;
+    background-position: 0% 50%;
+    border: 0;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 12px;
+    padding: .7rem 1.4rem;
+    box-shadow: 0 12px 30px -12px rgba(194, 65, 12, .8);
+    transition: box-shadow .18s ease;
+}
+/* Hover animates the gradient (no vertical movement). */
+.dawn-btn-grad:hover,
+.dawn-btn-grad:focus-visible {
+    color: #fff;
+    box-shadow: 0 16px 38px -14px rgba(194, 65, 12, .9);
+    animation: dawn-grad-move 3s ease infinite;
+}
+@keyframes dawn-grad-move {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ── CTA hero primary button contrast fix ───────────────────
+   The hero CTA on a dark cover photo wraps its buttons in
+   `.rc-cta-hero--bg.text-white`, whose `color:#fff` leaks into the primary
+   `.btn-light` — leaving white text on a near-white (#f8f9fa) pill (~1.1:1,
+   fails WCAG AA badly). Restore the light button's dark ink text so it reads
+   as a solid white button: #14151a on #fff ≈ 17.3:1 (AA/AAA). */
+.rc-cta-hero--bg .btn-light {
+    --bs-btn-color: var(--dawn-ink);
+    --bs-btn-hover-color: var(--dawn-ink);
+    --bs-btn-active-color: var(--dawn-ink);
+    color: var(--dawn-ink);
+    background-color: #fff;
+    border-color: #fff;
+    font-weight: 600;
+}
+.rc-cta-hero--bg .btn-light:hover,
+.rc-cta-hero--bg .btn-light:focus-visible {
+    color: var(--dawn-ink);        /* #14151a on #f4ede6 ≈ 15:1 */
+    background-color: #f4ede6;
+    border-color: #f4ede6;
+}
+/* Visible keyboard focus ring against the dark photo. */
+.rc-cta-hero--bg .btn-light:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+    box-shadow: none;
+}
+
+/* ── Hero / section chrome ──────────────────────────────── */
+.dawn-hero {
+    position: relative;
+    padding: clamp(3.5rem, 8vw, 7rem) 0 clamp(3rem, 6vw, 5rem);
+    background:
+        radial-gradient(60% 55% at 15% 10%, rgba(194, 65, 12, .16), transparent 60%),
+        radial-gradient(55% 55% at 90% 5%, rgba(217, 119, 6, .16), transparent 60%),
+        radial-gradient(50% 60% at 70% 90%, rgba(154, 52, 18, .14), transparent 60%);
+    overflow: hidden;
+}
+/* Soft bottom exit: the hero must never end on a hard horizontal edge. The
+   fade sits ABOVE the tint background and the overflow-clipped .dawn-blob
+   decorations (z 0) but BELOW the content (container at z 2), so cover
+   images, text and buttons stay crisp. */
+.dawn-hero::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 45%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), var(--dawn-bg));
+    pointer-events: none;
+    z-index: 1;
+}
+.dawn-hero .container { position: relative; z-index: 2; }
+
+/* ── 404 page ───────────────────────────────────────────── */
+/* Fills the space below the sticky nav (rather than the whole viewport, which
+   would double-count the nav height now that body/#main are a flex column)
+   and vertically centres the hero content — a short, static page otherwise
+   looks stranded near the top. */
+.dawn-404 {
+    min-height: calc(100vh - var(--dawn-nav-h));
+    min-height: calc(100dvh - var(--dawn-nav-h));
+    display: flex;
+    align-items: center;
+}
+/* Decorative autumn leaf, modelled as two mirrored halves split along the
+   midrib so each can be animated independently (see .dawn-leaf-half below).
+   Purely presentational — the SVG carries aria-hidden, so no CSS content
+   here is exposed to assistive tech. */
+.dawn-404-leaf {
+    display: block;
+    width: 88px;
+    height: auto;
+    margin: 0 auto 1.5rem;
+}
+.dawn-404-leaf .dawn-leaf-fill { fill: url(#dawn404LeafGrad); }
+.dawn-404-leaf .dawn-leaf-vein {
+    fill: none;
+    stroke: var(--dawn-accent);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+}
+.dawn-404-leaf .dawn-leaf-veinlets {
+    fill: none;
+    stroke: var(--dawn-accent);
+    stroke-width: 1.1;
+    stroke-linecap: round;
+    opacity: .55;
+}
+/* Each half rotates/translates away from the midrib on load, overshoots
+   slightly, then settles into a resting "cracked" pose. transform-box:
+   fill-box + an origin pinned to the shared midrib edge keeps the crack
+   pivoting from the break line rather than the SVG's own bounding box. */
+.dawn-leaf-half { transform-box: fill-box; }
+.dawn-leaf-half--l {
+    transform-origin: 100% 50%;
+    animation: dawn-leaf-crack-l 1.3s cubic-bezier(.34, 1.56, .64, 1) both;
+}
+.dawn-leaf-half--r {
+    transform-origin: 0% 50%;
+    animation: dawn-leaf-crack-r 1.3s cubic-bezier(.34, 1.56, .64, 1) both;
+}
+@keyframes dawn-leaf-crack-l {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    40% { transform: translate(-9px, -7px) rotate(-11deg); }
+    65% { transform: translate(-5px, 1px) rotate(-6deg); }
+    100% { transform: translate(-6px, -1px) rotate(-6deg); }
+}
+@keyframes dawn-leaf-crack-r {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    40% { transform: translate(9px, -6px) rotate(11deg); }
+    65% { transform: translate(5px, 2px) rotate(6deg); }
+    100% { transform: translate(6px, -1px) rotate(6deg); }
+}
+
+.dawn-eyebrow {
+    display: inline-block;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--dawn-brand);
+    background: var(--dawn-grad-soft);
+    padding: .35rem .8rem;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+}
+.dawn-lead { color: var(--dawn-muted); font-size: clamp(1.05rem, 1.6vw, 1.25rem); max-width: 42ch; }
+
+/* Side-by-side hero/CTA buttons: identical height + true vertical centering.
+   .dawn-btn-grad's padding/line box differs from Bootstrap's .btn, so an
+   outline button next to it would otherwise sit off-center. */
+.dawn-btn-grad,
+a.btn.dawn-btn-outline,
+.dawn-hero a.btn-outline-dark,
+.rc-document a.btn-outline-dark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.5;
+}
+a.btn.dawn-btn-outline,
+.dawn-hero a.btn-outline-dark,
+.rc-document a.btn-outline-dark {
+    padding-top: calc(.7rem - 1px);
+    padding-bottom: calc(.7rem - 1px);
+}
+
+/* Hero block (content-blocks/hero) media sides. */
+.dawn-hero__video {
+    width: 100%;
+    aspect-ratio: 880 / 500;
+    object-fit: cover;
+    display: block;
+}
+.dawn-hero__slider .splide__slide img { width: 100%; display: block; }
+.dawn-hero__slider .splide__pagination { position: static; padding-top: .75rem; }
+.dawn-hero__slider .splide__pagination__page { background: var(--dawn-muted); }
+.dawn-hero__slider .splide__pagination__page.is-active { background: var(--dawn-brand); transform: scale(1.2); }
+.dawn-hero__media-below { max-width: 880px; }
+[data-hero-layout="centered"] .dawn-hero__media-below { margin-inline: auto; }
+.dawn-hero .dawn-lead { max-width: 48ch; }
+
+.dawn-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: .5;
+    pointer-events: none;
+    z-index: 0;
+}
+.dawn-blob-1 { width: 320px; height: 320px; background: #d97706; top: -80px; right: -60px; }
+.dawn-blob-2 { width: 260px; height: 260px; background: #b45309; bottom: -120px; left: -40px; }
+
+.dawn-section { padding: clamp(3rem, 6vw, 5rem) 0; }
+.dawn-section-tint { background: linear-gradient(180deg, #fdf7f1, #ffffff); }
+/* A coloured section without its own bottom spacing would end flush on its last line */
+.rc-section--bg:not([class*="rc-pb-"]) { padding-bottom: clamp(2.5rem, 5vw, 3.5rem); }
+.rc-section--bg:not([class*="rc-pt-"]) { padding-top: clamp(2.5rem, 5vw, 3.5rem); }
+.rc-section--bg > .rc-section-inner > :last-child { margin-bottom: 0; }
+/* Sections only pad their top, so the band would otherwise touch the content above it */
+.rc-section + .rc-section--bg { margin-top: clamp(2rem, 4vw, 3rem); }
+.dawn-kicker { color: var(--dawn-brand); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; font-size: .8rem; }
+
+/* ── Cards & tiles ──────────────────────────────────────── */
+.dawn-tile {
+    background: #fff;
+    border: 1px solid var(--dawn-line);
+    border-radius: var(--dawn-radius);
+    padding: 1.5rem;
+    height: 100%;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.dawn-tile:hover { transform: translateY(-4px); box-shadow: var(--dawn-shadow); border-color: transparent; }
+.dawn-tile-icon {
+    width: 44px; height: 44px;
+    display: grid; place-items: center;
+    border-radius: 12px;
+    background: var(--dawn-grad-soft);
+    color: var(--dawn-brand);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+/* ── Home "Built for building" feature section ──────────────
+   The rendered `section` block carries `rc-bg-light` (a cold Bootstrap grey
+   that clashes with the autumn palette). Warm it into a soft, rounded surface
+   that reads as one integrated panel inside the cream `.dawn-section-tint`. */
+.dawn-features.rc-bg-light {
+    background: linear-gradient(180deg, #fbf1e9, #fdf7f1);
+    border: 1px solid #f2e3d6;
+    border-radius: calc(var(--dawn-radius) + 6px);
+    padding: clamp(2rem, 4vw, 3rem) clamp(1.25rem, 3vw, 2.5rem);
+}
+/* Cards inside the panel: warm border + hover lift so they sit on the tint. */
+.dawn-features .rc-card-grid .rc-column-inner {
+    border-color: #f0ddcd;
+    box-shadow: 0 1px 3px rgba(124, 45, 18, .06);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.dawn-features .rc-card-grid .rc-column-inner:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--dawn-shadow);
+    border-color: transparent;
+}
+/* Turn the inline title icon into a badge above the title (matching
+   .dawn-tile-icon), so each column leads with a clear pictogram. The icon is an
+   18px inline <svg>; box-sizing + padding grow it to a 44px rounded tile while
+   the glyph itself stays legible at 18px. */
+.dawn-features .rc-card .card-title { display: block; }
+.dawn-features .rc-card-icon.rc-icon {
+    display: block;
+    box-sizing: content-box;
+    width: 18px; height: 18px;
+    padding: 13px;               /* 18 + 2×13 = 44px badge */
+    margin: 0 0 .85rem;
+    border-radius: 12px;
+    background: var(--dawn-grad-soft);
+    color: var(--dawn-brand);
+    vertical-align: baseline;
+}
+
+.dawn-price {
+    border: 1px solid var(--dawn-line);
+    border-radius: var(--dawn-radius);
+    padding: 2rem;
+    height: 100%;
+    background: #fff;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.dawn-price:hover { transform: translateY(-4px); box-shadow: var(--dawn-shadow); }
+/* The white tile keeps dark ink inside a dark or tone-inverted section */
+.dawn-price:not(.dawn-price--featured) { color: var(--dawn-ink); --bs-secondary-color: var(--rc-secondary-color, #6c757d); --bs-secondary-rgb: var(--rc-secondary-rgb, 108, 117, 125); }
+.dawn-price--featured { border-color: transparent; background: var(--dawn-grad); color: #fff; box-shadow: var(--dawn-shadow); }
+.dawn-price--featured .text-muted { color: rgba(255, 255, 255, .8) !important; }
+.dawn-price--featured .dawn-kicker { color: #fff; }
+.dawn-price--featured .dawn-price__note { opacity: .85; }
+/* Card blocks in a card grid take the pricing tiles' frame */
+.rc-card-grid .rc-card > .card {
+    border-color: var(--dawn-line);
+    border-radius: var(--dawn-radius);
+    overflow: hidden;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.rc-card-grid .rc-card > .card:hover { transform: translateY(-4px); box-shadow: var(--dawn-shadow); }
+.rc-card-grid .rc-card .card-body { padding: 1.5rem; }
+.dawn-price__amount { font-size: 2.6rem; font-weight: 800; letter-spacing: -.03em; }
+
+/* Inline decorative icons that sit inside a line of text. */
+.dawn-icon-inline { vertical-align: -.125em; }
+
+/* Decorative plan-feature checkmark (SVG, aria-hidden in the markup). */
+.dawn-check { color: var(--dawn-accent); flex: 0 0 auto; }
+.dawn-price--featured .dawn-check { color: #fff; }
+
+.dawn-stat { text-align: center; }
+.dawn-stat__num { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -.03em; }
+.dawn-stat__num.dawn-gradient-text { line-height: 1.1; }
+
+/* ── Data table (data-table block) ──────────────────────── */
+.dawn-table { border-color: var(--dawn-line); --bs-table-striped-bg: #fdf7f1; }
+.dawn-table > :not(caption) > * > * { border-color: var(--dawn-line); padding: .75rem 1rem; }
+.dawn-table thead th {
+    background: var(--dawn-grad-soft);
+    color: var(--dawn-ink);
+    font-weight: 700;
+    border-bottom: 0;
+}
+.dawn-table tbody th[scope="row"] { font-weight: 600; color: var(--dawn-ink); }
+.dawn-table caption { caption-side: bottom; padding-top: .6rem; color: var(--dawn-muted); font-size: .875rem; }
+
+/* ── Blog ───────────────────────────────────────────────── */
+.dawn-post-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--dawn-line);
+    border-radius: var(--dawn-radius);
+    overflow: hidden;
+    height: 100%;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.dawn-post-card:hover { transform: translateY(-4px); box-shadow: var(--dawn-shadow); }
+.dawn-post-card__media { aspect-ratio: 16 / 9; overflow: hidden; background: var(--dawn-grad-soft); }
+.dawn-post-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
+.dawn-post-card:hover .dawn-post-card__media img { transform: scale(1.05); }
+.dawn-post-card__body { padding: 1.25rem 1.35rem 1.5rem; display: flex; flex-direction: column; gap: .6rem; flex: 1; }
+.dawn-post-card__title { font-size: 1.2rem; font-weight: 700; letter-spacing: -.02em; }
+.dawn-post-card__title a { color: var(--dawn-ink); text-decoration: none; }
+.dawn-post-card__title a:hover { color: var(--dawn-brand); }
+.dawn-post-card__excerpt { color: var(--dawn-muted); font-size: .95rem; flex: 1; }
+
+.dawn-chip {
+    display: inline-block;
+    font-size: .75rem;
+    font-weight: 600;
+    padding: .2rem .65rem;
+    border-radius: 999px;
+    background: var(--dawn-grad-soft);
+    color: var(--dawn-brand);
+    text-decoration: none;
+    border: 1px solid transparent;
+}
+a.dawn-chip:hover { border-color: var(--dawn-brand); }
+.dawn-chip--active { background: var(--dawn-brand); color: #fff; }
+
+.dawn-meta { color: var(--dawn-muted); font-size: .82rem; }
+
+/* Blog-post hero: `.dawn-hero` clips overflow (to contain the decorative
+   radial gradients), so the cover's downward shadow needs bottom room inside
+   the box or it is sheared into a hard line. Keep padding > shadow offset +
+   blur. */
+.dawn-post-hero { padding-bottom: 3.5rem; }
+/* Blog-post hero cover — fixed frame, no inline styles in the template.
+   Tighter custom shadow instead of Bootstrap's shadow-lg (16+48px reach):
+   12+28px stays well inside the 56px padding above. */
+.dawn-post-hero-img { width: 100%; max-height: 460px; object-fit: cover; box-shadow: 0 12px 28px rgba(20, 21, 26, 0.16); }
+
+/* Narrow display headline (About hero). */
+.dawn-hero-title-narrow { max-width: 16ch; }
+
+/* Article body: give the rendered block document a comfortable measure. */
+.dawn-article { max-width: 760px; margin-inline: auto; }
+.dawn-article .rc-document > * + * { margin-top: 1.15rem; }
+
+/* Lead intro paragraph under a section heading — SEO rhythm (heading → intro →
+   content) and a touch of breathing room after each heading. */
+.dawn-doc-lead {
+    color: var(--dawn-muted);
+    font-size: 1.08rem;
+    line-height: 1.7;
+    max-width: 62ch;
+    margin-inline: auto;
+    text-align: center;
+}
+
+/* Accordion FAQ variant — question-mark badge + a calmer Q&A rhythm. */
+.rc-accordion--faq .accordion-item {
+    border: 1px solid var(--dawn-line);
+    border-radius: 14px;
+    margin-bottom: .75rem;
+    overflow: hidden;
+    background: #fff;
+}
+.rc-accordion--faq .accordion-button {
+    font-weight: 700;
+    font-size: 1.05rem;
+    gap: .75rem;
+    padding: 1.1rem 1.25rem;
+}
+.rc-accordion--faq .accordion-button::before {
+    content: "?";
+    flex: 0 0 auto;
+    width: 1.7rem;
+    height: 1.7rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--dawn-grad-soft);
+    color: var(--dawn-brand);
+    font-weight: 800;
+    font-size: .95rem;
+}
+.rc-accordion--faq .accordion-button:not(.collapsed) {
+    color: var(--dawn-brand);
+    background: transparent;
+    box-shadow: none;
+}
+.rc-accordion--faq .accordion-body {
+    color: var(--dawn-muted);
+    padding-left: 3rem;
+}
+
+/* ── Footer ─────────────────────────────────────────────── */
+.dawn-footer {
+    background: #0f1016;
+    color: #c9cdd8;
+    padding: 3.5rem 0 2rem;
+    margin-top: 4rem;
+}
+.dawn-footer a { color: #c9cdd8; text-decoration: none; }
+.dawn-footer a:hover { color: #fff; }
+/* Section labels are styled divs, not headings — they are navigation labels,
+   not document structure (keeps the page heading order clean). */
+.dawn-footer-label { color: #fff; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; font-size: .8rem; }
+.dawn-footer-tagline { max-width: 34ch; color: #9aa0af; }
+.dawn-footer-meta { color: #9aa0af; font-size: .85rem; }
+.dawn-footer .dawn-brand-mark { color: #fff; }
+.dawn-footer-line { border-top: 1px solid rgba(255, 255, 255, .1); margin: 2rem 0 1.25rem; }
+
+/* ── Reveal-on-scroll (progressive; content is visible if JS/observer off) ── */
+.dawn-reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.dawn-reveal.is-in { opacity: 1; transform: none; }
+
+/* Editor preview: the iframe is script-sandboxed, so the reveal observer never
+   runs — without this, reveal-gated blocks (hero-numbers, features, pricing)
+   are invisible while editing. `.rc-preview-body` is the plugin's marker. */
+.rc-preview-body .dawn-reveal { opacity: 1; transform: none; transition: none; }
+
+@keyframes dawn-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+.dawn-float { animation: dawn-float 6s ease-in-out infinite; }
+
+/* ── Image with bubbles (theme block) ── */
+.dawn-bubbles { position: relative; display: grid; place-items: center; padding: clamp(1.75rem, 4vw, 3rem); }
+/* Center the text column next to the widget when composed inside a grid. */
+.rc-row:has(.dawn-bubbles) { align-items: center; }
+.dawn-bubbles__backdrop {
+    position: absolute;
+    width: min(82%, 440px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+.dawn-bubbles__backdrop--circle { background: linear-gradient(180deg, #faf6f0, #f4f5f8); }
+.dawn-bubbles__backdrop--glow { background: var(--dawn-grad-soft); filter: blur(28px); }
+.dawn-bubbles__image { position: relative; z-index: 1; width: min(100%, 520px); height: auto; }
+/* Without an image the backdrop is the only sized child, so it flows in-grid
+   instead of floating over the next block. */
+.dawn-bubbles--no-image .dawn-bubbles__backdrop { position: relative; }
+.dawn-bubbles--no-image { min-height: 12rem; }
+.dawn-bubble {
+    position: absolute;
+    z-index: 2;
+    padding: .45rem 1rem;
+    border-radius: 999px;
+    font-size: .85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: var(--dawn-shadow);
+    animation: dawn-bubble-drift 6s ease-in-out infinite;
+}
+.dawn-bubble--ink { background: var(--dawn-ink); color: #fff; }
+.dawn-bubble--accent { background: var(--dawn-grad); color: #fff; }
+.dawn-bubble--light { background: #fff; color: var(--dawn-ink); border: 1px solid var(--dawn-line); }
+.dawn-bubble--top-left { top: 14%; left: 2%; }
+.dawn-bubble--top-right { top: 20%; right: 1%; }
+.dawn-bubble--middle-left { top: 48%; left: 0; }
+.dawn-bubble--middle-right { top: 56%; right: 0; }
+.dawn-bubble--bottom-left { bottom: 12%; left: 5%; }
+.dawn-bubble--bottom-right { bottom: 9%; right: 4%; }
+@keyframes dawn-bubble-drift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+/* Every second bubble drifts horizontally so the group never moves in sync. */
+@keyframes dawn-bubble-drift-x { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(8px); } }
+.dawn-bubble-drift-x { animation-name: dawn-bubble-drift-x; }
+@media (max-width: 575.98px) { .dawn-bubble { font-size: .75rem; padding: .35rem .75rem; } }
+
+/* Respect reduced-motion: no transforms, no float, instant reveal. */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .dawn-reveal { opacity: 1; transform: none; transition: none; }
+    .dawn-float { animation: none; }
+    .dawn-bubble { animation: none; }
+    .dawn-megapanel { transition: none; transform: none; }
+    .dawn-nav-disclosure__chevron { transition: none; }
+    .dawn-tile:hover, .dawn-price:hover, .dawn-post-card:hover { transform: none; }
+    .dawn-btn-grad:hover, .dawn-btn-grad:focus-visible { animation: none; }
+    :is(.rc-form, .rc-tailor-submission-form) .rc-form-submit:hover:not(:disabled),
+    :is(.rc-form, .rc-tailor-submission-form) .rc-form-submit:focus-visible:not(:disabled) { animation: none; }
+    /* 404 leaf: no crack, no tumble — render as one whole, static leaf. */
+    .dawn-leaf-half { animation: none; transform: none; }
+    * { scroll-behavior: auto !important; }
+}
+
+/* ── Desktop: off-canvas chrome is hidden, foot is transparent ── */
+/* The panel head (brand + close) only exists for the mobile off-canvas. */
+.dawn-nav-panel-head { display: none; }
+/* On desktop the foot wrapper must not create a box — its children (CTA +
+   langpicker) should sit inline in the nav flex row, exactly as before the
+   off-canvas refactor. `display: contents` removes the wrapper from layout. */
+@media (min-width: 992px) {
+    .dawn-nav-panel-foot { display: contents; }
+}
+
+/* ── Responsive tuning: mobile off-canvas menu ──────────────── */
+@media (max-width: 991.98px) {
+    /* Backdrop: fades in behind the sliding panel; click closes the menu.
+       Sized explicitly (not `inset: 0`) because the .dawn-nav header's
+       backdrop-filter is the containing block for fixed children — `inset: 0`
+       would clip it to the 68px header. */
+    .dawn-nav-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        z-index: 1035;
+        background: rgba(20, 21, 26, .45);
+        opacity: 0;
+        transition: opacity .25s ease;
+    }
+    .dawn-nav-backdrop.show { opacity: 1; }
+
+    /* Off-canvas panel: fixed to the right edge, slid off-screen by default,
+       revealed by translating back in when .show is added.
+       NOTE: the .dawn-nav header sets `backdrop-filter`, which makes it the
+       containing block for `position: fixed` descendants — so `bottom: 0`
+       would resolve against the 68px-tall header, not the viewport. We pin
+       `top: 0` and give an explicit full-viewport height (100dvh) instead. */
+    .dawn-nav-collapse {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        height: 100dvh;
+        z-index: 1036;
+        width: min(84vw, 340px);
+        background: #fff;
+        border-left: 1px solid var(--dawn-line);
+        box-shadow: -18px 0 48px -24px rgba(20, 21, 26, .5);
+        padding: 1rem 1.25rem calc(1.25rem + env(safe-area-inset-bottom));
+        transform: translateX(100%);
+        /* Hidden while closed so the off-screen panel is out of the tab order
+           and not announced; delay dropping visibility until the slide-out
+           finishes. */
+        visibility: hidden;
+        transition: transform .28s cubic-bezier(.4, 0, .2, 1), visibility 0s linear .28s;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+    }
+    .dawn-nav-collapse.show {
+        transform: translateX(0);
+        visibility: visible;
+        transition: transform .28s cubic-bezier(.4, 0, .2, 1), visibility 0s;
+    }
+
+    /* Panel header: brand on the left, close button on the right. */
+    .dawn-nav-panel-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 1rem;
+        margin-bottom: .5rem;
+        border-bottom: 1px solid var(--dawn-line);
+    }
+    .dawn-nav-close {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px; height: 40px;
+        border: 0;
+        border-radius: 10px;
+        background: transparent;
+        color: var(--dawn-muted);
+        cursor: pointer;
+        transition: color .18s ease, background .18s ease;
+    }
+    .dawn-nav-close:hover,
+    .dawn-nav-close:focus-visible { color: var(--dawn-ink); background: var(--dawn-grad-soft); }
+
+    /* Navigation as a clean vertical LIST — no button styling, just links with
+       clear typography and generous tap targets. */
+    .dawn-nav-list { gap: .1rem; }
+    .dawn-nav-list .nav-item { border-bottom: 1px solid var(--dawn-line); }
+    .dawn-nav-list .nav-item:last-child { border-bottom: 0; }
+    .dawn-nav-list .nav-link {
+        display: block;
+        padding: .85rem .25rem;
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--dawn-ink);
+        background: none;
+        border-radius: 0;
+    }
+    .dawn-nav-list .nav-link:hover,
+    .dawn-nav-list .nav-link.active { color: var(--dawn-brand); background: none; }
+
+    /* Foot: CTA + language picker pushed to the bottom and centered. */
+    .dawn-nav-panel-foot {
+        margin-top: auto;
+        padding-top: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    .dawn-nav-panel-foot .dawn-btn-grad {
+        width: 100%;
+        max-width: 260px;
+        padding: .8rem 1.4rem;
+    }
+    .dawn-nav-panel-foot .dawn-langpicker { display: flex; justify-content: center; }
+}
+
+/* Blog overview list layout (Dawn\Theme global blog_layout=list): horizontal
+   rows — media left, body right; stacks on mobile. Doubled class beats the
+   base card's display:flex regardless of source order. */
+.dawn-post-card.dawn-post-card--row {
+    display: grid;
+    grid-template-columns: minmax(200px, 320px) 1fr;
+    align-items: stretch;
+}
+.dawn-post-card.dawn-post-card--row .dawn-post-card__media {
+    /* The base card's 16/9 aspect-ratio + full row height would blow past the
+       320px track — let the grid cell size the media instead. */
+    aspect-ratio: auto;
+    height: 100%;
+    width: 100%;
+    min-width: 0;
+}
+.dawn-post-card.dawn-post-card--row .dawn-post-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+@media (max-width: 767.98px) {
+    .dawn-post-card.dawn-post-card--row { grid-template-columns: 1fr; }
+    .dawn-post-card.dawn-post-card--row .dawn-post-card__media { height: auto; aspect-ratio: 16 / 9; }
+}
+
+/* ── Entry list block (tailor-list), Dawn look ─────────────────────── */
+/* The plugin reads these tokens; setting them here keeps the look identical
+   in the editor preview and on the site, whatever the stylesheet order. */
+:root {
+    --rc-entries-accent: var(--dawn-brand);
+    --rc-entries-ink: var(--dawn-ink);
+    --rc-entries-muted: var(--dawn-muted);
+    --rc-entries-line: var(--dawn-line);
+    --rc-entries-radius: var(--dawn-radius);
+    --rc-entries-radius-sm: calc(var(--dawn-radius) / 2);
+    --rc-entries-pill: 999px;
+    --rc-entries-shadow: var(--dawn-shadow);
+    --rc-entries-media-bg: var(--dawn-grad-soft);
+    --rc-entries-title-weight: 700;
+    --rc-entries-title-tracking: -.02em;
+}
+.rc-entries-excerpt { font-size: .95rem; }
+.rc-entries-btn:hover { text-decoration: none; }
+
+/* ── Form block, Dawn look ─────────────────────────────────────────── */
+:is(.rc-form, .rc-tailor-submission-form) .rc-form-input {
+    border-color: var(--dawn-line);
+    border-radius: 12px;
+    background: #fff;
+}
+:is(.rc-form, .rc-tailor-submission-form) .rc-form-input:focus {
+    border-color: var(--dawn-brand);
+    box-shadow: 0 0 0 0.22rem rgba(194, 65, 12, 0.16);
+}
+:is(.rc-form, .rc-tailor-submission-form) .rc-form-check input { accent-color: var(--dawn-brand); }
+:is(.rc-form, .rc-tailor-submission-form) .rc-form-label > span,
+:is(.rc-form, .rc-tailor-submission-form) .rc-form-check > span { color: var(--dawn-ink); }
+/* Submit = Dawn gradient button; the disabled (privacy-gated) state is
+   unmistakably inert: greyed, no shadow, no hover animation. */
+:is(.rc-form, .rc-tailor-submission-form) .rc-form-submit {
+    background: var(--dawn-grad);
+    background-size: 220% 220%;
+    border: 0;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 12px;
+    padding: .7rem 1.6rem;
+    box-shadow: 0 12px 30px -12px rgba(194, 65, 12, .8);
+    transition: box-shadow .18s ease, opacity .18s ease;
+}
+:is(.rc-form, .rc-tailor-submission-form) .rc-form-submit:hover:not(:disabled),
+:is(.rc-form, .rc-tailor-submission-form) .rc-form-submit:focus-visible:not(:disabled) {
+    box-shadow: 0 16px 38px -14px rgba(194, 65, 12, .9);
+    animation: dawn-grad-move 3s ease infinite;
+}
+:is(.rc-form, .rc-tailor-submission-form) .rc-form-submit:disabled {
+    background: var(--dawn-line);
+    color: var(--dawn-muted);
+    box-shadow: none;
+    opacity: 1;
+    cursor: not-allowed;
+}
+:is(.rc-form, .rc-tailor-submission-form) .rc-form-success {
+    background: var(--dawn-grad-soft);
+    color: var(--dawn-brand-2);
+    border: 1px solid rgba(194, 65, 12, .25);
+}
+:is(.rc-form, .rc-tailor-submission-form) .rc-form-error {
+    border-radius: 12px;
+}
+
+/* ── Blog slider block ─────────────────────────────────────────────── */
+.dawn-blog-slider .splide__slide { height: auto; }
+.dawn-blog-slider .dawn-post-card { height: 100%; }
+.dawn-blog-slider .splide__pagination { position: static; padding-top: 1rem; }
+.dawn-blog-slider .splide__pagination__page { background: var(--dawn-muted); }
+.dawn-blog-slider .splide__pagination__page.is-active { background: var(--dawn-brand); transform: scale(1.2); }
+.dawn-blog-slider .splide { padding: 0 3rem; }
+/* The slider mechanics only need HORIZONTAL clipping — clip that axis alone
+   so the hover shadow (0 10px 40px -18px ≈ 32px below the card) escapes the
+   track freely instead of being cut at a padded overflow:hidden box. Splide
+   OWNS the horizontal padding via inline styles (its `padding` option, see
+   the block partial); 24px sides give the ~22px lateral shadow room on the
+   outer edges. */
+.dawn-blog-slider .splide__track {
+    overflow-x: clip;
+    overflow-y: visible;
+}
+.dawn-blog-slider .splide__arrow { background: #fff; border: 1px solid var(--dawn-line); opacity: 1; box-shadow: var(--dawn-shadow); }
+.dawn-blog-slider .splide__arrow svg { fill: var(--dawn-brand); }
+.dawn-blog-slider .splide__arrow--prev { left: 0; }
+.dawn-blog-slider .splide__arrow--next { right: 0; }
+@media (max-width: 767.98px) {
+    .dawn-blog-slider .splide { padding: 0 2.4rem; }
+}
+
+/* Warm CTA band (home finale): the cta block's hero variant on the Dawn
+   gradient instead of the old black photo panel. */
+.dawn-cta-warm .rc-cta-hero {
+    background: var(--dawn-grad);
+    color: #fff;
+}
+.dawn-cta-warm .rc-cta-hero .rc-cta-text { color: rgba(255, 255, 255, .9); }
+/* Secondary button on the warm gradient: white outline instead of the
+   grey outline-secondary default (unreadable on orange). */
+.dawn-cta-warm .rc-cta-hero .btn-outline-secondary {
+    color: #fff;
+    border-color: rgba(255, 255, 255, .7);
+}
+.dawn-cta-warm .rc-cta-hero .btn-outline-secondary:hover,
+.dawn-cta-warm .rc-cta-hero .btn-outline-secondary:focus-visible {
+    background: rgba(255, 255, 255, .15);
+    color: #fff;
+    border-color: #fff;
+}
+
+/* ── Print ── */
+@media print {
+    .dawn-skip-link, .dawn-nav, .dawn-nav-backdrop, .dawn-footer, .dawn-blob,
+    .rc-cta, .rc-form, .rc-tailor-submission-form, .rc-map, .rc-video, .rc-pdf-toolbar,
+    .splide__arrows, .splide__pagination, .splide__toggle, .dawn-bubble { display: none !important; }
+    html { scroll-behavior: auto; }
+    body { background: #fff; color: #000; font-size: 11pt; line-height: 1.45; }
+    main { padding: 0; }
+    .container, .rc-w-container, .rc-w-narrow { max-width: none; width: auto; padding: 0; }
+    .dawn-hero, .dawn-section { padding: 1rem 0; background: none; }
+    .dawn-gradient-text { -webkit-text-fill-color: initial; background: none; color: #000; }
+    .dawn-reveal, .dawn-float { opacity: 1; transform: none; animation: none; transition: none; }
+    .dawn-tile, .dawn-price, .dawn-post-card, .card { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
+    h1, h2, h3, h4 { break-after: avoid; }
+    img, figure, blockquote, table { break-inside: avoid; max-width: 100% !important; }
+    a { color: inherit; text-decoration: underline; }
+    a[href^="http"]:not([href*="#"])::after { content: " (" attr(href) ")"; font-size: .85em; word-break: break-all; }
+    .dawn-brand-mark a::after, .rc-gallery-lightbox::after, .mall-product__image::after { content: none; }
+    /* Sliders and off-canvas menus print as a plain list of everything they hold. */
+    .splide { visibility: visible; }
+    .splide__track { overflow: visible; }
+    .splide__list { display: block; transform: none !important; }
+    .splide__slide { width: auto !important; margin: 0 0 1rem; }
+    .dawn-bubbles__backdrop { display: none; }
+}

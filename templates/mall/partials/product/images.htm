@@ -1,0 +1,31 @@
+{# First image large, the rest as thumbnails. The thumbnails form the lightbox
+   gallery; with JS a thumbnail click swaps the main image instead and the
+   main image opens the lightbox at the active thumbnail (see offline-mall-integration.js) #}
+{% if images|default(null) %}
+    <div class="mall-product__images" data-mall-gallery>
+        {% for image in images %}
+            {% set label = image.title|default(item.name) %}
+            {% if loop.first %}
+                <a class="mall-product__image mall-product__image--main{{ images|length > 1 ? '' : ' glightbox' }}" href="{{ image.path }}"
+                   data-glightbox="title: {{ label }}" aria-label="{{ label }}" data-mall-gallery-main>
+                    <img src="{{ image.thumb(800, null) }}" alt="{{ label }}" loading="eager"/>
+                </a>
+            {% endif %}
+        {% endfor %}
+        {% if images|length > 1 %}
+            <ul class="mall-product__thumbs list-unstyled" aria-label="{{ item.name }}">
+                {% for image in images %}
+                    {% set label = image.title|default(item.name) %}
+                    <li>
+                        <a class="mall-product__image mall-product__thumb glightbox{{ loop.first ? ' is-active' }}" href="{{ image.path }}"
+                           data-gallery="mall-product" data-glightbox="title: {{ label }}"
+                           data-mall-gallery-thumb data-large="{{ image.thumb(800, null) }}"
+                           aria-label="{{ label }} ({{ loop.index }}/{{ loop.length }})"{{ loop.first ? ' aria-current="true"' }}>
+                            <img src="{{ image.thumb(160, null) }}" alt="" loading="lazy"/>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endif %}

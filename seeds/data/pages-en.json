@@ -1,0 +1,3156 @@
+[
+    {
+        "id": 19,
+        "site_root_id": 19,
+        "title": "Home",
+        "slug": "home",
+        "is_enabled": 1,
+        "meta_title": null,
+        "meta_description": "Dawn — a modern OctoberCMS showcase theme for the Renick.Content block editor. Every block, responsive, in multiple languages.",
+        "content": {
+            "meta": [],
+            "blocks": [
+                {
+                    "id": "b_heroenhome",
+                    "type": "hero",
+                    "enabled": true,
+                    "settings": {},
+                    "data": {
+                        "layout": "split",
+                        "eyebrow": "Block content, done right",
+                        "title": "Compose pages with",
+                        "title_accent": "living blocks",
+                        "lead": "Dawn shows off the Renick.Content editor — every block, fully responsive, on Bootstrap 5, across multiple languages.",
+                        "media": "image",
+                        "image": "dawn/autumn-desk.jpg",
+                        "video": "",
+                        "video_poster": "",
+                        "slides": [],
+                        "primary_label": "See what it does",
+                        "primary_url": "october://cms-page@link/page?path=pricing",
+                        "secondary_label": "Read the blog",
+                        "secondary_url": "october://cms-page@link/blog"
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "type": "section",
+                    "settings": {
+                        "css_class": "dawn-section"
+                    },
+                    "children": [
+                        {
+                            "type": "hero-numbers",
+                            "settings": {
+                                "width": "container"
+                            },
+                            "data": {
+                                "items": [
+                                    {
+                                        "number": "20+",
+                                        "label": "Block types"
+                                    },
+                                    {
+                                        "number": "2",
+                                        "label": "Languages"
+                                    },
+                                    {
+                                        "number": "100%",
+                                        "label": "Responsive"
+                                    },
+                                    {
+                                        "number": "0",
+                                        "label": "Lines of code"
+                                    }
+                                ]
+                            },
+                            "id": "b_UNBcSf8h",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        }
+                    ],
+                    "id": "b_4ZEfqDOD",
+                    "enabled": true,
+                    "data": [],
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    }
+                },
+                {
+                    "id": "b_bblsecen",
+                    "type": "section",
+                    "enabled": true,
+                    "settings": {
+                        "width": "container",
+                        "spacing_top": "lg",
+                        "spacing_bottom": "lg"
+                    },
+                    "data": [],
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": [
+                        {
+                            "id": "b_bblgriden",
+                            "type": "grid",
+                            "enabled": true,
+                            "settings": {},
+                            "data": {},
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": [
+                                {
+                                    "id": "b_bblcol1en",
+                                    "type": "column",
+                                    "enabled": true,
+                                    "settings": {},
+                                    "data": {
+                                        "width": "6"
+                                    },
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    },
+                                    "children": [
+                                        {
+                                            "id": "b_bblheaden",
+                                            "type": "heading",
+                                            "enabled": true,
+                                            "settings": {
+                                                "spacing_bottom": "xs"
+                                            },
+                                            "data": {
+                                                "text": "Bring a picture to life",
+                                                "level": "h2"
+                                            },
+                                            "visibility": {
+                                                "from": null,
+                                                "until": null,
+                                                "sites": null
+                                            },
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "b_bbltexten",
+                                            "type": "richtext",
+                                            "enabled": true,
+                                            "settings": {
+                                                "spacing_bottom": "sm"
+                                            },
+                                            "data": {
+                                                "html": "<p class=\"lead text-muted\">The new image-bubbles theme block pins floating labels around any image — even an animated SVG straight from the media library.</p><p>Pure CSS, gently drifting back and forth — and perfectly still the moment you prefer reduced motion.</p>"
+                                            },
+                                            "visibility": {
+                                                "from": null,
+                                                "until": null,
+                                                "sites": null
+                                            },
+                                            "children": []
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "b_bblcol2en",
+                                    "type": "column",
+                                    "enabled": true,
+                                    "settings": {},
+                                    "data": {
+                                        "width": "6"
+                                    },
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    },
+                                    "children": [
+                                        {
+                                            "id": "b_bubblesen",
+                                            "type": "image-bubbles",
+                                            "enabled": true,
+                                            "settings": {},
+                                            "data": {
+                                                "image": "dawn/autumn-scene.svg",
+                                                "alt": "Isometric autumn scene: a small tree with falling leaves and a glowing lantern",
+                                                "backdrop": "circle",
+                                                "bubbles": [
+                                                    {
+                                                        "text": "Animated SVG",
+                                                        "style": "ink",
+                                                        "position": "top-left"
+                                                    },
+                                                    {
+                                                        "text": "Floating labels",
+                                                        "style": "accent",
+                                                        "position": "middle-right"
+                                                    },
+                                                    {
+                                                        "text": "Pure CSS",
+                                                        "style": "light",
+                                                        "position": "bottom-left"
+                                                    }
+                                                ]
+                                            },
+                                            "visibility": {
+                                                "from": null,
+                                                "until": null,
+                                                "sites": null
+                                            },
+                                            "children": []
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "section",
+                    "settings": {
+                        "width": "container",
+                        "spacing_top": "lg",
+                        "spacing_bottom": "xl"
+                    },
+                    "children": [
+                        {
+                            "type": "heading",
+                            "settings": {
+                                "alignment": "center",
+                                "spacing_bottom": "xs"
+                            },
+                            "data": {
+                                "text": "A block for every idea",
+                                "level": "h2"
+                            },
+                            "id": "b_HN69P2FU",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "richtext",
+                            "settings": {
+                                "alignment": "center",
+                                "spacing_bottom": "md"
+                            },
+                            "data": {
+                                "html": "<p class=\"lead text-muted\">Swipe through a few. Every slide is an image block inside a slider block.</p>"
+                            },
+                            "id": "b_d7lDCcia",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "slider",
+                            "data": {
+                                "per_page": "1",
+                                "type": "loop",
+                                "autoplay": "yes",
+                                "arrows": "yes",
+                                "pagination": "yes"
+                            },
+                            "children": [
+                                {
+                                    "type": "slide",
+                                    "data": {
+                                        "image": "dawn/autumn-sunrays.jpg",
+                                        "alt": "Sun rays through autumn trees"
+                                    },
+                                    "id": "b_JwBKUGiV",
+                                    "enabled": true,
+                                    "settings": [],
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    },
+                                    "children": []
+                                },
+                                {
+                                    "type": "slide",
+                                    "data": {
+                                        "image": "dawn/autumn-tea.jpg",
+                                        "alt": "A warm cup of tea"
+                                    },
+                                    "id": "b_II4ZBcOK",
+                                    "enabled": true,
+                                    "settings": [],
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    },
+                                    "children": []
+                                },
+                                {
+                                    "type": "slide",
+                                    "data": {
+                                        "image": "dawn/autumn-meadow.jpg",
+                                        "alt": "A green meadow"
+                                    },
+                                    "id": "b_rQWUK7c0",
+                                    "enabled": true,
+                                    "settings": [],
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    },
+                                    "children": []
+                                },
+                                {
+                                    "type": "slide",
+                                    "data": {
+                                        "image": "dawn/autumn-castle.jpg",
+                                        "alt": "A castle in the forest"
+                                    },
+                                    "id": "b_V2LvH5Va",
+                                    "enabled": true,
+                                    "settings": [],
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    },
+                                    "children": []
+                                }
+                            ],
+                            "id": "b_nk4lUbtm",
+                            "enabled": true,
+                            "settings": [],
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            }
+                        },
+                        {
+                            "type": "spacer",
+                            "data": {
+                                "height": "lg"
+                            },
+                            "id": "b_tPZxqhfh",
+                            "enabled": true,
+                            "settings": [],
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "section",
+                            "settings": {
+                                "background": "light",
+                                "css_class": "dawn-features"
+                            },
+                            "data": {
+                                "title": "Features"
+                            },
+                            "children": [
+                                {
+                                    "type": "heading",
+                                    "settings": {
+                                        "alignment": "center",
+                                        "spacing_bottom": "xs"
+                                    },
+                                    "data": {
+                                        "text": "Built for building",
+                                        "level": "h2"
+                                    },
+                                    "id": "b_Hd8tfxSN",
+                                    "enabled": true,
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    },
+                                    "children": []
+                                },
+                                {
+                                    "id": "b_featenhome",
+                                    "type": "features",
+                                    "enabled": true,
+                                    "settings": {
+                                        "spacing_top": "md"
+                                    },
+                                    "data": {
+                                        "columns": "3",
+                                        "items": [
+                                            {
+                                                "icon": "layers",
+                                                "title": "Nested layouts",
+                                                "text": "Grids, columns and sections nest to any structure your page needs."
+                                            },
+                                            {
+                                                "icon": "image",
+                                                "title": "Rich media",
+                                                "text": "Galleries, video, maps and PDFs — all first-class blocks."
+                                            },
+                                            {
+                                                "icon": "copy",
+                                                "title": "Reusable",
+                                                "text": "Shared content and templates keep pages consistent across a site."
+                                            }
+                                        ]
+                                    },
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    },
+                                    "children": []
+                                }
+                            ],
+                            "id": "b_bvYGSPXE",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            }
+                        },
+                        {
+                            "type": "heading",
+                            "settings": {
+                                "alignment": "center",
+                                "spacing_top": "lg",
+                                "spacing_bottom": "xs"
+                            },
+                            "data": {
+                                "text": "What people say",
+                                "level": "h2"
+                            },
+                            "id": "b_vI8KgWaO",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "richtext",
+                            "settings": {
+                                "alignment": "center",
+                                "spacing_bottom": "md"
+                            },
+                            "data": {
+                                "html": "<p class=\"dawn-doc-lead\">Editors reach for Dawn because pages come together fast and stay easy to change.</p>"
+                            },
+                            "id": "b_8MSeuq1k",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "id": "b_testienhm",
+                            "type": "testimonials",
+                            "enabled": true,
+                            "settings": {},
+                            "data": {
+                                "columns": "3",
+                                "variant": "cards",
+                                "items": [
+                                    {
+                                        "quote": "We rebuilt our whole marketing site in an afternoon. The block editor feels like a design tool, not a CMS.",
+                                        "author": "Mara Voss",
+                                        "role": "Head of Marketing, Fieldnote",
+                                        "avatar": "",
+                                        "rating": "5"
+                                    },
+                                    {
+                                        "quote": "Finally a page builder whose output my developers actually like — clean, accessible HTML on Bootstrap 5.",
+                                        "author": "Jonas Keller",
+                                        "role": "CTO, Brightlane Studio",
+                                        "avatar": "",
+                                        "rating": "5"
+                                    },
+                                    {
+                                        "quote": "The multisite setup gave us English and German content in one editor. No plugins glued together.",
+                                        "author": "Aylin Demir",
+                                        "role": "Content Lead, Nordwind",
+                                        "avatar": "",
+                                        "rating": "4"
+                                    }
+                                ]
+                            },
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "id": "b_hmblogen",
+                            "type": "section",
+                            "enabled": true,
+                            "settings": {
+                                "spacing_top": "lg",
+                                "spacing_bottom": "md"
+                            },
+                            "data": {},
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": [
+                                {
+                                    "id": "b_hmbloghen",
+                                    "type": "heading",
+                                    "enabled": true,
+                                    "settings": {
+                                        "alignment": "center",
+                                        "spacing_bottom": "xs"
+                                    },
+                                    "data": {
+                                        "text": "Fresh from the blog",
+                                        "level": "h2"
+                                    },
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    },
+                                    "children": []
+                                },
+                                {
+                                    "id": "b_hmblogpen",
+                                    "type": "richtext",
+                                    "enabled": true,
+                                    "settings": {
+                                        "alignment": "center",
+                                        "spacing_bottom": "md"
+                                    },
+                                    "data": {
+                                        "html": "<p class=\"dawn-doc-lead\">Guides, product notes and design thinking — presented by the blog slider block, of course.</p>"
+                                    },
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    },
+                                    "children": []
+                                },
+                                {
+                                    "id": "b_hmblogsen",
+                                    "type": "blog-slider",
+                                    "enabled": true,
+                                    "settings": {},
+                                    "data": {
+                                        "count": "6",
+                                        "show_excerpt": true
+                                    },
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    },
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "b_hmctaen",
+                            "type": "cta",
+                            "enabled": true,
+                            "settings": {
+                                "css_class": "dawn-cta-warm",
+                                "spacing_top": "lg"
+                            },
+                            "data": {
+                                "variant": "hero",
+                                "title": "Start composing today",
+                                "text": "Open the editor, drag your first block into place and publish in minutes — in every language your site speaks.",
+                                "button_label": "See pricing",
+                                "button_url": "october://cms-page@link/page?path=pricing",
+                                "button_style": "light",
+                                "second_label": "Read the blog",
+                                "second_url": "october://cms-page@link/blog",
+                                "image": "dawn/autumn-desk.jpg"
+                            },
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        }
+                    ],
+                    "id": "b_J7Q6DlbY",
+                    "enabled": true,
+                    "data": [],
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "id": 20,
+        "site_root_id": 20,
+        "title": "About",
+        "slug": "about",
+        "is_enabled": 1,
+        "meta_title": "About Dawn",
+        "meta_description": "The story behind Dawn — a showcase of the Renick.Content block editor for OctoberCMS.",
+        "content": {
+            "meta": [],
+            "blocks": [
+                {
+                    "id": "b_heroenabou",
+                    "type": "hero",
+                    "enabled": true,
+                    "settings": {},
+                    "data": {
+                        "layout": "left",
+                        "eyebrow": "Our story",
+                        "title": "A block editor built for",
+                        "title_accent": "real pages",
+                        "lead": "Renick.Content turns content into composable blocks. This page — and every page on this site — is built with them.",
+                        "media": "none",
+                        "image": "",
+                        "video": "",
+                        "video_poster": "",
+                        "slides": []
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "type": "section",
+                    "settings": {
+                        "width": "container",
+                        "spacing_top": "lg",
+                        "spacing_bottom": "xl"
+                    },
+                    "data": [],
+                    "children": [
+                        {
+                            "type": "section",
+                            "settings": {
+                                "spacing_bottom": "md"
+                            },
+                            "data": {
+                                "title": "Milestones"
+                            },
+                            "children": [
+                                {
+                                    "type": "heading",
+                                    "settings": {
+                                        "alignment": "center",
+                                        "spacing_bottom": "xs"
+                                    },
+                                    "data": {
+                                        "text": "How we got here",
+                                        "level": "h2"
+                                    },
+                                    "id": "b_PC74sSxS",
+                                    "enabled": true,
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    },
+                                    "children": []
+                                },
+                                {
+                                    "type": "richtext",
+                                    "settings": {
+                                        "spacing_bottom": "md"
+                                    },
+                                    "data": {
+                                        "html": "<p class=\"dawn-doc-lead\">From a rigid page builder to a block editor teams actually enjoy — the short version of how Dawn and the Renick.Content editor came together, one primitive at a time.</p>"
+                                    },
+                                    "id": "b_G7SCGfam",
+                                    "enabled": true,
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    },
+                                    "children": []
+                                },
+                                {
+                                    "type": "timeline",
+                                    "settings": {
+                                        "spacing_top": "md"
+                                    },
+                                    "data": {
+                                        "layout": "alternate"
+                                    },
+                                    "children": [
+                                        {
+                                            "type": "timeline-item",
+                                            "data": {
+                                                "title": "The idea",
+                                                "meta": "2023"
+                                            },
+                                            "children": [
+                                                {
+                                                    "type": "richtext",
+                                                    "data": {
+                                                        "html": "<p>Page builders were either rigid or a soup of shortcodes. We wanted blocks that stay editable and render cleanly.</p>"
+                                                    },
+                                                    "id": "b_wBhgR04x",
+                                                    "enabled": true,
+                                                    "settings": [],
+                                                    "visibility": {
+                                                        "from": null,
+                                                        "until": null,
+                                                        "sites": null
+                                                    },
+                                                    "children": []
+                                                }
+                                            ],
+                                            "id": "b_F2XOxI6T",
+                                            "enabled": true,
+                                            "settings": [],
+                                            "visibility": {
+                                                "from": null,
+                                                "until": null,
+                                                "sites": null
+                                            }
+                                        },
+                                        {
+                                            "type": "timeline-item",
+                                            "data": {
+                                                "title": "First blocks",
+                                                "meta": "2024"
+                                            },
+                                            "children": [
+                                                {
+                                                    "type": "richtext",
+                                                    "data": {
+                                                        "html": "<p>Heading, rich text, image and grid shipped first — the primitives every page needs.</p>"
+                                                    },
+                                                    "id": "b_JAV2sGEF",
+                                                    "enabled": true,
+                                                    "settings": [],
+                                                    "visibility": {
+                                                        "from": null,
+                                                        "until": null,
+                                                        "sites": null
+                                                    },
+                                                    "children": []
+                                                }
+                                            ],
+                                            "id": "b_IrKd9qLO",
+                                            "enabled": true,
+                                            "settings": [],
+                                            "visibility": {
+                                                "from": null,
+                                                "until": null,
+                                                "sites": null
+                                            }
+                                        },
+                                        {
+                                            "type": "timeline-item",
+                                            "data": {
+                                                "title": "Going live",
+                                                "meta": "2025"
+                                            },
+                                            "children": [
+                                                {
+                                                    "type": "richtext",
+                                                    "data": {
+                                                        "html": "<p>Galleries, sliders, maps, PDFs and CTAs turned the editor into a full page composer.</p>"
+                                                    },
+                                                    "id": "b_ik7QGl2p",
+                                                    "enabled": true,
+                                                    "settings": [],
+                                                    "visibility": {
+                                                        "from": null,
+                                                        "until": null,
+                                                        "sites": null
+                                                    },
+                                                    "children": []
+                                                }
+                                            ],
+                                            "id": "b_USmzVhVo",
+                                            "enabled": true,
+                                            "settings": [],
+                                            "visibility": {
+                                                "from": null,
+                                                "until": null,
+                                                "sites": null
+                                            }
+                                        },
+                                        {
+                                            "type": "timeline-item",
+                                            "data": {
+                                                "title": "Multisite & i18n",
+                                                "meta": "2026"
+                                            },
+                                            "children": [
+                                                {
+                                                    "type": "richtext",
+                                                    "data": {
+                                                        "html": "<p>One theme, many locales — this very site runs on EN and DE, with more a blueprint away.</p>"
+                                                    },
+                                                    "id": "b_ymLrfjH8",
+                                                    "enabled": true,
+                                                    "settings": [],
+                                                    "visibility": {
+                                                        "from": null,
+                                                        "until": null,
+                                                        "sites": null
+                                                    },
+                                                    "children": []
+                                                }
+                                            ],
+                                            "id": "b_L2spEvwF",
+                                            "enabled": true,
+                                            "settings": [],
+                                            "visibility": {
+                                                "from": null,
+                                                "until": null,
+                                                "sites": null
+                                            }
+                                        }
+                                    ],
+                                    "id": "b_TnOXpf7X",
+                                    "enabled": true,
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    }
+                                }
+                            ],
+                            "id": "b_In9bSY0W",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            }
+                        },
+                        {
+                            "type": "heading",
+                            "settings": {
+                                "alignment": "center",
+                                "spacing_top": "lg",
+                                "spacing_bottom": "xs"
+                            },
+                            "data": {
+                                "text": "In their words",
+                                "level": "h2"
+                            },
+                            "id": "b_Wt5I9ZEq",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "richtext",
+                            "settings": {
+                                "spacing_bottom": "sm"
+                            },
+                            "data": {
+                                "html": "<p class=\"dawn-doc-lead\">A quick word on the philosophy that shapes every block and default in the editor.</p>"
+                            },
+                            "id": "b_QEKoYayx",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "quote",
+                            "settings": {
+                                "spacing_top": "sm",
+                                "spacing_bottom": "lg"
+                            },
+                            "data": {
+                                "text": "Good tooling disappears. You think about the page, not the plumbing.",
+                                "author": "The Renick team",
+                                "role": "Makers of Renick.Content",
+                                "variant": "centered"
+                            },
+                            "id": "b_qMGxh11j",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "heading",
+                            "settings": {
+                                "alignment": "center",
+                                "spacing_top": "lg",
+                                "spacing_bottom": "xs"
+                            },
+                            "data": {
+                                "text": "What we care about",
+                                "level": "h2"
+                            },
+                            "id": "b_yzqqJm9G",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "richtext",
+                            "settings": {
+                                "spacing_bottom": "md"
+                            },
+                            "data": {
+                                "html": "<p class=\"dawn-doc-lead\">Three principles guide the editor — they decide what ships, what stays simple, and what we say no to.</p>"
+                            },
+                            "id": "b_stumxQxL",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "accordion",
+                            "settings": {
+                                "spacing_top": "sm"
+                            },
+                            "data": {
+                                "first_expanded": "yes"
+                            },
+                            "children": [
+                                {
+                                    "type": "accordion-item",
+                                    "data": {
+                                        "title": "Editable output"
+                                    },
+                                    "children": [
+                                        {
+                                            "type": "richtext",
+                                            "data": {
+                                                "html": "<p>Every block stays a block. Re-open a page months later and rearrange it without touching HTML.</p>"
+                                            },
+                                            "id": "b_z78EH9Y0",
+                                            "enabled": true,
+                                            "settings": [],
+                                            "visibility": {
+                                                "from": null,
+                                                "until": null,
+                                                "sites": null
+                                            },
+                                            "children": []
+                                        }
+                                    ],
+                                    "id": "b_fIIp65wS",
+                                    "enabled": true,
+                                    "settings": [],
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    }
+                                },
+                                {
+                                    "type": "accordion-item",
+                                    "data": {
+                                        "title": "Clean, accessible HTML"
+                                    },
+                                    "children": [
+                                        {
+                                            "type": "richtext",
+                                            "data": {
+                                                "html": "<p>Semantic markup, responsive images, and sensible defaults — no div soup.</p>"
+                                            },
+                                            "id": "b_skHugxMb",
+                                            "enabled": true,
+                                            "settings": [],
+                                            "visibility": {
+                                                "from": null,
+                                                "until": null,
+                                                "sites": null
+                                            },
+                                            "children": []
+                                        }
+                                    ],
+                                    "id": "b_awqobPcl",
+                                    "enabled": true,
+                                    "settings": [],
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    }
+                                },
+                                {
+                                    "type": "accordion-item",
+                                    "data": {
+                                        "title": "Works with OctoberCMS"
+                                    },
+                                    "children": [
+                                        {
+                                            "type": "richtext",
+                                            "data": {
+                                                "html": "<p>Tailor blueprints, Static Pages and CMS pages all render the same document.</p>"
+                                            },
+                                            "id": "b_JBre90nb",
+                                            "enabled": true,
+                                            "settings": [],
+                                            "visibility": {
+                                                "from": null,
+                                                "until": null,
+                                                "sites": null
+                                            },
+                                            "children": []
+                                        }
+                                    ],
+                                    "id": "b_g6ERDqoV",
+                                    "enabled": true,
+                                    "settings": [],
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    }
+                                }
+                            ],
+                            "id": "b_FoGfGpAt",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            }
+                        },
+                        {
+                            "type": "heading",
+                            "settings": {
+                                "alignment": "center",
+                                "spacing_top": "md",
+                                "spacing_bottom": "xs"
+                            },
+                            "data": {
+                                "text": "A few frames",
+                                "level": "h3"
+                            },
+                            "id": "b_QVIIj5y9",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "richtext",
+                            "settings": {
+                                "spacing_bottom": "md"
+                            },
+                            "data": {
+                                "html": "<p class=\"dawn-doc-lead\">One gallery block, four images, fully responsive — a small taste of the twenty-plus block types the editor ships with.</p>"
+                            },
+                            "id": "b_VC8bndTx",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "gallery",
+                            "settings": {
+                                "spacing_top": "sm"
+                            },
+                            "data": {
+                                "images": [
+                                    {
+                                        "image": "dawn/autumn-tea.jpg",
+                                        "alt": "A warm cup of tea",
+                                        "caption": "A quiet moment with a warm cup of tea."
+                                    },
+                                    {
+                                        "image": "dawn/autumn-coffee.jpg",
+                                        "alt": "A cup of coffee",
+                                        "caption": "Fresh coffee to start a crisp autumn morning."
+                                    },
+                                    {
+                                        "image": "dawn/autumn-meadow.jpg",
+                                        "alt": "A green meadow",
+                                        "caption": "A green meadow bathed in soft daylight."
+                                    },
+                                    {
+                                        "image": "dawn/autumn-sunrays.jpg",
+                                        "alt": "Sun rays through autumn trees",
+                                        "caption": "Sun rays breaking through the autumn trees."
+                                    }
+                                ],
+                                "variant": "cards",
+                                "cols_desktop": 3,
+                                "cols_tablet": 6,
+                                "cols_mobile": 12
+                            },
+                            "id": "b_iTpDbTMx",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "heading",
+                            "settings": {
+                                "alignment": "center",
+                                "spacing_top": "md",
+                                "spacing_bottom": "xs"
+                            },
+                            "data": {
+                                "text": "See it in motion",
+                                "level": "h3"
+                            },
+                            "id": "b_ndwF9V0R",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "richtext",
+                            "settings": {
+                                "alignment": "center",
+                                "spacing_bottom": "md"
+                            },
+                            "data": {
+                                "html": "<p class=\"dawn-doc-lead\">A short intro to the editor. The Video block stays privacy-friendly — YouTube only loads after you press play.</p>"
+                            },
+                            "id": "b_rxhFbhPz",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "grid",
+                            "settings": {
+                                "spacing_top": "sm"
+                            },
+                            "data": {
+                                "centering": "yes"
+                            },
+                            "children": [
+                                {
+                                    "type": "column",
+                                    "data": {
+                                        "width": "8"
+                                    },
+                                    "children": [
+                                        {
+                                            "type": "video",
+                                            "data": {
+                                                "source": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+                                                "title": "Product intro"
+                                            },
+                                            "id": "b_35zSIHJs",
+                                            "enabled": true,
+                                            "settings": [],
+                                            "visibility": {
+                                                "from": null,
+                                                "until": null,
+                                                "sites": null
+                                            },
+                                            "children": []
+                                        }
+                                    ],
+                                    "id": "b_T1cWvE0g",
+                                    "enabled": true,
+                                    "settings": [],
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    }
+                                }
+                            ],
+                            "id": "b_FYW3pQD7",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            }
+                        }
+                    ],
+                    "id": "b_BtSlRCMg",
+                    "enabled": true,
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    }
+                },
+                {
+                    "id": "b_abtstien",
+                    "type": "section",
+                    "enabled": true,
+                    "settings": {
+                        "width": "container",
+                        "spacing_top": "lg",
+                        "spacing_bottom": "lg"
+                    },
+                    "data": {},
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": [
+                        {
+                            "id": "b_abtsthen",
+                            "type": "heading",
+                            "enabled": true,
+                            "settings": {
+                                "alignment": "center",
+                                "spacing_bottom": "xs"
+                            },
+                            "data": {
+                                "text": "What teams say about the Dawn block editor",
+                                "level": "h2"
+                            },
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "id": "b_abtstpen",
+                            "type": "richtext",
+                            "enabled": true,
+                            "settings": {
+                                "alignment": "center",
+                                "spacing_bottom": "md"
+                            },
+                            "data": {
+                                "html": "<p class=\"dawn-doc-lead\">From solo bloggers to agencies: composing pages from reusable content blocks saves hours every week.</p>"
+                            },
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "id": "b_testienab",
+                            "type": "testimonials",
+                            "enabled": true,
+                            "settings": {},
+                            "data": {
+                                "columns": "3",
+                                "variant": "cards",
+                                "items": [
+                                    {
+                                        "quote": "We rebuilt our whole marketing site in an afternoon. The block editor feels like a design tool, not a CMS.",
+                                        "author": "Mara Voss",
+                                        "role": "Head of Marketing, Fieldnote",
+                                        "avatar": "",
+                                        "rating": "5"
+                                    },
+                                    {
+                                        "quote": "Finally a page builder whose output my developers actually like — clean, accessible HTML on Bootstrap 5.",
+                                        "author": "Jonas Keller",
+                                        "role": "CTO, Brightlane Studio",
+                                        "avatar": "",
+                                        "rating": "5"
+                                    },
+                                    {
+                                        "quote": "The multisite setup gave us English and German content in one editor. No plugins glued together.",
+                                        "author": "Aylin Demir",
+                                        "role": "Content Lead, Nordwind",
+                                        "avatar": "",
+                                        "rating": "4"
+                                    }
+                                ]
+                            },
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "id": "b_abnumsen",
+                    "type": "section",
+                    "enabled": true,
+                    "settings": {
+                        "css_class": "dawn-section-tint",
+                        "spacing_top": "lg",
+                        "spacing_bottom": "md"
+                    },
+                    "data": {},
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": [
+                        {
+                            "id": "b_abnumhen",
+                            "type": "heading",
+                            "enabled": true,
+                            "settings": {
+                                "alignment": "center",
+                                "width": "container",
+                                "spacing_bottom": "xs"
+                            },
+                            "data": {
+                                "text": "Dawn in numbers",
+                                "level": "h2"
+                            },
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "id": "b_abnumpen",
+                            "type": "richtext",
+                            "enabled": true,
+                            "settings": {
+                                "alignment": "center",
+                                "width": "container",
+                                "spacing_bottom": "md"
+                            },
+                            "data": {
+                                "html": "<p class=\"dawn-doc-lead\">A compact footprint with everything a content site needs — measured, not promised.</p>"
+                            },
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "id": "b_abnumnen",
+                            "type": "hero-numbers",
+                            "enabled": true,
+                            "settings": {
+                                "width": "container",
+                                "spacing_bottom": "lg"
+                            },
+                            "data": {
+                                "items": [
+                                    {
+                                        "number": "28+",
+                                        "label": "Content blocks"
+                                    },
+                                    {
+                                        "number": "5",
+                                        "label": "Backend languages"
+                                    },
+                                    {
+                                        "number": "1,746",
+                                        "label": "Icons to pick from"
+                                    },
+                                    {
+                                        "number": "100%",
+                                        "label": "Editable without code"
+                                    }
+                                ]
+                            },
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "id": "b_abctaen",
+                    "type": "section",
+                    "enabled": true,
+                    "settings": {
+                        "width": "container",
+                        "spacing_top": "md",
+                        "spacing_bottom": "xl"
+                    },
+                    "data": {},
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": [
+                        {
+                            "id": "b_abctaben",
+                            "type": "cta",
+                            "enabled": true,
+                            "settings": {
+                                "css_class": "dawn-cta-warm"
+                            },
+                            "data": {
+                                "variant": "hero",
+                                "title": "Ready to build pages with blocks?",
+                                "text": "Start with the free plan or talk to us about your project — the editor is the same everywhere.",
+                                "button_label": "See pricing",
+                                "button_url": "october://cms-page@link/page?path=pricing",
+                                "button_style": "light",
+                                "second_label": "Get in touch",
+                                "second_url": "october://cms-page@link/page?path=contact",
+                                "image": ""
+                            },
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": 21,
+        "site_root_id": 21,
+        "title": "Pricing",
+        "slug": "pricing",
+        "is_enabled": 1,
+        "meta_title": "Pricing — Dawn",
+        "meta_description": "Simple, transparent pricing for the Renick.Content block editor. Pick a plan and start composing.",
+        "content": {
+            "meta": [],
+            "blocks": [
+                {
+                    "id": "b_heroenpric",
+                    "type": "hero",
+                    "enabled": true,
+                    "settings": {},
+                    "data": {
+                        "layout": "centered",
+                        "eyebrow": "",
+                        "title": "Simple, transparent",
+                        "title_accent": "pricing",
+                        "lead": "Pick a plan and start composing. No hidden fees, cancel any time.",
+                        "media": "none",
+                        "image": "",
+                        "video": "",
+                        "video_poster": "",
+                        "slides": []
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "type": "section",
+                    "settings": {
+                        "css_class": "dawn-section"
+                    },
+                    "children": [
+                        {
+                            "type": "pricing-table",
+                            "settings": {
+                                "width": "container"
+                            },
+                            "data": {
+                                "tiers": [
+                                    {
+                                        "name": "Starter",
+                                        "price": "€0",
+                                        "period": "",
+                                        "tagline": "For side projects",
+                                        "features": "All core blocks\nOne site\nCommunity support",
+                                        "cta_label": "Get started",
+                                        "cta_url": "october://cms-page@link/page?path=contact",
+                                        "featured": "no"
+                                    },
+                                    {
+                                        "name": "Studio",
+                                        "price": "€19",
+                                        "period": "per month",
+                                        "tagline": "",
+                                        "features": "Everything in Starter\nMultisite & languages\nPriority support",
+                                        "cta_label": "Choose Studio",
+                                        "cta_url": "october://cms-page@link/page?path=contact",
+                                        "featured": "yes"
+                                    },
+                                    {
+                                        "name": "Agency",
+                                        "price": "€49",
+                                        "period": "per month",
+                                        "tagline": "",
+                                        "features": "Everything in Studio\nUnlimited sites\nDedicated support",
+                                        "cta_label": "Contact sales",
+                                        "cta_url": "october://cms-page@link/page?path=contact",
+                                        "featured": "no"
+                                    }
+                                ]
+                            },
+                            "id": "b_OXUVPNaf",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        }
+                    ],
+                    "id": "b_wxlxYELw",
+                    "enabled": true,
+                    "data": [],
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    }
+                },
+                {
+                    "type": "section",
+                    "settings": {
+                        "width": "container",
+                        "spacing_top": "lg",
+                        "spacing_bottom": "xl"
+                    },
+                    "children": [
+                        {
+                            "type": "heading",
+                            "settings": {
+                                "alignment": "center",
+                                "spacing_bottom": "xs"
+                            },
+                            "data": {
+                                "text": "Everything in every plan",
+                                "level": "h2"
+                            },
+                            "id": "b_8nCarVTT",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "richtext",
+                            "settings": {
+                                "alignment": "center",
+                                "spacing_bottom": "md"
+                            },
+                            "data": {
+                                "html": "<p class=\"dawn-doc-lead\">No feature gates on the blocks themselves — every plan ships the full editor. Plans differ only in sites, languages and support.</p>"
+                            },
+                            "id": "b_lVCXEH4l",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "card-grid",
+                            "data": {
+                                "equal_height": "yes"
+                            },
+                            "children": [
+                                {
+                                    "type": "column",
+                                    "data": {
+                                        "width": "4"
+                                    },
+                                    "children": [
+                                        {
+                                            "type": "card",
+                                            "data": {
+                                                "variant": "top",
+                                                "title": "All 20+ blocks",
+                                                "title_icon": "blocks"
+                                            },
+                                            "children": [
+                                                {
+                                                    "type": "richtext",
+                                                    "data": {
+                                                        "html": "<p>Headings, media, galleries, sliders, maps, CTAs and more — no add-ons.</p>"
+                                                    },
+                                                    "id": "b_CQII3GFU",
+                                                    "enabled": true,
+                                                    "settings": [],
+                                                    "visibility": {
+                                                        "from": null,
+                                                        "until": null,
+                                                        "sites": null
+                                                    },
+                                                    "children": []
+                                                }
+                                            ],
+                                            "id": "b_KtYP2Hon",
+                                            "enabled": true,
+                                            "settings": [],
+                                            "visibility": {
+                                                "from": null,
+                                                "until": null,
+                                                "sites": null
+                                            }
+                                        }
+                                    ],
+                                    "id": "b_gsmKSQIP",
+                                    "enabled": true,
+                                    "settings": [],
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    }
+                                },
+                                {
+                                    "type": "column",
+                                    "data": {
+                                        "width": "4"
+                                    },
+                                    "children": [
+                                        {
+                                            "type": "card",
+                                            "data": {
+                                                "variant": "top",
+                                                "title": "Responsive by default",
+                                                "title_icon": "monitor-smartphone"
+                                            },
+                                            "children": [
+                                                {
+                                                    "type": "richtext",
+                                                    "data": {
+                                                        "html": "<p>Bootstrap 5 grid and responsive images built into every block.</p>"
+                                                    },
+                                                    "id": "b_9YuHGWpb",
+                                                    "enabled": true,
+                                                    "settings": [],
+                                                    "visibility": {
+                                                        "from": null,
+                                                        "until": null,
+                                                        "sites": null
+                                                    },
+                                                    "children": []
+                                                }
+                                            ],
+                                            "id": "b_QtvrBYs5",
+                                            "enabled": true,
+                                            "settings": [],
+                                            "visibility": {
+                                                "from": null,
+                                                "until": null,
+                                                "sites": null
+                                            }
+                                        }
+                                    ],
+                                    "id": "b_IuAcqrul",
+                                    "enabled": true,
+                                    "settings": [],
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    }
+                                },
+                                {
+                                    "type": "column",
+                                    "data": {
+                                        "width": "4"
+                                    },
+                                    "children": [
+                                        {
+                                            "type": "card",
+                                            "data": {
+                                                "variant": "top",
+                                                "title": "Multisite ready",
+                                                "title_icon": "languages"
+                                            },
+                                            "children": [
+                                                {
+                                                    "type": "richtext",
+                                                    "data": {
+                                                        "html": "<p>Localize content across sites and languages from one editor.</p>"
+                                                    },
+                                                    "id": "b_ZnqWne1R",
+                                                    "enabled": true,
+                                                    "settings": [],
+                                                    "visibility": {
+                                                        "from": null,
+                                                        "until": null,
+                                                        "sites": null
+                                                    },
+                                                    "children": []
+                                                }
+                                            ],
+                                            "id": "b_41DENagL",
+                                            "enabled": true,
+                                            "settings": [],
+                                            "visibility": {
+                                                "from": null,
+                                                "until": null,
+                                                "sites": null
+                                            }
+                                        }
+                                    ],
+                                    "id": "b_VlHcdKXn",
+                                    "enabled": true,
+                                    "settings": [],
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    }
+                                }
+                            ],
+                            "id": "b_d35JbDW8",
+                            "enabled": true,
+                            "settings": [],
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            }
+                        },
+                        {
+                            "type": "spacer",
+                            "data": {
+                                "height": "md"
+                            },
+                            "id": "b_jxSfzto1",
+                            "enabled": true,
+                            "settings": [],
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "heading",
+                            "settings": {
+                                "alignment": "center",
+                                "spacing_top": "lg",
+                                "spacing_bottom": "xs"
+                            },
+                            "data": {
+                                "text": "Frequently asked",
+                                "level": "h2"
+                            },
+                            "id": "b_NJDT4gAm",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "richtext",
+                            "settings": {
+                                "alignment": "center",
+                                "spacing_bottom": "md"
+                            },
+                            "data": {
+                                "html": "<p class=\"dawn-doc-lead\">The short answers to what teams ask most before they start composing with Dawn.</p>"
+                            },
+                            "id": "b_PjPNDEGi",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "accordion",
+                            "settings": {
+                                "spacing_top": "sm"
+                            },
+                            "data": {
+                                "variant": "faq"
+                            },
+                            "children": [
+                                {
+                                    "type": "accordion-item",
+                                    "data": {
+                                        "title": "Can I switch plans later?"
+                                    },
+                                    "children": [
+                                        {
+                                            "type": "richtext",
+                                            "data": {
+                                                "html": "<p>Yes — upgrade or downgrade at any time. Your content stays exactly as it was.</p>"
+                                            },
+                                            "id": "b_J3rsSOmX",
+                                            "enabled": true,
+                                            "settings": [],
+                                            "visibility": {
+                                                "from": null,
+                                                "until": null,
+                                                "sites": null
+                                            },
+                                            "children": []
+                                        }
+                                    ],
+                                    "id": "b_42Kzd7ov",
+                                    "enabled": true,
+                                    "settings": [],
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    }
+                                },
+                                {
+                                    "type": "accordion-item",
+                                    "data": {
+                                        "title": "Do blocks work in Tailor and Static Pages?"
+                                    },
+                                    "children": [
+                                        {
+                                            "type": "richtext",
+                                            "data": {
+                                                "html": "<p>Both. The same block document renders in CMS pages, Tailor entries and Static Pages.</p>"
+                                            },
+                                            "id": "b_V8PX0tIk",
+                                            "enabled": true,
+                                            "settings": [],
+                                            "visibility": {
+                                                "from": null,
+                                                "until": null,
+                                                "sites": null
+                                            },
+                                            "children": []
+                                        }
+                                    ],
+                                    "id": "b_WZYxZ0Xg",
+                                    "enabled": true,
+                                    "settings": [],
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    }
+                                },
+                                {
+                                    "type": "accordion-item",
+                                    "data": {
+                                        "title": "Is the output SEO friendly?"
+                                    },
+                                    "children": [
+                                        {
+                                            "type": "richtext",
+                                            "data": {
+                                                "html": "<p>Clean semantic HTML, responsive images and layout-level Open Graph, Twitter and JSON-LD — as on this very page.</p>"
+                                            },
+                                            "id": "b_xTiIPHnF",
+                                            "enabled": true,
+                                            "settings": [],
+                                            "visibility": {
+                                                "from": null,
+                                                "until": null,
+                                                "sites": null
+                                            },
+                                            "children": []
+                                        }
+                                    ],
+                                    "id": "b_jeXw9MDe",
+                                    "enabled": true,
+                                    "settings": [],
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    }
+                                }
+                            ],
+                            "id": "b_D7ZTmHts",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            }
+                        },
+                        {
+                            "type": "cta",
+                            "settings": {
+                                "spacing_top": "lg"
+                            },
+                            "data": {
+                                "variant": "panel",
+                                "title": "Still deciding?",
+                                "text": "Browse the blog to see the blocks in the wild.",
+                                "button_label": "Read the blog",
+                                "button_url": "october://cms-page@link/blog",
+                                "button_style": "primary"
+                            },
+                            "id": "b_ZINpGKfZ",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        }
+                    ],
+                    "id": "b_UctvtuNO",
+                    "enabled": true,
+                    "data": [],
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "id": 22,
+        "site_root_id": 22,
+        "title": "Contact",
+        "slug": "contact",
+        "is_enabled": 1,
+        "meta_title": "Contact — Dawn",
+        "meta_description": "Get in touch with the Dawn team. Questions about blocks, multisite or pricing? Send us a message.",
+        "content": {
+            "meta": [],
+            "blocks": [
+                {
+                    "id": "b_heroencont",
+                    "type": "hero",
+                    "enabled": true,
+                    "settings": {},
+                    "data": {
+                        "layout": "left",
+                        "eyebrow": "",
+                        "title": "Let’s",
+                        "title_accent": "talk",
+                        "lead": "Questions about blocks, multisite or pricing? Send a message and we’ll get back to you.",
+                        "media": "none",
+                        "image": "",
+                        "video": "",
+                        "video_poster": "",
+                        "slides": []
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "type": "section",
+                    "settings": {
+                        "css_class": "dawn-section"
+                    },
+                    "data": [],
+                    "children": [
+                        {
+                            "type": "grid",
+                            "settings": {
+                                "width": "container"
+                            },
+                            "data": [],
+                            "children": [
+                                {
+                                    "type": "column",
+                                    "settings": [],
+                                    "data": {
+                                        "width": "7"
+                                    },
+                                    "children": [
+                                        {
+                                            "id": "b_formen1",
+                                            "type": "form",
+                                            "enabled": true,
+                                            "settings": {},
+                                            "visibility": {
+                                                "from": null,
+                                                "until": null,
+                                                "sites": null
+                                            },
+                                            "data": {
+                                                "form_name": "Contact",
+                                                "submit_label": "Send message",
+                                                "success_message": "Thanks — your message is on its way. We'll get back to you shortly."
+                                            },
+                                            "children": [
+                                                {
+                                                    "id": "b_ffen1",
+                                                    "type": "form-field",
+                                                    "enabled": true,
+                                                    "settings": {},
+                                                    "visibility": {
+                                                        "from": null,
+                                                        "until": null,
+                                                        "sites": null
+                                                    },
+                                                    "children": [],
+                                                    "data": {
+                                                        "field_type": "text",
+                                                        "label": "Name",
+                                                        "name": "name",
+                                                        "required": true,
+                                                        "is_privacy": false,
+                                                        "placeholder": "",
+                                                        "options": "",
+                                                        "half_width": false
+                                                    }
+                                                },
+                                                {
+                                                    "id": "b_ffen2",
+                                                    "type": "form-field",
+                                                    "enabled": true,
+                                                    "settings": {},
+                                                    "visibility": {
+                                                        "from": null,
+                                                        "until": null,
+                                                        "sites": null
+                                                    },
+                                                    "children": [],
+                                                    "data": {
+                                                        "field_type": "email",
+                                                        "label": "Email",
+                                                        "name": "email",
+                                                        "required": true,
+                                                        "is_privacy": false,
+                                                        "placeholder": "",
+                                                        "options": "",
+                                                        "half_width": false
+                                                    }
+                                                },
+                                                {
+                                                    "id": "b_ffen3",
+                                                    "type": "form-field",
+                                                    "enabled": true,
+                                                    "settings": {},
+                                                    "visibility": {
+                                                        "from": null,
+                                                        "until": null,
+                                                        "sites": null
+                                                    },
+                                                    "children": [],
+                                                    "data": {
+                                                        "field_type": "textarea",
+                                                        "label": "Message",
+                                                        "name": "message",
+                                                        "required": true,
+                                                        "is_privacy": false,
+                                                        "placeholder": "",
+                                                        "options": "",
+                                                        "half_width": false
+                                                    }
+                                                },
+                                                {
+                                                    "id": "b_ffen4",
+                                                    "type": "form-field",
+                                                    "enabled": true,
+                                                    "settings": {},
+                                                    "visibility": {
+                                                        "from": null,
+                                                        "until": null,
+                                                        "sites": null
+                                                    },
+                                                    "children": [],
+                                                    "data": {
+                                                        "field_type": "checkbox",
+                                                        "label": "I have read and accept the privacy policy",
+                                                        "name": "privacy",
+                                                        "required": true,
+                                                        "is_privacy": true,
+                                                        "placeholder": "",
+                                                        "options": "",
+                                                        "half_width": false
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "id": "b_RfHIwmVE",
+                                    "enabled": true,
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    }
+                                },
+                                {
+                                    "type": "column",
+                                    "settings": [],
+                                    "data": {
+                                        "width": "5"
+                                    },
+                                    "children": [
+                                        {
+                                            "type": "richtext",
+                                            "settings": [],
+                                            "data": {
+                                                "html": "<div class=\"d-flex flex-column gap-4\"><div><div class=\"dawn-kicker mb-1\">Email</div><a href=\"mailto:hello@renick.example\">hello@renick.example</a></div><div><div class=\"dawn-kicker mb-1\">Studio</div><p class=\"mb-0 text-muted\">Alexanderplatz 1<br>10178 Berlin, Germany</p></div><div><div class=\"dawn-kicker mb-1\">Hours</div><p class=\"mb-0 text-muted\">Mon–Fri, 9:00–18:00 CET</p></div></div>"
+                                            },
+                                            "id": "b_0WLFHMAj",
+                                            "enabled": true,
+                                            "visibility": {
+                                                "from": null,
+                                                "until": null,
+                                                "sites": null
+                                            },
+                                            "children": []
+                                        }
+                                    ],
+                                    "id": "b_uKy2Y2Lw",
+                                    "enabled": true,
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    }
+                                }
+                            ],
+                            "id": "b_NQowlYfi",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            }
+                        }
+                    ],
+                    "id": "b_XKlcoycc",
+                    "enabled": true,
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    }
+                },
+                {
+                    "type": "section",
+                    "settings": {
+                        "width": "container",
+                        "spacing_top": "lg",
+                        "spacing_bottom": "xl"
+                    },
+                    "data": [],
+                    "children": [
+                        {
+                            "type": "heading",
+                            "settings": {
+                                "alignment": "center",
+                                "spacing_bottom": "xs"
+                            },
+                            "data": {
+                                "text": "Find us",
+                                "level": "h2"
+                            },
+                            "id": "b_Wl1kOgrb",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "richtext",
+                            "settings": {
+                                "alignment": "center",
+                                "spacing_bottom": "md"
+                            },
+                            "data": {
+                                "html": "<p class=\"dawn-doc-lead\">Our studio sits in the heart of Berlin. Drop by, or reach us with the form above — the map below is a live Map block.</p>"
+                            },
+                            "id": "b_coMDE2z2",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "map",
+                            "settings": {
+                                "spacing_top": "sm"
+                            },
+                            "data": {
+                                "center": "52.520008, 13.404954",
+                                "zoom": 13,
+                                "height": "md",
+                                "markers": [
+                                    {
+                                        "lat": "52.520008",
+                                        "lng": "13.404954",
+                                        "label": "Dawn HQ"
+                                    }
+                                ],
+                                "fixed_view": true
+                            },
+                            "id": "b_ppmAo5o2",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "cta",
+                            "settings": {
+                                "spacing_top": "lg"
+                            },
+                            "data": {
+                                "variant": "panel",
+                                "title": "Prefer reading?",
+                                "text": "The whole blog is one click away — see the blocks in the wild.",
+                                "button_label": "Read the blog",
+                                "button_url": "october://cms-page@link/blog",
+                                "button_style": "primary"
+                            },
+                            "id": "b_iK3WdUDl",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        }
+                    ],
+                    "id": "b_q2Oq9djE",
+                    "enabled": true,
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "id": 27,
+        "site_root_id": 27,
+        "title": "Imprint",
+        "slug": "imprint",
+        "is_enabled": 1,
+        "hide_from_nav": 1,
+        "show_in_footer": 1,
+        "meta_title": "Imprint — Dawn",
+        "meta_description": "Sample imprint page shipped with the Dawn theme.",
+        "content": {
+            "blocks": [
+                {
+                    "id": "b_imprEN00",
+                    "type": "hero",
+                    "enabled": true,
+                    "settings": {},
+                    "data": {
+                        "layout": "centered",
+                        "eyebrow": "Legal",
+                        "title": "Imprint",
+                        "title_accent": "",
+                        "lead": "",
+                        "media": "none",
+                        "image": "",
+                        "video": "",
+                        "video_poster": "",
+                        "slides": []
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_imprEN02",
+                    "type": "richtext",
+                    "enabled": true,
+                    "settings": {
+                        "width": "narrow",
+                        "spacing_top": "lg"
+                    },
+                    "data": {
+                        "html": "<p><strong>Dawn Demo GmbH</strong><br>Alexanderplatz 1<br>10178 Berlin, Germany</p><p>Represented by: Jane Doe (Managing Director)<br>Commercial register: HRB 000000 B, Amtsgericht Charlottenburg<br>VAT ID: DE000000000</p>"
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_imprEN03",
+                    "type": "heading",
+                    "enabled": true,
+                    "settings": {
+                        "width": "narrow",
+                        "spacing_top": "lg",
+                        "spacing_bottom": "xs"
+                    },
+                    "data": {
+                        "text": "Contact",
+                        "level": "h2"
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_imprEN04",
+                    "type": "richtext",
+                    "enabled": true,
+                    "settings": {
+                        "width": "narrow",
+                        "spacing_bottom": "xl"
+                    },
+                    "data": {
+                        "html": "<p>Email: <a href=\"mailto:hello@renick.example\">hello@renick.example</a><br>Phone: +49 30 000000</p><p>This is sample content shipped with the Dawn theme — replace it with your own legal information before going live.</p>"
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                }
+            ]
+        }
+    },
+    {
+        "id": 28,
+        "site_root_id": 28,
+        "title": "Privacy Policy",
+        "slug": "privacy",
+        "is_enabled": 1,
+        "hide_from_nav": 1,
+        "show_in_footer": 1,
+        "meta_title": "Privacy Policy — Dawn",
+        "meta_description": "Sample privacy policy page shipped with the Dawn theme.",
+        "content": {
+            "blocks": [
+                {
+                    "id": "b_privEN00",
+                    "type": "hero",
+                    "enabled": true,
+                    "settings": {},
+                    "data": {
+                        "layout": "centered",
+                        "eyebrow": "Legal",
+                        "title": "Privacy Policy",
+                        "title_accent": "",
+                        "lead": "",
+                        "media": "none",
+                        "image": "",
+                        "video": "",
+                        "video_poster": "",
+                        "slides": []
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_privEN02",
+                    "type": "richtext",
+                    "enabled": true,
+                    "settings": {
+                        "width": "narrow",
+                        "spacing_top": "lg"
+                    },
+                    "data": {
+                        "html": "<p>This website processes personal data only to the extent necessary to provide its services. This sample text is shipped with the Dawn theme — replace it with your own privacy policy before going live.</p>"
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_privEN03",
+                    "type": "heading",
+                    "enabled": true,
+                    "settings": {
+                        "width": "narrow",
+                        "spacing_top": "lg",
+                        "spacing_bottom": "xs"
+                    },
+                    "data": {
+                        "text": "Data we collect",
+                        "level": "h2"
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_privEN04",
+                    "type": "richtext",
+                    "enabled": true,
+                    "settings": {
+                        "width": "narrow"
+                    },
+                    "data": {
+                        "html": "<p>Server log files (IP address, browser type, time of access) are stored for technical operation and security. Contact form submissions are used solely to answer your request.</p>"
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_privEN05",
+                    "type": "heading",
+                    "enabled": true,
+                    "settings": {
+                        "width": "narrow",
+                        "spacing_top": "lg",
+                        "spacing_bottom": "xs"
+                    },
+                    "data": {
+                        "text": "Your rights",
+                        "level": "h2"
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_privEN06",
+                    "type": "richtext",
+                    "enabled": true,
+                    "settings": {
+                        "width": "narrow",
+                        "spacing_bottom": "xl"
+                    },
+                    "data": {
+                        "html": "<p>You have the right to access, rectify and erase your personal data, and to object to its processing. Contact us at <a href=\"mailto:hello@renick.example\">hello@renick.example</a>.</p>"
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                }
+            ]
+        }
+    },
+    {
+        "id": 31,
+        "site_root_id": 31,
+        "title": "Customer Story",
+        "slug": "customer-story",
+        "is_enabled": 1,
+        "hide_from_nav": 1,
+        "meta_title": "Customer story — Dawn",
+        "meta_description": "How Brightlane Studio rebuilt their marketing site with the Dawn block editor — in hours, not sprints.",
+        "content": {
+            "meta": [],
+            "blocks": [
+                {
+                    "id": "b_csheroen",
+                    "type": "hero",
+                    "enabled": true,
+                    "settings": {},
+                    "data": {
+                        "layout": "centered",
+                        "eyebrow": "Customer story",
+                        "title": "Brightlane ships pages",
+                        "title_accent": "in hours, not sprints",
+                        "lead": "A four-person studio rebuilt their whole marketing site with blocks — no rebuild tickets, no deploy queue.",
+                        "media": "none",
+                        "image": "",
+                        "video": "",
+                        "video_poster": "",
+                        "slides": [],
+                        "primary_label": "",
+                        "primary_url": "",
+                        "secondary_label": "",
+                        "secondary_url": ""
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_cssecen",
+                    "type": "section",
+                    "enabled": true,
+                    "settings": {
+                        "width": "container",
+                        "spacing_top": "lg",
+                        "spacing_bottom": "lg"
+                    },
+                    "data": [],
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": [
+                        {
+                            "id": "b_csquoteen",
+                            "type": "quote",
+                            "enabled": true,
+                            "settings": {
+                                "spacing_bottom": "lg"
+                            },
+                            "data": {
+                                "text": "We rebuilt our whole marketing site in an afternoon. The block editor feels like a design tool, not a CMS.",
+                                "author": "Mara Voss",
+                                "role": "Head of Marketing, Brightlane Studio",
+                                "variant": "centered"
+                            },
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "id": "b_csnumsen",
+                            "type": "hero-numbers",
+                            "enabled": true,
+                            "settings": {
+                                "width": "container",
+                                "spacing_top": "md"
+                            },
+                            "data": {
+                                "items": [
+                                    {
+                                        "number": "3×",
+                                        "label": "Faster publishing"
+                                    },
+                                    {
+                                        "number": "1",
+                                        "label": "Afternoon to relaunch"
+                                    },
+                                    {
+                                        "number": "0",
+                                        "label": "Deploys needed"
+                                    }
+                                ]
+                            },
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "id": "b_cssec2en",
+                    "type": "section",
+                    "enabled": true,
+                    "settings": {
+                        "width": "narrow",
+                        "spacing_top": "md",
+                        "spacing_bottom": "xl"
+                    },
+                    "data": [],
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": [
+                        {
+                            "id": "b_csheaden",
+                            "type": "heading",
+                            "enabled": true,
+                            "settings": {
+                                "alignment": "center",
+                                "spacing_bottom": "xs"
+                            },
+                            "data": {
+                                "text": "What changed",
+                                "level": "h2"
+                            },
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "id": "b_cstexten",
+                            "type": "richtext",
+                            "enabled": true,
+                            "settings": {
+                                "alignment": "center",
+                                "spacing_bottom": "md"
+                            },
+                            "data": {
+                                "html": "<p class=\"lead text-muted\">Content edits used to wait for the next sprint. Now the marketing team composes pages from blocks, previews them live and publishes in every language — while engineering stays focused on the product.</p>"
+                            },
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "id": "b_csctaen",
+                            "type": "cta",
+                            "enabled": true,
+                            "settings": {},
+                            "data": {
+                                "variant": "panel",
+                                "title": "Want results like these?",
+                                "text": "Tell us about your site and we'll show you how blocks fit.",
+                                "button_label": "Get in touch",
+                                "button_url": "october://cms-page@link/page?path=contact",
+                                "button_style": "primary"
+                            },
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": 32,
+        "site_root_id": 32,
+        "title": "Jobs",
+        "slug": "jobs",
+        "is_enabled": 1,
+        "hide_from_nav": 1,
+        "meta_title": "Jobs — Dawn",
+        "meta_description": "Join the Dawn team — open roles in engineering, content design and support.",
+        "content": {
+            "meta": [],
+            "blocks": [
+                {
+                    "id": "b_jbheroen",
+                    "type": "hero",
+                    "enabled": true,
+                    "settings": {},
+                    "data": {
+                        "layout": "centered",
+                        "eyebrow": "Jobs",
+                        "title": "Build the editor",
+                        "title_accent": "everyone loves to use",
+                        "lead": "We are a small team with a big surface: one block editor, many sites, five languages.",
+                        "media": "none",
+                        "image": "",
+                        "video": "",
+                        "video_poster": "",
+                        "slides": [],
+                        "primary_label": "",
+                        "primary_url": "",
+                        "secondary_label": "",
+                        "secondary_url": ""
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_jbsecen",
+                    "type": "section",
+                    "enabled": true,
+                    "settings": {
+                        "width": "narrow",
+                        "spacing_top": "lg",
+                        "spacing_bottom": "lg"
+                    },
+                    "data": [],
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": [
+                        {
+                            "id": "b_jbheaden",
+                            "type": "heading",
+                            "enabled": true,
+                            "settings": {
+                                "alignment": "center",
+                                "spacing_bottom": "xs"
+                            },
+                            "data": {
+                                "text": "Open roles",
+                                "level": "h2"
+                            },
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "id": "b_jbtexten",
+                            "type": "richtext",
+                            "enabled": true,
+                            "settings": {
+                                "alignment": "center",
+                                "spacing_bottom": "md"
+                            },
+                            "data": {
+                                "html": "<p class=\"lead text-muted\">Remote-first, async-friendly. If a role fits, send us a short note instead of a cover letter.</p>"
+                            },
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "id": "b_jbjobsen",
+                            "type": "jobs-listing",
+                            "enabled": true,
+                            "data": {
+                                "layout": "grid",
+                                "columns": "3",
+                                "count": "6",
+                                "show_image": true,
+                                "show_meta": true
+                            },
+                            "settings": {
+                                "spacing_top": "md"
+                            },
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "id": "b_jbwhysen",
+                    "type": "section",
+                    "enabled": true,
+                    "settings": {
+                        "width": "container",
+                        "spacing_top": "lg",
+                        "spacing_bottom": "xl"
+                    },
+                    "data": [],
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": [
+                        {
+                            "id": "b_jbwhyhen",
+                            "type": "heading",
+                            "enabled": true,
+                            "settings": {
+                                "alignment": "center",
+                                "spacing_bottom": "xs"
+                            },
+                            "data": {
+                                "text": "Why work for us",
+                                "level": "h2"
+                            },
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "id": "b_jbwhypen",
+                            "type": "richtext",
+                            "enabled": true,
+                            "settings": {
+                                "alignment": "center",
+                                "spacing_bottom": "md"
+                            },
+                            "data": {
+                                "html": "<p class=\"lead text-muted\">Four honest reasons — no ping-pong table required.</p>"
+                            },
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "id": "b_jbwhyfen",
+                            "type": "features",
+                            "enabled": true,
+                            "settings": {
+                                "spacing_top": "sm",
+                                "spacing_bottom": "lg"
+                            },
+                            "data": {
+                                "columns": "4",
+                                "items": [
+                                    {
+                                        "icon": "globe",
+                                        "title": "Remote-first",
+                                        "text": "Work from anywhere in Europe. We plan async and meet on purpose, not by default."
+                                    },
+                                    {
+                                        "icon": "graduation-cap",
+                                        "title": "Learning budget",
+                                        "text": "Conference, course or books — a yearly budget and the time to actually use it."
+                                    },
+                                    {
+                                        "icon": "rocket",
+                                        "title": "Real ownership",
+                                        "text": "You ship features end to end and see them land in the next release, not in a backlog."
+                                    },
+                                    {
+                                        "icon": "users",
+                                        "title": "Small team, large impact",
+                                        "text": "A handful of people, thousands of installs. Your work shows up everywhere."
+                                    }
+                                ]
+                            },
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "id": "b_jbctaen",
+                            "type": "cta",
+                            "enabled": true,
+                            "settings": {},
+                            "data": {
+                                "variant": "panel",
+                                "title": "Nothing that fits?",
+                                "text": "We read every open application.",
+                                "button_label": "Say hello",
+                                "button_url": "october://cms-page@link/page?path=contact",
+                                "button_style": "primary"
+                            },
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            },
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": 35,
+        "site_root_id": 35,
+        "title": "Book an appointment",
+        "slug": "appointment",
+        "is_enabled": 1,
+        "meta_title": "Book an appointment — Dawn",
+        "meta_description": "Request an appointment with the Dawn team. Pick a topic and a preferred date and we confirm by email.",
+        "content": {
+            "meta": [],
+            "blocks": [
+                {
+                    "id": "b_heroenappt",
+                    "type": "hero",
+                    "enabled": true,
+                    "settings": {},
+                    "data": {
+                        "layout": "left",
+                        "eyebrow": "",
+                        "title": "Book an",
+                        "title_accent": "appointment",
+                        "lead": "Pick a topic and a date that suits you. Every request lands in the backend for review before anyone confirms it.",
+                        "media": "none",
+                        "image": "",
+                        "video": "",
+                        "video_poster": "",
+                        "slides": []
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "type": "section",
+                    "settings": {
+                        "css_class": "dawn-section"
+                    },
+                    "data": [],
+                    "children": [
+                        {
+                            "type": "grid",
+                            "settings": {
+                                "width": "container"
+                            },
+                            "data": [],
+                            "children": [
+                                {
+                                    "type": "column",
+                                    "settings": [],
+                                    "data": {
+                                        "width": "7"
+                                    },
+                                    "children": [
+                                        {
+                                            "id": "b_apthen",
+                                            "type": "heading",
+                                            "enabled": true,
+                                            "settings": {
+                                                "spacing_bottom": "xs"
+                                            },
+                                            "visibility": {
+                                                "from": null,
+                                                "until": null,
+                                                "sites": null
+                                            },
+                                            "children": [],
+                                            "data": {
+                                                "level": "h2",
+                                                "text": "Your request"
+                                            }
+                                        },
+                                        {
+                                            "id": "b_tsfen",
+                                            "type": "tailor-submission-form",
+                                            "enabled": true,
+                                            "settings": {},
+                                            "visibility": {
+                                                "from": null,
+                                                "until": null,
+                                                "sites": null
+                                            },
+                                            "children": [],
+                                            "data": {
+                                                "blueprint": "Dawn\\AppointmentRequest",
+                                                "fields": [
+                                                    {
+                                                        "name": "name",
+                                                        "label": ""
+                                                    },
+                                                    {
+                                                        "name": "email",
+                                                        "label": ""
+                                                    },
+                                                    {
+                                                        "name": "phone",
+                                                        "label": ""
+                                                    },
+                                                    {
+                                                        "name": "topic",
+                                                        "label": ""
+                                                    },
+                                                    {
+                                                        "name": "preferred_date",
+                                                        "label": ""
+                                                    },
+                                                    {
+                                                        "name": "message",
+                                                        "label": ""
+                                                    },
+                                                    {
+                                                        "name": "attachment",
+                                                        "label": ""
+                                                    },
+                                                    {
+                                                        "name": "privacy",
+                                                        "label": ""
+                                                    }
+                                                ],
+                                                "submit_label": "Request appointment",
+                                                "success_message": "Thank you — we have your request and will confirm the appointment by email.",
+                                                "success_icon": "circle-check",
+                                                "success_page": "",
+                                                "captcha": "default"
+                                            }
+                                        }
+                                    ],
+                                    "id": "b_aptcolaen",
+                                    "enabled": true,
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    }
+                                },
+                                {
+                                    "type": "column",
+                                    "settings": [],
+                                    "data": {
+                                        "width": "5"
+                                    },
+                                    "children": [
+                                        {
+                                            "id": "b_aptinfoen",
+                                            "type": "info-banner",
+                                            "enabled": true,
+                                            "settings": {},
+                                            "visibility": {
+                                                "from": null,
+                                                "until": null,
+                                                "sites": null
+                                            },
+                                            "children": [],
+                                            "data": {
+                                                "level": "secondary",
+                                                "title": "What happens next",
+                                                "text": "Requests are reviewed by a person, never auto-confirmed. You get an email as soon as the appointment is fixed."
+                                            }
+                                        }
+                                    ],
+                                    "id": "b_aptcolben",
+                                    "enabled": true,
+                                    "visibility": {
+                                        "from": null,
+                                        "until": null,
+                                        "sites": null
+                                    }
+                                }
+                            ],
+                            "id": "b_aptgriden",
+                            "enabled": true,
+                            "visibility": {
+                                "from": null,
+                                "until": null,
+                                "sites": null
+                            }
+                        }
+                    ],
+                    "id": "b_aptsecen",
+                    "enabled": true,
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    }
+                }
+            ]
+        }
+    }
+]

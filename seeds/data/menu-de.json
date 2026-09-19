@@ -1,0 +1,59 @@
+[
+ {
+  "menu_mode": "mega",
+  "menu_items": [
+   {
+    "content_group": "category",
+    "label": "Entdecken",
+    "children": [
+     {
+      "label": "Unsere Geschichte",
+      "link": "october://entry-dawnpage00005a1b8c2d9e3f00000005@link/20?cms_page=page",
+      "description": "Wie Dawn entstand",
+      "icon": "book-open"
+     },
+     {
+      "label": "Kundenstory",
+      "link": "october://entry-dawnpage00005a1b8c2d9e3f00000005@link/31?cms_page=page",
+      "description": "Brightlane liefert in Stunden",
+      "icon": "sparkles"
+     },
+     {
+      "label": "Jobs",
+      "link": "october://entry-dawnpage00005a1b8c2d9e3f00000005@link/32?cms_page=page",
+      "description": "Offene Rollen, remote-first",
+      "icon": "briefcase"
+     },
+     {
+      "label": "Preise",
+      "link": "october://entry-dawnpage00005a1b8c2d9e3f00000005@link/21?cms_page=page",
+      "description": "Tarife für jede Größe",
+      "icon": "tag"
+     },
+     {
+      "label": "Kontakt",
+      "link": "october://entry-dawnpage00005a1b8c2d9e3f00000005@link/22?cms_page=page",
+      "description": "Sprich mit dem Team",
+      "icon": "mail"
+     }
+    ],
+    "content_side": "right",
+    "content_image": "dawn/autumn-portrait.jpg",
+    "content_text": "<p><strong>Brightlane liefert Seiten in Stunden.</strong> Lies, wie ein Vier-Personen-Studio seine Site mit Blöcken neu gebaut hat — ohne Deploys, ohne Sprints.</p>",
+    "content_button_label": "Zur Story",
+    "content_button_link": "october://entry-dawnpage00005a1b8c2d9e3f00000005@link/31?cms_page=page",
+    "icon": "compass"
+   },
+   {
+    "content_group": "page",
+    "label": "Preise",
+    "link": "october://entry-dawnpage00005a1b8c2d9e3f00000005@link/21?cms_page=page"
+   },
+   {
+    "content_group": "page",
+    "label": "Blog",
+    "link": "october://cms-page@link/blog"
+   }
+  ]
+ }
+]
