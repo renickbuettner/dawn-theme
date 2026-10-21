@@ -1,0 +1,59 @@
+[
+ {
+  "menu_mode": "mega",
+  "menu_items": [
+   {
+    "content_group": "category",
+    "label": "Explore",
+    "children": [
+     {
+      "label": "Our story",
+      "link": "october://entry-dawnpage00005a1b8c2d9e3f00000005@link/20?cms_page=page",
+      "description": "How Dawn came to be",
+      "icon": "book-open"
+     },
+     {
+      "label": "Customer story",
+      "link": "october://entry-dawnpage00005a1b8c2d9e3f00000005@link/31?cms_page=page",
+      "description": "Brightlane ships in hours",
+      "icon": "sparkles"
+     },
+     {
+      "label": "Jobs",
+      "link": "october://entry-dawnpage00005a1b8c2d9e3f00000005@link/32?cms_page=page",
+      "description": "Open roles, remote-first",
+      "icon": "briefcase"
+     },
+     {
+      "label": "Pricing",
+      "link": "october://entry-dawnpage00005a1b8c2d9e3f00000005@link/21?cms_page=page",
+      "description": "Plans for every size",
+      "icon": "tag"
+     },
+     {
+      "label": "Contact",
+      "link": "october://entry-dawnpage00005a1b8c2d9e3f00000005@link/22?cms_page=page",
+      "description": "Talk to the team",
+      "icon": "mail"
+     }
+    ],
+    "content_side": "right",
+    "content_image": "dawn/autumn-portrait.jpg",
+    "content_text": "<p><strong>Brightlane ships pages in hours.</strong> Read how a four-person studio rebuilt their site with blocks — no deploys, no sprints.</p>",
+    "content_button_label": "Read the story",
+    "content_button_link": "october://entry-dawnpage00005a1b8c2d9e3f00000005@link/31?cms_page=page",
+    "icon": "compass"
+   },
+   {
+    "content_group": "page",
+    "label": "Pricing",
+    "link": "october://entry-dawnpage00005a1b8c2d9e3f00000005@link/21?cms_page=page"
+   },
+   {
+    "content_group": "page",
+    "label": "Blog",
+    "link": "october://cms-page@link/blog"
+   }
+  ]
+ }
+]

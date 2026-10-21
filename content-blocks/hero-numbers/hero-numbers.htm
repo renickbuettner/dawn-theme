@@ -1,0 +1,18 @@
+{# Hero numbers — Dawn stats band. Column width adapts to the item count:
+   12/count, clamped to the 2..6 range (4 items → col-lg-3, the original
+   design). All values are plain text and stay autoescaped. #}
+{% set items = data.items|default([]) %}
+{% set count = items|length %}
+{% set colLg = count > 0 ? max(2, min(6, (12 / count)|round(0, 'floor'))) : 3 %}
+<div {{ attributes|raw }}>
+    <div class="row g-4 text-center">
+        {% for item in items %}
+        <div class="col-6 col-lg-{{ colLg }}">
+            <div class="dawn-stat dawn-reveal">
+                <div class="dawn-stat__num dawn-gradient-text">{{ item.number|default('') }}</div>
+                <div class="text-muted">{{ item.label|default('') }}</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

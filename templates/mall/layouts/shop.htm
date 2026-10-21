@@ -1,0 +1,74 @@
+description = "Shop — Dawn chrome for OFFLINE.Mall pages (scaffolded by Renick.Content)"
+
+[renickContent]
+includeAssets = 0
+
+[mallDependencies]
+[session]
+==
+function onStart()
+{
+    // Mirrors layouts/default.htm — keep both in sync.
+    $dawnTheme = $this->controller->getTheme();
+    while ($parentTheme = $dawnTheme->getParentTheme()) {
+        $dawnTheme = $parentTheme;
+    }
+    require_once $dawnTheme->getPath() . '/partials/site/paths.php';
+    dawn_paths_use($dawnTheme);
+
+    require_once dawn_path('partials/site/alternates.php');
+    $this['dawnAlternates'] = dawn_alternates();
+
+    $this['seoUrl'] = \Request::url();
+
+    $this['dawnCss'] = \System\Classes\CombineAssets::combine([
+        '$/renick/content/assets/frontend/bootstrap.css',
+        '$/renick/content/assets/frontend/renick-content.css',
+        dawn_asset('css/theme.css'),
+        dawn_asset('css/offline-mall-integration.css'),
+    ]);
+    $this['dawnScripts'] = \System\Classes\CombineAssets::combine([
+        '$/renick/content/assets/frontend/renick-content.js',
+        dawn_asset('js/theme.js'),
+        dawn_asset('js/offline-mall-integration.js'),
+    ]);
+
+    require_once dawn_path('partials/site/chrome.php');
+    $chrome = dawn_chrome();
+    $this['dawnNavPages'] = $chrome['nav'];
+    $this['dawnFooterPages'] = $chrome['footer'];
+    $this['dawnSettings'] = $chrome['settings'];
+    $this['dawnMegaItems'] = $chrome['mega'];
+
+    $this['dawnCurrentUrl'] = rtrim(\Request::url(), '/');
+}
+==
+<!DOCTYPE html>
+<html lang="{{ this.site.locale|default('en') }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#c2410c">
+    {% partial 'seo/head' %}
+
+    <link rel="stylesheet" href="{{ dawnCss }}">
+    {% component 'mallDependencies' %}
+    {% styles %}
+</head>
+<body data-lang="{{ this.site.locale|default('en') }}">
+    <a class="dawn-skip-link" href="#main">{{ 'dawn.front.common.skip_to_content'|_ }}</a>
+    {% partial 'site/header' %}
+
+    <main id="main" tabindex="-1" class="mall-shop">
+        {% page %}
+    </main>
+
+    {% partial 'site/footer' %}
+
+    {# Mall's components script against jQuery + the AJAX extras; Turbo is left off on shop pages #}
+    <script src="{{ ['@jquery']|theme }}"></script>
+    <script src="{{ dawnScripts }}" defer></script>
+    {% framework extras %}
+    {% scripts %}
+</body>
+</html>

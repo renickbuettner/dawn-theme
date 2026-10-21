@@ -1,0 +1,33 @@
+{# Dawn image with floating bubbles. Style/position values are whitelisted;
+   SVGs bypass rc_resize (the resizer would rasterize them and kill their
+   embedded animations). Bubbles get staggered delays and slightly different
+   durations from their index so the drift feels organic, not synchronized. #}
+{% set backdrop = data.backdrop|default('circle') %}
+{% if backdrop not in ['circle', 'glow', 'none'] %}{% set backdrop = 'circle' %}{% endif %}
+{% set isSvg = '.svg' in (data.image|default('')|lower) %}
+
+<div {{ attributes|replace({'class="': 'class="dawn-bubbles ' ~ (data.image ? '' : 'dawn-bubbles--no-image ')})|raw }}>
+    {% if backdrop != 'none' %}
+        <span class="dawn-bubbles__backdrop dawn-bubbles__backdrop--{{ backdrop }}" aria-hidden="true"></span>
+    {% endif %}
+    {% if data.image %}
+        {% if isSvg %}
+            <img src="{{ data.image|media }}" alt="{{ data.alt|default('') }}" class="dawn-bubbles__image" loading="lazy">
+        {% else %}
+            <img src="{{ data.image|rc_resize(760, 760, { mode: 'auto' }) }}" alt="{{ data.alt|default('') }}"
+                 class="dawn-bubbles__image" loading="lazy" width="760" height="760">
+        {% endif %}
+    {% endif %}
+    {% for bubble in data.bubbles|default([]) %}
+        {% if bubble.text %}
+            {% set style = bubble.style|default('ink') %}
+            {% if style not in ['ink', 'accent', 'light'] %}{% set style = 'ink' %}{% endif %}
+            {% set pos = bubble.position|default('top-left') %}
+            {% if pos not in ['top-left', 'top-right', 'middle-left', 'middle-right', 'bottom-left', 'bottom-right'] %}{% set pos = 'top-left' %}{% endif %}
+            <span class="dawn-bubble dawn-bubble--{{ style }} dawn-bubble--{{ pos }} {{ loop.index0 is odd ? 'dawn-bubble-drift-x' : '' }}"
+                  style="animation-delay: {{ loop.index0 * 0.7 }}s; animation-duration: {{ 5 + (loop.index0 % 3) }}s;">
+                {{- bubble.text -}}
+            </span>
+        {% endif %}
+    {% endfor %}
+</div>

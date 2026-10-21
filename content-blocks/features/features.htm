@@ -1,0 +1,19 @@
+{# Features — Dawn tile grid. The column count is rebuilt from a whitelist;
+   icons go through rc_icon (returns '' for unknown names). Headings are h3 —
+   the page h1/h2 come from other blocks. #}
+{% set columns = data.columns|default('3') in ['2', '3', '4'] ? data.columns|default('3') : '3' %}
+{% set colMd = columns == '2' ? '6' : (columns == '4' ? '3' : '4') %}
+<div {{ attributes|raw }}>
+    <div class="row g-4">
+        {% for item in data.items|default([]) %}
+        <div class="col-md-{{ colMd }}">
+            <div class="dawn-tile dawn-reveal h-100">
+                {% set icon = rc_icon(item.icon|default(''), 20) %}
+                {% if icon %}<div class="dawn-tile-icon">{{ icon|raw }}</div>{% endif %}
+                {% if item.title|default('') %}<h3 class="h5">{{ item.title }}</h3>{% endif %}
+                {% if item.text|default('') %}<p class="text-muted mb-0">{{ item.text|nl2br }}</p>{% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

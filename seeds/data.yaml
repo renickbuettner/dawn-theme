@@ -1,0 +1,156 @@
+# Renick Dawn seed instructions — `php artisan theme:seed <theme-folder>`.
+#
+# The argument is the theme's DIRECTORY name (`renick-dawn` on a Marketplace
+# install), not its Renick.Dawn code. `php artisan theme:list` prints it.
+#
+# The dawn_en (root) and dawn_de (/de) sites must exist first — every content
+# step names its target site and SKIPs rather than mis-place rows when it is
+# missing, so the Sites step below runs first and creates them. Order otherwise
+# matters: EN before DE, taxonomy before posts. Idempotent via update_existing.
+#
+# Steps use the plugin's SiteAwareRecordImport so the import lands on the named
+# site regardless of CLI site context; DE rows carry site_root_id pointing at
+# their EN counterpart, which links them as multisite translations.
+#
+# dawn_en adopts the install's existing root site (a stock install's `primary`)
+# instead of adding a second unprefixed root; sites that already exist keep
+# their name and routing. See seeds/data/sites.json.
+- name: Sites (EN root + DE)
+  class: Renick\Content\Models\SiteDefinitionImport
+  file: seeds/data/sites.json
+  attributes:
+      file_format: json
+
+# The frontend `{{ '…'|_ }}` strings. Seeded here rather than left to
+# `php artisan translate:scan`, which reads the ACTIVE theme and therefore
+# imports nothing on a CLI install — see ThemeMessageImport. The strings come
+# from this theme's own translate/ catalog; messages.json only names locales.
+- name: Frontend messages (EN + DE + ES)
+  class: Renick\Content\Models\ThemeMessageImport
+  file: seeds/data/messages.json
+  attributes:
+      file_format: json
+
+# Not in seeds/blueprints: a submission blueprint aborts theme:seed before October 4.4.
+# On 4.4+ the step also switches the Submission Forms integration on, so /appointment works out of the box.
+- name: Submission blueprints (October 4.4+)
+  class: Renick\Content\Models\SubmissionBlueprintImport
+  file: seeds/data/submission-blueprints.json
+  attributes:
+      file_format: json
+
+- name: Media (photos + PDF)
+  class: Media\Models\MediaLibraryItemImport
+  file: seeds/data/media.json
+  attributes:
+      file_format: json
+
+- name: Blog Tags (EN)
+  class: Renick\Content\Models\SiteAwareRecordImport
+  file: seeds/data/blog-tags-en.json
+  attributes:
+      file_format: json
+      blueprint_uuid: dawnblogtag00014a1b8c2d9e3f00000001
+      update_existing: true
+      site: dawn_en
+
+- name: Blog Tags (DE)
+  class: Renick\Content\Models\SiteAwareRecordImport
+  file: seeds/data/blog-tags-de.json
+  attributes:
+      file_format: json
+      blueprint_uuid: dawnblogtag00014a1b8c2d9e3f00000001
+      update_existing: true
+      site: dawn_de
+
+- name: Blog Categories (EN)
+  class: Renick\Content\Models\SiteAwareRecordImport
+  file: seeds/data/blog-categories-en.json
+  attributes:
+      file_format: json
+      blueprint_uuid: dawnblogcat00024a1b8c2d9e3f00000002
+      update_existing: true
+      site: dawn_en
+
+- name: Blog Categories (DE)
+  class: Renick\Content\Models\SiteAwareRecordImport
+  file: seeds/data/blog-categories-de.json
+  attributes:
+      file_format: json
+      blueprint_uuid: dawnblogcat00024a1b8c2d9e3f00000002
+      update_existing: true
+      site: dawn_de
+
+- name: Blog Posts (EN)
+  class: Renick\Content\Models\SiteAwareRecordImport
+  file: seeds/data/blog-posts-en.json
+  attributes:
+      file_format: json
+      blueprint_uuid: dawnblogpost00034a1b8c2d9e3f00000003
+      update_existing: true
+      site: dawn_en
+
+- name: Blog Posts (DE)
+  class: Renick\Content\Models\SiteAwareRecordImport
+  file: seeds/data/blog-posts-de.json
+  attributes:
+      file_format: json
+      blueprint_uuid: dawnblogpost00034a1b8c2d9e3f00000003
+      update_existing: true
+      site: dawn_de
+
+- name: Pages (EN)
+  class: Renick\Content\Models\SiteAwareRecordImport
+  file: seeds/data/pages-en.json
+  attributes:
+      file_format: json
+      blueprint_uuid: dawnpage00005a1b8c2d9e3f00000005
+      update_existing: true
+      site: dawn_en
+
+- name: Pages (DE)
+  class: Renick\Content\Models\SiteAwareRecordImport
+  file: seeds/data/pages-de.json
+  attributes:
+      file_format: json
+      blueprint_uuid: dawnpage00005a1b8c2d9e3f00000005
+      update_existing: true
+      site: dawn_de
+
+- name: Jobs (EN)
+  class: Renick\Content\Models\SiteAwareRecordImport
+  file: seeds/data/jobs-en.json
+  attributes:
+      file_format: json
+      blueprint_uuid: dawnjobpos00085a1b8c2d9e3f00000008
+      update_existing: true
+      site: dawn_en
+
+- name: Jobs (DE)
+  class: Renick\Content\Models\SiteAwareRecordImport
+  file: seeds/data/jobs-de.json
+  attributes:
+      file_format: json
+      blueprint_uuid: dawnjobpos00085a1b8c2d9e3f00000008
+      update_existing: true
+      site: dawn_de
+
+# One step per site: `multisite: all` globals hold one record per site, so EN
+# and DE menus stay independently editable.
+- name: Menu (EN)
+  class: Renick\Content\Models\SiteAwareGlobalImport
+  file: seeds/data/menu-en.json
+  attributes:
+      file_format: json
+      blueprint_uuid: dawnmenu00075a1b8c2d9e3f00000007
+      update_existing: true
+      site: dawn_en
+
+- name: Menu (DE)
+  class: Renick\Content\Models\SiteAwareGlobalImport
+  file: seeds/data/menu-de.json
+  attributes:
+      file_format: json
+      blueprint_uuid: dawnmenu00075a1b8c2d9e3f00000007
+      update_existing: true
+      site: dawn_de

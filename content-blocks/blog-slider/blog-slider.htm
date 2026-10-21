@@ -1,0 +1,66 @@
+{# Latest blog posts slider. rc_entries returns published Dawn\BlogPost entries
+   for the ACTIVE site; rc_page_url builds the localized post/blog URLs
+   (empty string in controller-less contexts → inert links, render intact).
+   Frontend: Splide via the shared data-rc-splide contract; editor preview:
+   a static card row (no JS in the sandboxed preview iframe). #}
+{% set count = data.count|default('6') in ['3', '6', '9'] ? data.count|default('6') : '6' %}
+{% set showExcerpt = data.show_excerpt is not defined or data.show_excerpt is null or data.show_excerpt is same as(true) or data.show_excerpt in [1, '1', 'true', 'yes', 'on'] %}
+{% set posts = rc_entries('Dawn\\BlogPost', { limit: count, order: 'published_at', direction: 'desc', with: ['category'] }) %}
+{# Presentation-only locale switch: German reads numeric dates (06.07.2026). #}
+{% set dateFormat = (locale|default('en')) starts with 'de' ? 'd.m.Y' : 'M j, Y' %}
+
+<div {{ attributes|replace({'class="': 'class="dawn-blog-slider '})|raw }}>
+    {% if posts|length == 0 %}
+        {% if preview %}<div class="rc-pv-placeholder">{{ rc_t('dawn.block.blog-slider.preview_empty', {}, locale) }}</div>{% endif %}
+    {% elseif preview %}
+        {# Static stand-in: same cards, no carousel chrome. #}
+        <div class="row g-4">
+            {% for post in posts|slice(0, 3) %}
+                <div class="col-md-4">
+                    <article class="dawn-post-card">
+                        <div class="dawn-post-card__media">
+                            {% if post.cover %}<img src="{{ post.cover|rc_resize(640, 360, { mode: 'crop' }) }}" alt="{{ post.title }}" loading="lazy" width="640" height="360">{% endif %}
+                        </div>
+                        <div class="dawn-post-card__body">
+                            <h3 class="dawn-post-card__title">{{ post.title }}</h3>
+                            {% if showExcerpt %}<p class="dawn-post-card__excerpt">{{ post.excerpt }}</p>{% endif %}
+                        </div>
+                    </article>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        {% set i18n = {"play": rc_t('block.front.slider_play', {}, locale), "pause": rc_t('block.front.slider_pause', {}, locale)} %}
+        {% set options = '{"type": "loop", "perPage": 3, "gap": "1.5rem", "padding": "24px", "autoplay": true, "arrows": true, "pagination": true, "breakpoints": {"992": {"perPage": 2}, "768": {"perPage": 1}}, "i18n": ' ~ i18n|json_encode ~ '}' %}
+        <div class="splide" data-rc-splide="{{ options }}" aria-label="{{ rc_t('dawn.block.blog-slider.aria_label', {}, locale) }}">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    {% for post in posts %}
+                        {% set postUrl = rc_page_url('blog-post', { slug: post.slug }) %}
+                        <li class="splide__slide">
+                            <article class="dawn-post-card">
+                                <a class="dawn-post-card__media" {% if postUrl %}href="{{ postUrl }}"{% endif %} aria-label="{{ post.title }}">
+                                    {% if post.cover %}
+                                        <img src="{{ post.cover|rc_resize(640, 360, { mode: 'crop' }) }}" alt="{{ post.title }}" loading="lazy" width="640" height="360">
+                                    {% endif %}
+                                </a>
+                                <div class="dawn-post-card__body">
+                                    {% if post.category %}<span class="dawn-kicker">{{ post.category.title }}</span>{% endif %}
+                                    <h3 class="dawn-post-card__title">
+                                        {% if postUrl %}<a href="{{ postUrl }}">{{ post.title }}</a>{% else %}{{ post.title }}{% endif %}
+                                    </h3>
+                                    {% if showExcerpt %}<p class="dawn-post-card__excerpt">{{ post.excerpt }}</p>{% endif %}
+                                    {% if post.published_at %}<time class="dawn-meta" datetime="{{ post.published_at|date('Y-m-d') }}">{{ post.published_at|date(dateFormat) }}</time>{% endif %}
+                                </div>
+                            </article>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <button class="splide__toggle" type="button">
+                <span class="splide__toggle__play">{{ rc_icon('play', 16) }}</span>
+                <span class="splide__toggle__pause">{{ rc_icon('pause', 16) }}</span>
+            </button>
+        </div>
+    {% endif %}
+</div>
