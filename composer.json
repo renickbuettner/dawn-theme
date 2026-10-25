@@ -1,0 +1,25 @@
+{
+    "name": "renick/dawn-theme",
+    "type": "october-theme",
+    "description": "Renick Dawn — a modern showcase theme for the Renick.Content block editor for October CMS",
+    "keywords": ["octobercms", "october-cms", "theme", "dawn", "content", "blocks"],
+    "homepage": "https://www.renick.io/en/content-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Renick",
+            "homepage": "https://www.renick.io"
+        }
+    ],
+    "support": {
+        "docs": "https://www.renick.io/en/content-plugin",
+        "issues": "https://www.renick.io/en/kontakt"
+    },
+    "require": {
+        "composer/installers": "^1.0 || ^2.0",
+        "renick/content-plugin": "^1.0.7"
+    },
+    "extra": {
+        "installer-name": "dawn"
+    }
+}

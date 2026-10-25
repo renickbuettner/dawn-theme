@@ -1,0 +1,65 @@
+{# Active job listings. rc_entries returns published Dawn\JobsPosition
+   entries for the ACTIVE site; "active" additionally means valid_through is
+   empty or still in the future. rc_page_url('job') builds the localized detail
+   URL. Grid or list via `layout`; the preview image shows only when show_image
+   AND the entry has a cover. Editor preview: a static stand-in (no rc_page_url
+   navigation, JS-free). All scalar fields — no lazy relations, so no `with`. #}
+{% set count = data.count|default('6') in ['3', '6', '9', '12'] ? data.count : '6' %}
+{% set layout = data.layout|default('grid') == 'list' ? 'list' : 'grid' %}
+{% set cols = data.columns|default('3') in ['2', '3', '4'] ? data.columns : '3' %}
+{% set colClass = { '2': 'col-md-6', '3': 'col-md-6 col-lg-4', '4': 'col-sm-6 col-lg-3' }[cols] %}
+{% set showImage = data.show_image is not defined or data.show_image is null or data.show_image is same as(true) or data.show_image in [1, '1', 'true', 'yes', 'on'] %}
+{% set showMeta = data.show_meta is not defined or data.show_meta is null or data.show_meta is same as(true) or data.show_meta in [1, '1', 'true', 'yes', 'on'] %}
+{% set positions = rc_entries('Dawn\\JobsPosition', { limit: count, order: 'published_at_date', direction: 'desc' }) %}
+{% set today = 'now'|date('Y-m-d') %}
+{% set active = [] %}
+{% for p in positions %}
+    {% if not p.valid_through or p.valid_through|date('Y-m-d') >= today %}
+        {% set active = active|merge([p]) %}
+    {% endif %}
+{% endfor %}
+
+<div {{ attributes|replace({'class="': 'class="dawn-jobs '})|raw }}>
+    {% if active|length == 0 %}
+        {% if data.empty_text %}<p class="dawn-meta">{{ data.empty_text }}</p>{% endif %}
+        {% if preview and not data.empty_text %}<div class="rc-pv-placeholder">{{ rc_t('dawn.block.jobs-listing.preview_empty', {}, locale) }}</div>{% endif %}
+    {% elseif layout == 'list' %}
+        <div class="dawn-post-list d-flex flex-column gap-4">
+            {% for p in active %}
+                {% set url = preview ? '' : rc_page_url('job', { slug: p.slug }) %}
+                <article class="dawn-post-card dawn-post-card--row">
+                    {% if showImage and p.cover %}
+                        <a class="dawn-post-card__media" {% if url %}href="{{ url }}"{% endif %} aria-label="{{ p.title }}">
+                            <img src="{{ p.cover|rc_resize(640, 360, { mode: 'crop' }) }}" alt="{{ p.title }}" loading="lazy" width="640" height="360">
+                        </a>
+                    {% endif %}
+                    <div class="dawn-post-card__body">
+                        {% if showMeta and p.department %}<span class="dawn-kicker">{{ p.department }}</span>{% endif %}
+                        <h3 class="dawn-post-card__title">{% if url %}<a href="{{ url }}">{{ p.title }}</a>{% else %}{{ p.title }}{% endif %}</h3>
+                        {% if p.excerpt %}<p class="dawn-post-card__excerpt">{{ p.excerpt }}</p>{% endif %}
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="row g-4">
+            {% for p in active %}
+                {% set url = preview ? '' : rc_page_url('job', { slug: p.slug }) %}
+                <div class="{{ colClass }}">
+                    <article class="dawn-post-card h-100">
+                        {% if showImage and p.cover %}
+                            <a class="dawn-post-card__media" {% if url %}href="{{ url }}"{% endif %} aria-label="{{ p.title }}">
+                                <img src="{{ p.cover|rc_resize(640, 360, { mode: 'crop' }) }}" alt="{{ p.title }}" loading="lazy" width="640" height="360">
+                            </a>
+                        {% endif %}
+                        <div class="dawn-post-card__body">
+                            {% if showMeta and p.department %}<span class="dawn-kicker">{{ p.department }}</span>{% endif %}
+                            <h3 class="dawn-post-card__title">{% if url %}<a href="{{ url }}">{{ p.title }}</a>{% else %}{{ p.title }}{% endif %}</h3>
+                            {% if p.excerpt %}<p class="dawn-post-card__excerpt">{{ p.excerpt }}</p>{% endif %}
+                        </div>
+                    </article>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>

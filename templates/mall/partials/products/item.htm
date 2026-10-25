@@ -1,0 +1,31 @@
+{# Dawn override of Mall's product card: the name is a heading, the price row stays machine-readable #}
+<article class="mall-products-item">
+    <a href="{{ productPage|page({slug: item.slug, variant: item.variantHashId}) }}" data-mall-item-id="{{ item.prefixedId }}">
+        <div class="mall-products-item__image">
+            {% partial __SELF__ ~ '::image' image=item.image %}
+        </div>
+        <div class="mall-products-item__info">
+            <div class="mall-products-item__info-primary">
+                <h3 class="mall-products-item__name h6 mb-0">{{ item.name }}</h3>
+                {% set price = item.price() %}
+                <span class="mall-products-item__price {{ price.isCustomerSpecific ? 'mall-products-item__price--special' }}">{{ price.string|raw }}</span>
+            </div>
+            <div class="mall-products-item__info-secondary">
+                {% if item.description_short %}<div class="mall-products-item__short-description">{{ item.description_short|nl2br }}</div>{% endif %}
+                {% if price.official %}
+                    <div class="mall-products-item__old-price">{{ price.official.string|raw }}</div>
+                {% elseif item.oldPrice.count|default(0) > 0 %}
+                    <div class="mall-products-item__old-price">{{ item.oldPrice().string|raw }}</div>
+                {% endif %}
+            </div>
+            {% set rating = item.reviews_rating %}
+            {% if rating > 0 %}
+                <div class="mall-products-item__info-teritary">
+                    <div class="mall-products-item__stars">
+                        {% partial __SELF__ ~ '::stars' rating=rating label=(rating ~ '/5') %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </a>
+</article>

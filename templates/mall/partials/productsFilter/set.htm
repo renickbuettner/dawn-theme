@@ -1,0 +1,21 @@
+{# Dawn override: filter chips announce as checkboxes and react to Enter/Space (see the shop layout) #}
+<div class="mall-filter mall-filter--set" role="group" aria-label="{{ property.name }}">
+    {% set selected = filter[property.slug].values|default([]) %}
+    {% for value in values|default([]) %}
+        {% set isSelected = value.index_value in selected %}
+        <div class="js-mall-filter mall-filter__option {{ isSelected ? 'mall-filter__option--selected' : '' }}"
+             role="checkbox" tabindex="0" aria-checked="{{ isSelected ? 'true' : 'false' }}">
+            <input type="checkbox"
+                   aria-hidden="true"
+                   tabindex="-1"
+                   style="display: none"
+                   name="filter[{{ property.slug }}][]"
+                   value="{{ value.index_value }}"
+                    {% if isSelected %}
+                        checked
+                    {% endif %}
+            >
+            {{ value.display_value|raw }} {{ property.unit }}
+        </div>
+    {% endfor %}
+</div>

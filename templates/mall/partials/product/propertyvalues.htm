@@ -1,0 +1,24 @@
+{# Dawn override: one striped label → value table per property group, Shopware-style (tabs live in info.htm) #}
+<div class="mall-product__properties">
+    {% for entry in item.grouped_properties|default([]) %}
+        {% if entry.values|default([])|length %}
+            <table class="mall-product__properties-table">
+                <caption class="mall-product__properties-heading">{{ entry.group.name }}</caption>
+                <tbody>
+                    {% for value in entry.values %}
+                        <tr>
+                            <th scope="row">{{ value.property.name }}</th>
+                            <td>
+                                {% if value.isColor() %}
+                                    <span class="mall-product__properties-color">{{ value.display_value|raw }} {{ value.value.name|default('') }}</span>
+                                {% else %}
+                                    {{ value.display_value|raw }}{% if value.property.unit %} {{ value.property.unit }}{% endif %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    {% endfor %}
+</div>

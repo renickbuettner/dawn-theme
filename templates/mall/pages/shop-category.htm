@@ -1,0 +1,48 @@
+url = "/shop/category/:slug*"
+layout = "shop"
+title = "Category"
+
+[products]
+category = ":slug"
+setPageTitle = 1
+includeVariants = 1
+includeChildren = 1
+perPage = 9
+
+[productsFilter]
+category = ":slug"
+showPriceFilter = 1
+==
+{# Flags JS before first paint so the filter can be an offcanvas on phones; without JS it stays inline #}
+<script>document.documentElement.classList.add('mall-filter-js');</script>
+<div class="container py-4 mall-page mall-page--category">
+    <div class="row g-4">
+        <aside class="col-lg-3 mall-filter-aside">
+            <div class="offcanvas-lg offcanvas-start mall-filter-offcanvas" id="mall-filter" tabindex="-1" aria-labelledby="mall-filter-title">
+                <div class="offcanvas-header mall-filter-offcanvas__head">
+                    <h2 class="mall-filter-offcanvas__title" id="mall-filter-title">{{ 'dawn.front.mall.filter'|_ }}</h2>
+                    <button class="mall-filter-offcanvas__close" type="button" data-bs-dismiss="offcanvas" data-bs-target="#mall-filter" aria-label="{{ 'dawn.front.mall.close_filter'|_ }}">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+                    </button>
+                </div>
+                <div class="offcanvas-body mall-filter-offcanvas__body">
+                    {% component 'productsFilter' %}
+                </div>
+                <div class="mall-filter-offcanvas__foot">
+                    <button class="mall-btn mall-btn--primary" type="button" data-bs-dismiss="offcanvas" data-bs-target="#mall-filter">{{ 'dawn.front.mall.show_products'|_ }}</button>
+                </div>
+            </div>
+        </aside>
+        <div class="col-12 col-lg-9">
+            <div class="mall-category-head">
+                <h1 class="h2 mb-0">{{ products.category.name }}</h1>
+                <button class="mall-btn mall-filter-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#mall-filter" aria-controls="mall-filter" aria-expanded="false">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
+                    {{ 'dawn.front.mall.filter'|_ }}
+                    <span class="mall-filter-toggle__count" data-mall-filter-count hidden></span>
+                </button>
+            </div>
+            {% component 'products' %}
+        </div>
+    </div>
+</div>
