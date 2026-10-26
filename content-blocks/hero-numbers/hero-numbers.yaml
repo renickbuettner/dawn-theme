@@ -1,0 +1,20 @@
+# Labels are theme lang keys (lang/{en,de}.json), resolved by the plugin's
+# BlockLabelTranslator at serialization time.
+handle: hero-numbers
+name: dawn.block.hero-numbers.name
+icon: icon-line-chart
+group: Dawn
+version: 1
+settings: true
+fields:
+  items:
+    label: dawn.block.hero-numbers.items
+    type: repeater
+    fields:
+      number:
+        label: dawn.block.hero-numbers.number
+        type: text
+        commentAbove: dawn.block.hero-numbers.number_comment
+      label:
+        label: dawn.block.hero-numbers.label
+        type: text

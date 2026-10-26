@@ -1,0 +1,24 @@
+url = "/shop/product/:slug/:variant?"
+layout = "shop"
+title = "Product"
+
+[product]
+product = ":slug"
+variant = ":slug"
+==
+function onEnd()
+{
+    // The product component resolves `item` in onRun (after onStart); the SEO
+    // partial reads seoImage at render time, so onEnd is early enough.
+    try {
+        $image = $this['item']?->all_images?->first();
+        if ($image) {
+            $this['seoImage'] = $image->getPath();
+        }
+    } catch (\Throwable $e) {
+    }
+}
+==
+<div class="container py-4 mall-page mall-page--product">
+    {% component 'product' %}
+</div>

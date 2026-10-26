@@ -1,0 +1,46 @@
+# Data comes from the plugin's guarded rc_entries()/rc_page_url('job') helpers.
+# Labels are theme lang keys (lang/{en,de}.json), resolved by the plugin's
+# BlockLabelTranslator at serialization time.
+handle: jobs-listing
+name: dawn.block.jobs-listing.name
+icon: icon-briefcase
+group: Dawn
+version: 1
+settings: true
+fields:
+  layout:
+    label: dawn.block.jobs-listing.layout
+    type: dropdown
+    options:
+      grid: dawn.block.jobs-listing.layout_grid
+      list: dawn.block.jobs-listing.layout_list
+    default: grid
+  columns:
+    label: dawn.block.jobs-listing.columns
+    type: dropdown
+    options:
+      '2': '2'
+      '3': '3'
+      '4': '4'
+    default: '3'
+  count:
+    label: dawn.block.jobs-listing.count
+    type: dropdown
+    options:
+      '3': '3'
+      '6': '6'
+      '9': '9'
+      '12': '12'
+    default: '6'
+  show_image:
+    label: dawn.block.jobs-listing.show_image
+    type: switch
+    default: true
+  show_meta:
+    label: dawn.block.jobs-listing.show_meta
+    type: switch
+    default: true
+  empty_text:
+    label: dawn.block.jobs-listing.empty_text
+    type: text
+    comment: dawn.block.jobs-listing.empty_text_comment

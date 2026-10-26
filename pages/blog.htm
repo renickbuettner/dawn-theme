@@ -1,0 +1,204 @@
+url = "/blog"
+layout = "default"
+title = "Blog"
+is_hidden = 0
+meta_title = "Blog — Dawn"
+meta_description = "Guides, product notes and design thinking about block-based content on OctoberCMS."
+==
+function onStart()
+{
+    // Layout + per-page come from the per-site Dawn\Theme global; no record →
+    // grid/6. Settings are reused from the layout's cached chrome bundle.
+    $blogLayout = 'grid';
+    $perPage = 6;
+    require_once dawn_path('partials/site/chrome.php');
+    $settings = dawn_chrome()['settings'];
+    if ($settings) {
+        $layout = (string) ($settings['blog_layout'] ?? '');
+        if (in_array($layout, ['grid', 'list'], true)) {
+            $blogLayout = $layout;
+        }
+        $pp = (int) ($settings['blog_per_page'] ?? 0);
+        if (in_array($pp, [3, 6, 9, 12], true)) {
+            $perPage = $pp;
+        }
+    }
+    $this['blogLayout'] = $blogLayout;
+
+    $tagSlug = trim((string) input('tag'));
+
+    $query = \Tailor\Models\EntryRecord::inSection('Dawn\BlogPost')
+        ->applyPublishedStatus()
+        ->with(['tags', 'category'])
+        ->orderBy('published_at_date', 'desc');
+
+    $activeTag = null;
+    if ($tagSlug !== '') {
+        $activeTag = \Tailor\Models\EntryRecord::inSection('Dawn\BlogTag')
+            ->where('slug', $tagSlug)->first();
+
+        if ($activeTag) {
+            $tagId = $activeTag->id;
+            $query->whereHas('tags', function ($q) use ($tagId) {
+                $q->where('id', $tagId);
+            });
+        }
+        else {
+            $this->setStatusCode(404);
+            return $this->controller->run('404');
+        }
+    }
+
+    $posts = $query->paginate($perPage);
+
+    // ?page past the end is a 404, not an indexable empty listing.
+    if ($posts->currentPage() > max(1, $posts->lastPage())) {
+        $this->setStatusCode(404);
+        return $this->controller->run('404');
+    }
+    $posts->appends(request()->except('page'));
+
+    $this['posts'] = $posts;
+    $this['activeTag'] = $activeTag;
+    $this['activeTagSlug'] = $tagSlug;
+
+    $this['allTags'] = \Tailor\Models\EntryRecord::inSection('Dawn\BlogTag')
+        ->orderBy('title')->get();
+}
+==
+{# German reads numeric dates (06.07.2026); everyone else gets the EN short form. #}
+{% set dateFormat = (this.site.locale|default('en')) starts with 'de' ? 'd.m.Y' : 'M j, Y' %}
+<section class="dawn-hero">
+    <span class="dawn-blob dawn-blob-1 dawn-float" aria-hidden="true"></span>
+    <span class="dawn-blob dawn-blob-2 dawn-float" aria-hidden="true"></span>
+    <div class="container position-relative">
+        <span class="dawn-eyebrow">{{ 'dawn.front.blog.eyebrow'|_ }}</span>
+        <h1 class="display-5 mb-3">{{ 'dawn.front.blog.title_lead'|_ }} <span class="dawn-gradient-text">{{ 'dawn.front.blog.title_accent'|_ }}</span></h1>
+        <p class="dawn-lead">{{ 'dawn.front.blog.lead'|_ }}</p>
+    </div>
+</section>
+
+<section class="dawn-section">
+    <div class="container">
+
+        {# Tag filter row #}
+        <div class="d-flex flex-wrap align-items-center gap-2 mb-4">
+            <a class="dawn-chip {{ activeTagSlug == '' ? 'dawn-chip--active' }}" href="{{ this.page.baseFileName|page }}"{{ activeTagSlug == '' ? ' aria-current="true"' }}>{{ 'dawn.front.blog.filter_all'|_ }}</a>
+            {% for tag in allTags %}
+                <a class="dawn-chip {{ activeTagSlug == tag.slug ? 'dawn-chip--active' }}"
+                   href="{{ this.page.baseFileName|page }}?tag={{ tag.slug }}"{{ activeTagSlug == tag.slug ? ' aria-current="true"' }}>{{ tag.title }}</a>
+            {% endfor %}
+        </div>
+
+        {% if activeTag %}
+            <p class="dawn-meta mb-4">{{ 'dawn.front.blog.showing_tagged'|_ }} <strong>{{ activeTag.title }}</strong> · <a href="{{ this.page.baseFileName|page }}">{{ 'dawn.front.blog.clear_filter'|_ }}</a></p>
+        {% endif %}
+
+        {# Posts: grid (cards) or list (rows) per the Dawn\Theme global #}
+        {% if posts|length %}
+            {% if blogLayout == 'list' %}
+                <div class="dawn-post-list d-flex flex-column gap-4" data-blog-layout="list">
+                    {% for post in posts %}
+                        <article class="dawn-post-card dawn-post-card--row">
+                            <a class="dawn-post-card__media" href="{{ 'blog-post'|page({ slug: post.slug }) }}" aria-label="{{ post.title }}">
+                                {% if post.cover %}
+                                    <img src="{{ post.cover|media|resize(640, 400, { mode: 'crop' }) }}" alt="{{ post.title }}"
+                                         loading="lazy" width="640" height="400">
+                                {% endif %}
+                            </a>
+                            <div class="dawn-post-card__body">
+                                {% if post.category %}
+                                    <span class="dawn-kicker">{{ post.category.title }}</span>
+                                {% endif %}
+                                <h2 class="dawn-post-card__title">
+                                    <a href="{{ 'blog-post'|page({ slug: post.slug }) }}">{{ post.title }}</a>
+                                </h2>
+                                <p class="dawn-post-card__excerpt">{{ post.excerpt }}</p>
+                                <div class="d-flex flex-wrap gap-1 mt-1">
+                                    {% for tag in post.tags %}
+                                        <a class="dawn-chip" href="{{ this.page.baseFileName|page }}?tag={{ tag.slug }}">{{ tag.title }}</a>
+                                    {% endfor %}
+                                </div>
+                                <time class="dawn-meta mt-2" datetime="{{ post.published_at_date|date('Y-m-d') }}">{{ post.published_at_date|date(dateFormat) }}</time>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="row g-4" data-blog-layout="grid">
+                    {% for post in posts %}
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <article class="dawn-post-card">
+                                <a class="dawn-post-card__media" href="{{ 'blog-post'|page({ slug: post.slug }) }}" aria-label="{{ post.title }}">
+                                    {% if post.cover %}
+                                        <img src="{{ post.cover|media|resize(800, 450, { mode: 'crop' }) }}" alt="{{ post.title }}"
+                                             loading="lazy" width="800" height="450">
+                                    {% endif %}
+                                </a>
+                                <div class="dawn-post-card__body">
+                                    {% if post.category %}
+                                        <span class="dawn-kicker">{{ post.category.title }}</span>
+                                    {% endif %}
+                                    <h2 class="dawn-post-card__title">
+                                        <a href="{{ 'blog-post'|page({ slug: post.slug }) }}">{{ post.title }}</a>
+                                    </h2>
+                                    <p class="dawn-post-card__excerpt">{{ post.excerpt }}</p>
+                                    <div class="d-flex flex-wrap gap-1 mt-1">
+                                        {% for tag in post.tags %}
+                                            <a class="dawn-chip" href="{{ this.page.baseFileName|page }}?tag={{ tag.slug }}">{{ tag.title }}</a>
+                                        {% endfor %}
+                                    </div>
+                                    <time class="dawn-meta mt-2" datetime="{{ post.published_at_date|date('Y-m-d') }}">{{ post.published_at_date|date(dateFormat) }}</time>
+                                </div>
+                            </article>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {# Pagination (preserves ?tag) #}
+            {% if posts.lastPage > 1 %}
+                {# Windowed pager: current ±2 + first/last + ellipsis, so the bar
+                   stays fixed-width. Disabled prev/next are non-focusable
+                   (aria-disabled + tabindex=-1); current page is a span. #}
+                {% set _win = 2 %}
+                {% set _prevDisabled = posts.currentPage <= 1 %}
+                {% set _nextDisabled = posts.currentPage >= posts.lastPage %}
+                {% set _from = max(1, posts.currentPage - _win) %}
+                {% set _to = min(posts.lastPage, posts.currentPage + _win) %}
+                <nav class="mt-5" aria-label="{{ 'dawn.front.blog.pagination_label'|_ }}">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item {{ _prevDisabled ? 'disabled' }}">
+                            <a class="page-link" href="{{ _prevDisabled ? '#' : posts.url(posts.currentPage - 1) }}" rel="prev" aria-label="{{ 'dawn.front.blog.prev_page'|_ }}"{{ _prevDisabled ? ' aria-disabled="true" tabindex="-1"' }}><span aria-hidden="true">&laquo;</span></a>
+                        </li>
+                        {% if _from > 1 %}
+                            <li class="page-item"><a class="page-link" href="{{ posts.url(1) }}">1</a></li>
+                            {% if _from > 2 %}<li class="page-item disabled"><span class="page-link">&hellip;</span></li>{% endif %}
+                        {% endif %}
+                        {% for page in _from.._to %}
+                            <li class="page-item {{ page == posts.currentPage ? 'active' }}">
+                                {% if page == posts.currentPage %}
+                                    <span class="page-link" aria-current="page">{{ page }}</span>
+                                {% else %}
+                                    <a class="page-link" href="{{ posts.url(page) }}">{{ page }}</a>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                        {% if _to < posts.lastPage %}
+                            {% if _to < posts.lastPage - 1 %}<li class="page-item disabled"><span class="page-link">&hellip;</span></li>{% endif %}
+                            <li class="page-item"><a class="page-link" href="{{ posts.url(posts.lastPage) }}">{{ posts.lastPage }}</a></li>
+                        {% endif %}
+                        <li class="page-item {{ _nextDisabled ? 'disabled' }}">
+                            <a class="page-link" href="{{ _nextDisabled ? '#' : posts.url(posts.currentPage + 1) }}" rel="next" aria-label="{{ 'dawn.front.blog.next_page'|_ }}"{{ _nextDisabled ? ' aria-disabled="true" tabindex="-1"' }}><span aria-hidden="true">&raquo;</span></a>
+                        </li>
+                    </ul>
+                </nav>
+            {% endif %}
+        {% else %}
+            <div class="dawn-tile text-center">
+                <p class="mb-0">{{ 'dawn.front.blog.no_posts'|_ }}</p>
+            </div>
+        {% endif %}
+
+    </div>
+</section>

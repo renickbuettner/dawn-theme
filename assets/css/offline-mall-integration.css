@@ -1,0 +1,799 @@
+/* Renick Dawn — OFFLINE.Mall integration layer.
+   Loaded only by layouts/shop.htm (scaffolded from templates/mall/); styles Mall's stock
+   component partials (mall-* BEM classes) with Dawn's tokens. Everything is scoped to
+   .mall-shop so nothing here reaches a regular Dawn page. Light theme, like Dawn itself. */
+
+.mall-shop, .mall-modal {
+    --mall-gap: 1.25rem;
+    --mall-radius: 12px;
+    --mall-surface: #fff;
+    --mall-tint: #f7f4f1;
+    --mall-ok: #1f7a4d;
+    --mall-ok-bg: #e8f5ee;
+    --mall-err: #b42318;
+    --mall-err-bg: #fdecea;
+    --mall-warn: #b54708;
+    --mall-warn-bg: #fff3e6;
+    --mall-focus: 0 0 0 .25rem rgba(194, 65, 12, .28);
+}
+
+/* ── Focus + motion ──────────────────────────────────────── */
+:is(.mall-shop, .mall-modal) a:focus-visible,
+:is(.mall-shop, .mall-modal) button:focus-visible,
+:is(.mall-shop, .mall-modal) input:focus-visible,
+:is(.mall-shop, .mall-modal) select:focus-visible,
+:is(.mall-shop, .mall-modal) textarea:focus-visible,
+:is(.mall-shop, .mall-modal) [tabindex]:focus-visible {
+    outline: 2px solid var(--dawn-brand);
+    outline-offset: 2px;
+    box-shadow: none;
+}
+:is(.mall-shop, .mall-modal) img { max-width: 100%; height: auto; }
+
+/* ── Buttons ─────────────────────────────────────────────── */
+:is(.mall-shop, .mall-modal) .mall-btn,
+:is(.mall-shop, .mall-modal) .mall-add-to-cart-button,
+:is(.mall-shop, .mall-modal) .mall-add-to-wishlist-button,
+:is(.mall-shop, .mall-modal) .mall-btn-checkout,
+:is(.mall-shop, .mall-modal) .mall-btn-signup {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    min-height: 44px;
+    padding: .6rem 1.25rem;
+    border: 1px solid var(--dawn-line);
+    border-radius: var(--mall-radius);
+    background: var(--mall-surface);
+    color: var(--dawn-ink);
+    font: inherit;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color .15s ease, color .15s ease, box-shadow .18s ease, background-color .15s ease;
+}
+:is(.mall-shop, .mall-modal) .mall-btn:hover { border-color: var(--dawn-brand); color: var(--dawn-brand); text-decoration: none; }
+:is(.mall-shop, .mall-modal) .mall-btn--primary,
+:is(.mall-shop, .mall-modal) .mall-add-to-cart-button,
+:is(.mall-shop, .mall-modal) .mall-btn-checkout,
+:is(.mall-shop, .mall-modal) .mall-btn-signup {
+    border: 0;
+    background: var(--dawn-grad);
+    background-size: 220% 220%;
+    background-position: 0% 50%;
+    color: #fff;
+    box-shadow: 0 12px 30px -12px rgba(194, 65, 12, .8);
+}
+:is(.mall-shop, .mall-modal) .mall-btn--primary:hover,
+:is(.mall-shop, .mall-modal) .mall-add-to-cart-button:hover,
+:is(.mall-shop, .mall-modal) .mall-btn-checkout:hover,
+:is(.mall-shop, .mall-modal) .mall-btn-signup:hover {
+    color: #fff;
+    box-shadow: 0 16px 38px -14px rgba(194, 65, 12, .9);
+}
+:is(.mall-shop, .mall-modal) .mall-btn--secondary { border-color: var(--dawn-brand); color: var(--dawn-brand); }
+:is(.mall-shop, .mall-modal) .mall-btn--secondary:hover { background: var(--mall-tint); }
+:is(.mall-shop, .mall-modal) .mall-btn--link,
+:is(.mall-shop, .mall-modal) .mall-btn--text {
+    min-height: 0;
+    padding: .25rem 0;
+    border: 0;
+    background: none;
+    color: var(--dawn-brand);
+    text-decoration: underline;
+    text-underline-offset: .2em;
+    box-shadow: none;
+}
+:is(.mall-shop, .mall-modal) .mall-btn--sm { min-height: 36px; padding: .35rem .85rem; font-size: .9rem; border-radius: 10px; }
+:is(.mall-shop, .mall-modal) .mall-btn--full { width: 100%; }
+:is(.mall-shop, .mall-modal) .mall-btn[disabled],
+:is(.mall-shop, .mall-modal) .mall-btn.disabled,
+:is(.mall-shop, .mall-modal) .mall-add-to-cart-button[disabled] { opacity: .55; pointer-events: none; }
+:is(.mall-shop, .mall-modal) .mall-trash-icon { color: var(--mall-err); }
+
+/* ── Forms ───────────────────────────────────────────────── */
+:is(.mall-shop, .mall-modal) .mall-form-control { display: flex; flex-direction: column; gap: .35rem; margin-bottom: 1rem; }
+:is(.mall-shop, .mall-modal) .mall-form-control > label,
+:is(.mall-shop, .mall-modal) .mall-label { font-size: .92rem; font-weight: 600; color: var(--dawn-ink); }
+:is(.mall-shop, .mall-modal) .mall-form-control input:not([type="checkbox"]):not([type="radio"]),
+:is(.mall-shop, .mall-modal) .mall-form-control select,
+:is(.mall-shop, .mall-modal) .mall-form-control textarea,
+:is(.mall-shop, .mall-modal) .mall-input,
+:is(.mall-shop, .mall-modal) .mall-selectbox,
+:is(.mall-shop, .mall-modal) .mall-selectbox-sm,
+:is(.mall-shop, .mall-modal) .mall-wishlists-manager__input {
+    width: 100%;
+    min-height: 44px;
+    padding: .55rem .85rem;
+    border: 1px solid var(--dawn-line);
+    border-radius: 10px;
+    background: var(--mall-surface);
+    color: var(--dawn-ink);
+    font: inherit;
+    line-height: 1.3;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+:is(.mall-shop, .mall-modal) .mall-form-control textarea { min-height: 7rem; resize: vertical; }
+:is(.mall-shop, .mall-modal) .mall-form-control input:focus,
+:is(.mall-shop, .mall-modal) .mall-form-control select:focus,
+:is(.mall-shop, .mall-modal) .mall-form-control textarea:focus,
+:is(.mall-shop, .mall-modal) .mall-input:focus,
+:is(.mall-shop, .mall-modal) .mall-selectbox:focus,
+:is(.mall-shop, .mall-modal) .mall-selectbox-sm:focus { border-color: var(--dawn-brand); box-shadow: var(--mall-focus); outline: none; }
+:is(.mall-shop, .mall-modal) .mall-selectbox-sm { width: auto; min-width: 5.5rem; }
+:is(.mall-shop, .mall-modal) input[type="number"].mall-input { max-width: 7rem; }
+:is(.mall-shop, .mall-modal) .mall-two-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 0 var(--mall-gap); }
+:is(.mall-shop, .mall-modal) .mall-checkbox,
+:is(.mall-shop, .mall-modal) .mall-form-checkbox,
+:is(.mall-shop, .mall-modal) .mall-label--checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: .6rem;
+    margin-bottom: .75rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+:is(.mall-shop, .mall-modal) input[type="checkbox"],
+:is(.mall-shop, .mall-modal) input[type="radio"],
+:is(.mall-shop, .mall-modal) .mall-input-checkbox { width: 1.15rem; height: 1.15rem; margin-top: .15rem; accent-color: var(--dawn-brand); flex: 0 0 auto; }
+:is(.mall-shop, .mall-modal) .mall-form-comment { font-size: .875rem; color: var(--dawn-muted); }
+:is(.mall-shop, .mall-modal) [data-validate-for]:not(:empty),
+:is(.mall-shop, .mall-modal) [data-validate-for].visible { display: block; margin-top: .25rem; font-size: .875rem; color: var(--mall-err); }
+:is(.mall-shop, .mall-modal) .mall-form-actions,
+:is(.mall-shop, .mall-modal) .mall-address-form__actions,
+:is(.mall-shop, .mall-modal) .mall-quick-checkout__actions,
+:is(.mall-shop, .mall-modal) .mall-wishlists-manager__actions,
+:is(.mall-shop, .mall-modal) .mall-address-list__actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
+:is(.mall-shop, .mall-modal) .mall-cart-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .75rem; margin-top: 1.5rem; }
+
+/* ── Callouts, tables, pagination, loader, modal ─────────── */
+:is(.mall-shop, .mall-modal) .mall-callout {
+    padding: 1rem 1.25rem;
+    border-left: 4px solid var(--dawn-brand);
+    border-radius: 0 var(--mall-radius) var(--mall-radius) 0;
+    background: var(--mall-tint);
+    margin: 1rem 0;
+}
+:is(.mall-shop, .mall-modal) .mall-callout--neutral { border-color: var(--dawn-muted); }
+:is(.mall-shop, .mall-modal) .mall-callout--success { border-color: var(--mall-ok); background: var(--mall-ok-bg); }
+:is(.mall-shop, .mall-modal) .mall-callout--error { border-color: var(--mall-err); background: var(--mall-err-bg); }
+:is(.mall-shop, .mall-modal) .mall-callout--warning { border-color: var(--mall-warn); background: var(--mall-warn-bg); }
+:is(.mall-shop, .mall-modal) .mall-table,
+:is(.mall-shop, .mall-modal) .mall-cart__table,
+:is(.mall-shop, .mall-modal) .mall-orders-list__table,
+:is(.mall-shop, .mall-modal) .mall-address-list__table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+:is(.mall-shop, .mall-modal) .mall-table th,
+:is(.mall-shop, .mall-modal) .mall-table td,
+:is(.mall-shop, .mall-modal) .mall-cart__table th,
+:is(.mall-shop, .mall-modal) .mall-cart__table td,
+:is(.mall-shop, .mall-modal) .mall-orders-list__table th,
+:is(.mall-shop, .mall-modal) .mall-orders-list__table td,
+:is(.mall-shop, .mall-modal) .mall-address-list__table th,
+:is(.mall-shop, .mall-modal) .mall-address-list__table td { padding: .8rem .6rem; border-bottom: 1px solid var(--dawn-line); vertical-align: middle; text-align: left; }
+:is(.mall-shop, .mall-modal) th { font-size: .78rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--dawn-muted); }
+:is(.mall-shop, .mall-modal) .text-right { text-align: right; }
+:is(.mall-shop, .mall-modal) .text-muted { color: var(--dawn-muted); }
+:is(.mall-shop, .mall-modal) .text-green { color: var(--mall-ok); font-weight: 600; }
+:is(.mall-shop, .mall-modal) .text-red { color: var(--mall-err); font-weight: 600; }
+:is(.mall-shop, .mall-modal) .mall-table-overflow { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+:is(.mall-shop, .mall-modal) .mall-pagination { margin: 2rem 0 0; }
+:is(.mall-shop, .mall-modal) .pagination { display: flex; flex-wrap: wrap; justify-content: center; gap: .35rem; margin: 0; padding: 0; list-style: none; }
+:is(.mall-shop, .mall-modal) .page-link {
+    display: grid;
+    place-items: center;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0 .75rem;
+    border: 1px solid var(--dawn-line);
+    border-radius: 10px;
+    background: var(--mall-surface);
+    color: var(--dawn-ink);
+    text-decoration: none;
+    font-weight: 600;
+}
+:is(.mall-shop, .mall-modal) a.page-link:hover { border-color: var(--dawn-brand); color: var(--dawn-brand); }
+:is(.mall-shop, .mall-modal) .page-item.active .page-link { background: var(--dawn-brand); border-color: var(--dawn-brand); color: #fff; }
+:is(.mall-shop, .mall-modal) .page-item.disabled .page-link { color: var(--dawn-muted); background: var(--mall-tint); }
+/* Mall reveals the loader inline while filtering; overlay the grid instead of reserving a blank band */
+:is(.mall-shop, .mall-modal) .mall-loader { position: absolute; inset: 0; z-index: 1; display: grid; place-items: center; align-content: start; padding: 2rem 1rem; background: rgba(255, 255, 255, .6); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .2s ease; }
+:is(.mall-shop, .mall-modal) .mall-loader svg { stroke: var(--dawn-brand); }
+:is(.mall-shop, .mall-modal) .mall-overlay { position: fixed; inset: 0; display: grid; place-items: center; background: rgba(255, 255, 255, .8); }
+.mall-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1050;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(20, 21, 26, .55);
+}
+.mall-modal--visible { display: flex; }
+.mall-modal__inner {
+    /* the modal form is a <form class="mall-modal__inner"> */
+    width: min(100%, 34rem);
+    margin: 0;
+    max-height: 90vh;
+    overflow: auto;
+    padding: 1.5rem;
+    border-radius: var(--dawn-radius);
+    background: #fff;
+    box-shadow: var(--dawn-shadow);
+}
+.mall-modal__inner h3 { margin: 0 0 1rem; font-size: 1.25rem; }
+.mall-modal__inner h4 { margin: 1rem 0 .5rem; font-size: 1rem; }
+.mall-modal__actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .75rem; margin-top: 1.25rem; }
+
+/* ── Catalogue: product grid ─────────────────────────────── */
+:is(.mall-shop, .mall-modal) .mall-products { position: relative; }
+:is(.mall-shop, .mall-modal) .mall-products__products { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+:is(.mall-shop, .mall-modal) .mall-products-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--dawn-line);
+    border-radius: var(--dawn-radius);
+    background: var(--mall-surface);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+:is(.mall-shop, .mall-modal) .mall-products-item:hover { transform: translateY(-4px); box-shadow: var(--dawn-shadow); border-color: transparent; }
+:is(.mall-shop, .mall-modal) .mall-products-item:focus-within { box-shadow: var(--dawn-shadow); }
+:is(.mall-shop, .mall-modal) .mall-products-item > a { display: flex; flex-direction: column; height: 100%; color: inherit; text-decoration: none; }
+:is(.mall-shop, .mall-modal) .mall-products-item > a:focus-visible { outline-offset: -2px; }
+:is(.mall-shop, .mall-modal) .mall-products-item__image { display: grid; place-items: center; aspect-ratio: 4 / 3; overflow: hidden; background: var(--mall-tint); }
+:is(.mall-shop, .mall-modal) .mall-products-item__image img { width: 100%; height: 100%; object-fit: contain; padding: .5rem; }
+:is(.mall-shop, .mall-modal) .mall-products-item__info { display: flex; flex: 1; flex-direction: column; gap: .5rem; padding: .85rem .9rem 1rem; }
+:is(.mall-shop, .mall-modal) .mall-products-item__info-primary { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: .35rem .75rem; }
+:is(.mall-shop, .mall-modal) .mall-products-item__name { font-size: .95rem; font-weight: 600; }
+:is(.mall-shop, .mall-modal) .mall-products-item__price { font-weight: 700; white-space: nowrap; }
+:is(.mall-shop, .mall-modal) .mall-products-item__price--special { color: var(--dawn-brand); }
+:is(.mall-shop, .mall-modal) .mall-products-item__short-description { font-size: .9rem; color: var(--dawn-muted); }
+:is(.mall-shop, .mall-modal) .mall-products-item__old-price { font-size: .9rem; color: var(--dawn-muted); text-decoration: line-through; }
+:is(.mall-shop, .mall-modal) .mall-products-item__old-price:empty,
+:is(.mall-shop, .mall-modal) .mall-products-item__short-description:empty,
+:is(.mall-shop, .mall-modal) .mall-products-item__info-secondary:empty,
+:is(.mall-shop, .mall-modal) .mall-products-item__info-teritary:empty { display: none; }
+:is(.mall-shop, .mall-modal) .mall-products-item__info-teritary { margin-top: auto; }
+:is(.mall-shop, .mall-modal) .mall-products-empty { padding: 2.5rem 1rem; text-align: center; color: var(--dawn-muted); border: 1px dashed var(--dawn-line); border-radius: var(--dawn-radius); }
+
+/* Star ratings (products + reviews) */
+:is(.mall-shop, .mall-modal) .mall-category-review { display: flex; align-items: center; gap: .5rem; }
+:is(.mall-shop, .mall-modal) .mall-category-review__rating { display: inline-flex; gap: 2px; }
+:is(.mall-shop, .mall-modal) .mall-star { width: 16px; height: 16px; }
+:is(.mall-shop, .mall-modal) .mall-star__bg { fill: #dcdfe6; }
+:is(.mall-shop, .mall-modal) .mall-star--active .mall-star__bg { fill: var(--dawn-accent); }
+:is(.mall-shop, .mall-modal) .mall-star__border { fill: none; }
+:is(.mall-shop, .mall-modal) .mall-category-review__name { font-size: .85rem; color: var(--dawn-muted); }
+:is(.mall-shop, .mall-modal) .mall-category-review__rating--clickable .mall-star { cursor: pointer; }
+
+/* ── Catalogue: page head + filter offcanvas ─────────────── */
+:is(.mall-shop, .mall-modal) .mall-category-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem 1rem;
+    margin-bottom: 1.25rem;
+}
+:is(.mall-shop, .mall-modal) .mall-category-head h1 { min-width: 0; font-size: clamp(1.5rem, 5.5vw, 2rem); }
+:is(.mall-shop, .mall-modal) .mall-filter-toggle { gap: .5rem; padding: .55rem 1rem; }
+:is(.mall-shop, .mall-modal) .mall-filter-toggle[aria-expanded="true"] { border-color: var(--dawn-brand); color: var(--dawn-brand); }
+:is(.mall-shop, .mall-modal) .mall-filter-toggle__count {
+    display: inline-grid;
+    place-items: center;
+    min-width: 1.35rem;
+    height: 1.35rem;
+    padding: 0 .4rem;
+    border-radius: 999px;
+    background: var(--dawn-brand);
+    color: #fff;
+    font-size: .75rem;
+    line-height: 1;
+}
+/* Bootstrap's .offcanvas-lg slides the panel in below lg and leaves it static from lg on the same element, so Mall's DOM-ready sliders survive */
+:is(.mall-shop, .mall-modal) .mall-filter-offcanvas {
+    --bs-offcanvas-width: min(86vw, 360px);
+    --bs-offcanvas-bg: #fff;
+    --bs-offcanvas-border-color: var(--dawn-line);
+    box-shadow: 18px 0 48px -24px rgba(20, 21, 26, .5);
+}
+:is(.mall-shop, .mall-modal) .mall-filter-offcanvas__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: .85rem 1rem .85rem 1.25rem;
+    border-bottom: 1px solid var(--dawn-line);
+}
+:is(.mall-shop, .mall-modal) .mall-filter-offcanvas__title { margin: 0; font-size: 1.05rem; font-weight: 700; }
+:is(.mall-shop, .mall-modal) .mall-filter-offcanvas__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--dawn-muted);
+    cursor: pointer;
+    transition: color .18s ease, background .18s ease;
+}
+:is(.mall-shop, .mall-modal) .mall-filter-offcanvas__close:hover,
+:is(.mall-shop, .mall-modal) .mall-filter-offcanvas__close:focus-visible { color: var(--dawn-ink); background: var(--dawn-grad-soft); }
+:is(.mall-shop, .mall-modal) .mall-filter-offcanvas__close:focus-visible { outline: 2px solid var(--dawn-brand); outline-offset: 2px; }
+:is(.mall-shop, .mall-modal) .mall-filter-offcanvas__body { padding: 1rem 1.25rem 1.5rem; overscroll-behavior: contain; }
+:is(.mall-shop, .mall-modal) .mall-filter-offcanvas__foot {
+    padding: .75rem 1.25rem calc(.75rem + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--dawn-line);
+    background: #fff;
+}
+:is(.mall-shop, .mall-modal) .mall-filter-offcanvas__foot .mall-btn { width: 100%; }
+:is(.mall-shop, .mall-modal) .mall-filter-offcanvas .mall-filter__option { min-height: 44px; padding: .45rem .9rem; }
+:is(.mall-shop, .mall-modal) .mall-filter__option .mall-color-swatch {
+    width: 18px !important;
+    height: 18px !important;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgba(20, 21, 26, .15);
+}
+:is(.mall-shop, .mall-modal) .mall-filter__option--selected .mall-color-swatch { box-shadow: 0 0 0 2px #fff; }
+:is(.mall-shop, .mall-modal) .mall-products-filter { display: grid; gap: 1rem; }
+:is(.mall-shop, .mall-modal) .mall-property-group { padding-top: 1rem; border-top: 1px solid var(--dawn-line); }
+:is(.mall-shop, .mall-modal) .mall-property-group:first-child { padding-top: 0; border-top: 0; }
+:is(.mall-shop, .mall-modal) .mall-property-group__name {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: .6rem;
+    font-size: .8rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--dawn-muted);
+}
+:is(.mall-shop, .mall-modal) .mall-property-group__description { margin-bottom: .5rem; font-size: .85rem; color: var(--dawn-muted); }
+:is(.mall-shop, .mall-modal) .mall-property { margin-bottom: 1rem; }
+:is(.mall-shop, .mall-modal) .mall-property__label { display: flex; justify-content: space-between; gap: .5rem; margin-bottom: .45rem; font-size: .92rem; font-weight: 600; }
+:is(.mall-shop, .mall-modal) .mall-property__clear-filter,
+:is(.mall-shop, .mall-modal) .js-mall-clear-filter { font-size: .8rem; font-weight: 500; color: var(--dawn-brand); }
+:is(.mall-shop, .mall-modal) .mall-filter--set { display: flex; flex-wrap: wrap; gap: .4rem; }
+:is(.mall-shop, .mall-modal) .mall-filter__option {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: .3rem .75rem;
+    border: 1px solid var(--dawn-line);
+    border-radius: 999px;
+    background: var(--mall-surface);
+    font-size: .88rem;
+    cursor: pointer;
+    user-select: none;
+    transition: border-color .15s ease, background-color .15s ease;
+}
+:is(.mall-shop, .mall-modal) .mall-filter__option:hover { border-color: var(--dawn-brand); }
+:is(.mall-shop, .mall-modal) .mall-filter__option--selected { border-color: var(--dawn-brand); background: var(--dawn-brand); color: #fff; }
+/* Side padding ≥ half a handle so the end handles and scale labels stay inside the sidebar */
+:is(.mall-shop, .mall-modal) .mall-filter--range { padding: .75rem 1.1rem 0; margin-bottom: 3.25rem; }
+:is(.mall-shop, .mall-modal) .mall-filter-category-list { margin: 0; padding: 0; list-style: none; }
+:is(.mall-shop, .mall-modal) .mall-filter-category-list .mall-filter-category-list { padding-left: 1rem; }
+:is(.mall-shop, .mall-modal) .mall-filter-category-list a { display: inline-block; padding: .25rem 0; color: var(--dawn-ink); text-decoration: none; }
+:is(.mall-shop, .mall-modal) .mall-filter-category-list a:hover { color: var(--dawn-brand); }
+:is(.mall-shop, .mall-modal) .mall-filter .mall-form-control { margin-bottom: 0; }
+/* noUiSlider (price range) in Dawn colours */
+:is(.mall-shop, .mall-modal) .noUi-target { border: 0; border-radius: 999px; background: var(--dawn-line); box-shadow: none; height: 6px; }
+:is(.mall-shop, .mall-modal) .noUi-connect { background: var(--dawn-brand); }
+/* noUiSlider's own `.noUi-horizontal .noUi-handle` (34 × 28 px) loads after this file, so the
+   handle rule needs the extra class to win — otherwise the 50 % radius makes an ellipse */
+:is(.mall-shop, .mall-modal) .noUi-horizontal .noUi-handle,
+:is(.mall-shop, .mall-modal) .noUi-handle {
+    width: 18px;
+    height: 18px;
+    top: -6px;
+    right: -9px;
+    border: 2px solid var(--dawn-brand);
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(20, 21, 26, .18);
+    cursor: grab;
+}
+:is(.mall-shop, .mall-modal) .noUi-handle:active { cursor: grabbing; }
+:is(.mall-shop, .mall-modal) .noUi-handle::before,
+:is(.mall-shop, .mall-modal) .noUi-handle::after { display: none; }
+:is(.mall-shop, .mall-modal) .noUi-handle:focus-visible { outline: 2px solid var(--dawn-brand); outline-offset: 2px; }
+/* noUiSlider prints its scale labels in #999 (2.8:1) */
+:is(.mall-shop, .mall-modal) .noUi-value { color: var(--dawn-muted); font-size: .8rem; }
+:is(.mall-shop, .mall-modal) .noUi-marker { background: var(--dawn-line); }
+
+/* ── Product page ────────────────────────────────────────── */
+:is(.mall-shop, .mall-modal) .mall-product { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+:is(.mall-shop, .mall-modal) .mall-product__gallery { align-self: start; }
+:is(.mall-shop, .mall-modal) .mall-product__images { display: grid; gap: .5rem; align-content: start; }
+:is(.mall-shop, .mall-modal) .mall-product__thumbs { display: grid; gap: .5rem; grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); margin: 0; }
+:is(.mall-shop, .mall-modal) .mall-product__thumb.is-active { border-color: var(--dawn-brand); box-shadow: 0 0 0 1px var(--dawn-brand); }
+:is(.mall-shop, .mall-modal) .mall-product__image {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border: 1px solid var(--dawn-line);
+    border-radius: 10px;
+    background: var(--mall-tint);
+}
+:is(.mall-shop, .mall-modal) .mall-product__image img { width: 100%; height: 100%; object-fit: contain; padding: .35rem; }
+:is(.mall-shop, .mall-modal) .mall-product__image--main { aspect-ratio: 4 / 3; border-radius: var(--dawn-radius); }
+:is(.mall-shop, .mall-modal) .mall-product__image--main img { padding: 1rem; }
+:is(.mall-shop, .mall-modal) .mall-product__name { font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.15; margin: 0 0 .5rem; }
+:is(.mall-shop, .mall-modal) .mall-product__description-short { font-size: 1.05rem; font-weight: 400; color: var(--dawn-muted); margin: 0 0 1rem; }
+:is(.mall-shop, .mall-modal) .mall-product__description { margin: 1.5rem 0; }
+:is(.mall-shop, .mall-modal) .mall-product__price { display: flex; flex-wrap: wrap; align-items: baseline; gap: .25rem .75rem; margin: 1rem 0 .25rem; }
+:is(.mall-shop, .mall-modal) .mall-product__current-price { font-size: 1.75rem; font-weight: 700; color: var(--dawn-ink); }
+:is(.mall-shop, .mall-modal) .mall-product__old-price { font-size: 1.05rem; color: var(--dawn-muted); text-decoration: line-through; }
+:is(.mall-shop, .mall-modal) .mall-product__tax-info { margin-bottom: 1rem; font-size: .85rem; color: var(--dawn-muted); }
+:is(.mall-shop, .mall-modal) .mall-product__variants-heading,
+:is(.mall-shop, .mall-modal) .mall-product__properties-heading,
+:is(.mall-shop, .mall-modal) .mall-product-reviews__heading { margin: 1.25rem 0 .6rem; font-size: .8rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--dawn-muted); }
+:is(.mall-shop, .mall-modal) .mall-product__variants { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
+:is(.mall-shop, .mall-modal) .mall-product__variant a {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    min-height: 44px;
+    padding: .4rem .8rem;
+    border: 1px solid var(--dawn-line);
+    border-radius: 10px;
+    color: var(--dawn-ink);
+    text-decoration: none;
+}
+:is(.mall-shop, .mall-modal) .mall-product__variant a:hover,
+:is(.mall-shop, .mall-modal) .mall-product__variant--active a { border-color: var(--dawn-brand); color: var(--dawn-brand); }
+:is(.mall-shop, .mall-modal) .mall-product__variant img { width: 40px; height: 40px; object-fit: contain; border-radius: 6px; }
+/* Description | properties | reviews: sections stack under headings until the script enables tabs (≥768px) */
+:is(.mall-shop, .mall-modal) .mall-product__tablist { display: none; }
+:is(.mall-shop, .mall-modal) .mall-product__panel { padding: 1.5rem 0; border-top: 1px solid var(--dawn-line); }
+:is(.mall-shop, .mall-modal) .mall-product__panel:focus-visible { outline: 2px solid var(--dawn-brand); outline-offset: 4px; border-radius: 4px; }
+:is(.mall-shop, .mall-modal) .mall-product__panel-heading { margin: 0 0 .9rem; font-size: 1.15rem; font-weight: 600; line-height: 1.3; }
+:is(.mall-shop, .mall-modal) .mall-product__panel .mall-product__description { margin: 0; }
+:is(.mall-shop, .mall-modal) .mall-product__panel .mall-product__description > :last-child { margin-bottom: 0; }
+:is(.mall-shop, .mall-modal) .mall-product__panel .mall-product-reviews { margin-top: 0; padding-top: 0; border-top: 0; }
+:is(.mall-shop, .mall-modal) .mall-product__panel .mall-product-reviews__heading { margin-top: 0; }
+:is(.mall-shop, .mall-modal) .mall-product__tab {
+    appearance: none;
+    margin: 0 0 -1px;
+    padding: .75rem 1.1rem;
+    min-height: 44px;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    background: none;
+    color: var(--dawn-muted);
+    font: inherit;
+    font-weight: 600;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: color .15s ease, border-color .15s ease;
+}
+:is(.mall-shop, .mall-modal) .mall-product__tab:hover { color: var(--dawn-ink); }
+:is(.mall-shop, .mall-modal) .mall-product__tab[aria-selected="true"] { color: var(--dawn-brand); border-bottom-color: var(--dawn-brand); }
+:is(.mall-shop, .mall-modal) .mall-product__tab:focus-visible { outline-offset: -2px; border-radius: 6px; }
+/* One striped label → value table per property group */
+:is(.mall-shop, .mall-modal) .mall-product__properties { display: grid; gap: 1.5rem; }
+:is(.mall-shop, .mall-modal) .mall-product__properties-table {
+    width: 100%;
+    max-width: 40rem;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: .95rem;
+    line-height: 1.4;
+}
+:is(.mall-shop, .mall-modal) .mall-product__properties-table caption { caption-side: top; margin: 0; padding: 0 0 .5rem; text-align: left; }
+:is(.mall-shop, .mall-modal) .mall-product__properties-table th,
+:is(.mall-shop, .mall-modal) .mall-product__properties-table td { padding: .6rem .85rem; border: 0; text-align: left; vertical-align: top; color: var(--dawn-ink); }
+:is(.mall-shop, .mall-modal) .mall-product__properties-table th { width: 40%; font-size: inherit; font-weight: 600; letter-spacing: 0; text-transform: none; }
+:is(.mall-shop, .mall-modal) .mall-product__properties-table tr:nth-child(odd) > * { background: var(--mall-tint); }
+:is(.mall-shop, .mall-modal) .mall-product__properties-table tr:first-child > :first-child { border-top-left-radius: 10px; }
+:is(.mall-shop, .mall-modal) .mall-product__properties-table tr:first-child > :last-child { border-top-right-radius: 10px; }
+:is(.mall-shop, .mall-modal) .mall-product__properties-table tr:last-child > :first-child { border-bottom-left-radius: 10px; }
+:is(.mall-shop, .mall-modal) .mall-product__properties-table tr:last-child > :last-child { border-bottom-right-radius: 10px; }
+:is(.mall-shop, .mall-modal) .mall-product__properties-color { display: inline-flex; align-items: center; gap: .5rem; }
+/* Mall inlines the 12px swatch size; light colours need the inset ring to stay visible on the tint */
+:is(.mall-shop, .mall-modal) .mall-product__properties-color .mall-color-swatch {
+    width: 1rem !important;
+    height: 1rem !important;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgba(20, 21, 26, .18);
+}
+:is(.mall-shop, .mall-modal) .mall-product__property { margin-bottom: .75rem; }
+:is(.mall-shop, .mall-modal) .mall-product__property-stock { display: inline-flex; align-items: center; gap: .4rem; margin: .5rem 0; font-size: .92rem; }
+:is(.mall-shop, .mall-modal) .mall-product__property-stock::before { content: ""; width: .6rem; height: .6rem; border-radius: 50%; background: currentColor; }
+:is(.mall-shop, .mall-modal) .mall-product__add-to-cart-form { display: flex; flex-wrap: wrap; align-items: flex-end; gap: .75rem; margin-top: 1rem; }
+:is(.mall-shop, .mall-modal) .mall-product__add-to-cart-form .mall-form-control { margin-bottom: 0; }
+:is(.mall-shop, .mall-modal) .mall-product__add-to-cart-form .mall-add-to-cart-button { flex: 1 1 12rem; }
+:is(.mall-shop, .mall-modal) .mall-product__cart { padding: 1.5rem; border: 1px solid var(--dawn-line); border-radius: var(--dawn-radius); background: var(--mall-surface); }
+:is(.mall-shop, .mall-modal) .mall-color-swatches { display: flex; flex-wrap: wrap; gap: .5rem; }
+:is(.mall-shop, .mall-modal) .mall-product-services { margin-top: 1.25rem; display: grid; gap: .75rem; }
+:is(.mall-shop, .mall-modal) .mall-product-service__name { font-weight: 600; }
+:is(.mall-shop, .mall-modal) .mall-product-service__description { font-size: .9rem; color: var(--dawn-muted); }
+:is(.mall-shop, .mall-modal) .mall-product-service-options { display: grid; gap: .5rem; margin-top: .5rem; }
+:is(.mall-shop, .mall-modal) .mall-product-service-option {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: .25rem .75rem;
+    align-items: center;
+    padding: .75rem 1rem;
+    border: 1px solid var(--dawn-line);
+    border-radius: 10px;
+    cursor: pointer;
+}
+:is(.mall-shop, .mall-modal) .mall-product-service-option__description { grid-column: 2; font-size: .875rem; color: var(--dawn-muted); }
+:is(.mall-shop, .mall-modal) .mall-product-service-option__price { font-weight: 600; white-space: nowrap; }
+
+/* ── Reviews ─────────────────────────────────────────────── */
+:is(.mall-shop, .mall-modal) .mall-product-reviews { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--dawn-line); }
+:is(.mall-shop, .mall-modal) .mall-product-reviews__summary { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+:is(.mall-shop, .mall-modal) .mall-reviews { display: grid; gap: 1rem; }
+:is(.mall-shop, .mall-modal) .mall-review { padding: 1.25rem; border: 1px solid var(--dawn-line); border-radius: var(--dawn-radius); background: var(--mall-surface); }
+:is(.mall-shop, .mall-modal) .mall-review__title { margin: .35rem 0 .15rem; font-weight: 600; }
+:is(.mall-shop, .mall-modal) .mall-review__subtitle,
+:is(.mall-shop, .mall-modal) .mall-review__author { font-size: .85rem; color: var(--dawn-muted); }
+:is(.mall-shop, .mall-modal) .mall-review__pro-con-list { display: grid; gap: .5rem 1.5rem; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-top: .75rem; }
+:is(.mall-shop, .mall-modal) .mall-review-form { margin-top: 1.5rem; padding: 1.25rem; border-radius: var(--dawn-radius); background: var(--mall-tint); }
+
+/* ── Cart ────────────────────────────────────────────────── */
+:is(.mall-shop, .mall-modal) .mall-cart__table th:first-child,
+:is(.mall-shop, .mall-modal) .mall-cart__table td:first-child { width: 88px; }
+:is(.mall-shop, .mall-modal) .mall-cart__product img { width: 72px; height: 72px; object-fit: contain; border-radius: 8px; background: var(--mall-tint); }
+:is(.mall-shop, .mall-modal) .mall-cart__product a { color: var(--dawn-ink); font-weight: 600; text-decoration: none; }
+:is(.mall-shop, .mall-modal) .mall-cart__product a:hover { color: var(--dawn-brand); }
+:is(.mall-shop, .mall-modal) .mall-cart__product .js-mall-remove-product { display: inline-block; margin-top: .35rem; font-size: .85rem; font-weight: 500; color: var(--dawn-muted); text-decoration: underline; }
+:is(.mall-shop, .mall-modal) .mall-cart__table tfoot td { border-bottom: 0; padding-top: .5rem; padding-bottom: .5rem; }
+:is(.mall-shop, .mall-modal) .mall-cart__table tfoot tr:first-child td { padding-top: 1rem; }
+:is(.mall-shop, .mall-modal) .mall-cart__grand-total td { padding-top: .75rem; border-top: 2px solid var(--dawn-ink); font-size: 1.15rem; font-weight: 700; }
+:is(.mall-shop, .mall-modal) .mall-cart__taxes td { font-size: .85rem; color: var(--dawn-muted); }
+:is(.mall-shop, .mall-modal) .mall-cart__empty,
+:is(.mall-shop, .mall-modal) .mall-wishlist-empty { padding: 2.5rem 1rem; text-align: center; color: var(--dawn-muted); border: 1px dashed var(--dawn-line); border-radius: var(--dawn-radius); }
+:is(.mall-shop, .mall-modal) .mall-cart__noShippingMethod { color: var(--mall-err); }
+:is(.mall-shop, .mall-modal) .mall-discount-applier { display: flex; flex-wrap: wrap; align-items: flex-end; gap: .75rem; margin-top: 1.25rem; }
+:is(.mall-shop, .mall-modal) .mall-discount-applier .mall-form-control { flex: 1 1 14rem; margin-bottom: 0; }
+
+/* ── Checkout ────────────────────────────────────────────── */
+:is(.mall-shop, .mall-modal) .mall-quick-checkout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem; align-items: start; }
+:is(.mall-shop, .mall-modal) .mall-cart-summary,
+:is(.mall-shop, .mall-modal) .mall-cart-form { padding: 1.5rem; border: 1px solid var(--dawn-line); border-radius: var(--dawn-radius); background: var(--mall-surface); }
+:is(.mall-shop, .mall-modal) .mall-cart-summary__heading,
+:is(.mall-shop, .mall-modal) .mall-signup__heading,
+:is(.mall-shop, .mall-modal) .mall-quick-checkout__heading { margin: 0 0 1rem; font-size: 1.15rem; font-weight: 700; }
+:is(.mall-shop, .mall-modal) .mall-cart-summary__info { display: grid; gap: 1rem; }
+:is(.mall-shop, .mall-modal) .mall-cart-summary__info--two-columns { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+:is(.mall-shop, .mall-modal) .mall-cart-summary__action { margin-top: .5rem; }
+:is(.mall-shop, .mall-modal) .mall-cart-summary__method-logo { max-height: 28px; }
+:is(.mall-shop, .mall-modal) .mall-shipping-selector,
+:is(.mall-shop, .mall-modal) .mall-payment-method-selector,
+:is(.mall-shop, .mall-modal) .mall-address-selector { display: grid; gap: .75rem; }
+:is(.mall-shop, .mall-modal) .mall-shipping-method,
+:is(.mall-shop, .mall-modal) .mall-payment-method,
+:is(.mall-shop, .mall-modal) .mall-address {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: .25rem 1rem;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--dawn-line);
+    border-radius: var(--dawn-radius);
+    background: var(--mall-surface);
+}
+:is(.mall-shop, .mall-modal) .mall-shipping-method--active,
+:is(.mall-shop, .mall-modal) .mall-payment-method--active,
+:is(.mall-shop, .mall-modal) .mall-address--active { border-color: var(--dawn-brand); box-shadow: inset 0 0 0 1px var(--dawn-brand); }
+:is(.mall-shop, .mall-modal) .mall-shipping-method__logo img,
+:is(.mall-shop, .mall-modal) .mall-payment-method__logo img { max-height: 32px; width: auto; }
+:is(.mall-shop, .mall-modal) .mall-shipping-method__name,
+:is(.mall-shop, .mall-modal) .mall-payment-method__name { font-weight: 600; }
+:is(.mall-shop, .mall-modal) .mall-shipping-method__description,
+:is(.mall-shop, .mall-modal) .mall-payment-method__description,
+:is(.mall-shop, .mall-modal) .mall-shipping-method__delivery-days,
+:is(.mall-shop, .mall-modal) .mall-shipping-method__meta,
+:is(.mall-shop, .mall-modal) .mall-payment-method__instructions { font-size: .875rem; color: var(--dawn-muted); }
+:is(.mall-shop, .mall-modal) .mall-shipping-method__price { font-weight: 700; white-space: nowrap; }
+:is(.mall-shop, .mall-modal) .mall-shipping-method__submit,
+:is(.mall-shop, .mall-modal) .mall-payment-method__submit,
+:is(.mall-shop, .mall-modal) .mall-address__actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: .5rem; }
+:is(.mall-shop, .mall-modal) .mall-payment-method__data { grid-column: 1 / -1; margin-top: .5rem; }
+:is(.mall-shop, .mall-modal) .mall-checkout__notes { margin-top: 1.5rem; }
+:is(.mall-shop, .mall-modal) .mall-checkout-result { padding: 2rem; text-align: center; border-radius: var(--dawn-radius); background: var(--mall-tint); }
+:is(.mall-shop, .mall-modal) .mall-checkout-result--successful { background: var(--mall-ok-bg); }
+:is(.mall-shop, .mall-modal) .mall-checkout-result--failed,
+:is(.mall-shop, .mall-modal) .mall-checkout-result--cancelled { background: var(--mall-err-bg); }
+:is(.mall-shop, .mall-modal) .mall-checkout-result__heading { margin-bottom: .75rem; }
+:is(.mall-shop, .mall-modal) .mall-checkout-result__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; margin-top: 1.25rem; }
+
+/* ── Sign in / sign up / account ─────────────────────────── */
+:is(.mall-shop, .mall-modal) .mall-signup { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem; align-items: start; }
+:is(.mall-shop, .mall-modal) .mall-signup__signin,
+:is(.mall-shop, .mall-modal) .mall-signup__signup { --mall-card-pad: 1.5rem; padding: var(--mall-card-pad); border: 1px solid var(--dawn-line); border-radius: var(--dawn-radius); background: var(--mall-surface); }
+:is(.mall-shop, .mall-modal) .mall-signup__signin[hidden],
+:is(.mall-shop, .mall-modal) .mall-signup__signup[hidden] { display: none; }
+/* The heading bleeds out of the card padding to form a full-width header band */
+:is(.mall-shop, .mall-modal) .mall-signup__heading {
+    position: relative;
+    overflow: hidden;
+    margin: calc(-1 * var(--mall-card-pad)) calc(-1 * var(--mall-card-pad)) 1.25rem;
+    padding: 1.1rem var(--mall-card-pad) .95rem;
+    border-bottom: 1px solid var(--dawn-line);
+    border-radius: calc(var(--dawn-radius) - 1px) calc(var(--dawn-radius) - 1px) 0 0;
+    background: var(--dawn-grad-soft);
+    color: var(--dawn-ink);
+    font-size: 1.05rem;
+    line-height: 1.3;
+}
+:is(.mall-shop, .mall-modal) .mall-signup__heading::before { content: ""; position: absolute; inset: 0 0 auto; height: 4px; background: var(--dawn-grad); }
+:is(.mall-shop, .mall-modal) .mall-signup__subheading { margin: 1.25rem 0 .5rem; padding-bottom: .35rem; border-bottom: 1px solid var(--dawn-line); font-size: .95rem; font-weight: 600; }
+/* Sign in | sign up tab strip, shown only while the script keeps the panels tabbed (< 768px) */
+:is(.mall-shop, .mall-modal) .mall-signup__tabs { display: none; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3px; padding: 3px; border: 1px solid var(--dawn-line); border-radius: 999px; background: var(--mall-surface); }
+:is(.mall-shop, .mall-modal) .mall-signup[data-tab] { gap: 1rem; }
+:is(.mall-shop, .mall-modal) .mall-signup[data-tab] .mall-signup__tabs { display: grid; }
+:is(.mall-shop, .mall-modal) .mall-signup__tab {
+    min-height: 44px;
+    padding: .5rem 1rem;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--dawn-muted);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+:is(.mall-shop, .mall-modal) .mall-signup__tab:hover { background: var(--mall-tint); color: var(--dawn-ink); }
+:is(.mall-shop, .mall-modal) .mall-signup__tab:focus-visible { outline: 2px solid var(--dawn-brand); outline-offset: -3px; }
+:is(.mall-shop, .mall-modal) .mall-signup__tab[aria-selected="true"] { background: var(--dawn-brand); color: #fff; }
+:is(.mall-shop, .mall-modal) .mall-quick-checkout__heading { padding-bottom: .5rem; border-bottom: 3px solid; border-image: var(--dawn-grad) 1; }
+:is(.mall-shop, .mall-modal) .mall-cart-summary__heading { margin-bottom: .5rem; font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--dawn-brand-2); }
+:is(.mall-shop, .mall-modal) .mall-signup-terms { font-size: .9rem; }
+:is(.mall-shop, .mall-modal) .mall-my-account { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; align-items: start; }
+:is(.mall-shop, .mall-modal) .mall-my-account__nav { display: flex; flex-wrap: wrap; gap: .35rem; }
+:is(.mall-shop, .mall-modal) .mall-my-account__nav-item a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: .5rem 1rem;
+    border-radius: 10px;
+    color: var(--dawn-ink);
+    font-weight: 600;
+    text-decoration: none;
+}
+:is(.mall-shop, .mall-modal) .mall-my-account__nav-item a:hover { background: var(--mall-tint); }
+:is(.mall-shop, .mall-modal) .mall-my-account__nav-item--active a { background: var(--dawn-brand); color: #fff; }
+:is(.mall-shop, .mall-modal) .mall-orders-list__order { margin-bottom: 1.5rem; }
+:is(.mall-shop, .mall-modal) .mall-orders-list__details,
+:is(.mall-shop, .mall-modal) .mall-order-details { padding: 1.25rem; border: 1px solid var(--dawn-line); border-radius: var(--dawn-radius); background: var(--mall-tint); }
+:is(.mall-shop, .mall-modal) .mall-order-details__row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1rem; padding: .35rem 0; border-bottom: 1px solid var(--dawn-line); }
+:is(.mall-shop, .mall-modal) .mall-order-details__row:last-child { border-bottom: 0; }
+:is(.mall-shop, .mall-modal) .mall-address-list__table-actions { display: flex; gap: .5rem; }
+:is(.mall-shop, .mall-modal) .mall-switcher { display: inline-flex; padding: 3px; border: 1px solid var(--dawn-line); border-radius: 999px; }
+:is(.mall-shop, .mall-modal) .mall-switcher__item { padding: .3rem .9rem; border-radius: 999px; font-size: .9rem; cursor: pointer; }
+:is(.mall-shop, .mall-modal) .mall-switcher__item--active { background: var(--dawn-brand); color: #fff; }
+:is(.mall-shop, .mall-modal) .mall-wishlists { display: grid; gap: 1rem; }
+:is(.mall-shop, .mall-modal) .mall-wishlist-item { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1rem; align-items: center; padding: 1rem; border: 1px solid var(--dawn-line); border-radius: var(--dawn-radius); }
+:is(.mall-shop, .mall-modal) .mall-wishlist-item__name { font-weight: 600; }
+:is(.mall-shop, .mall-modal) .mall-wishlist-item__description { font-size: .9rem; color: var(--dawn-muted); }
+:is(.mall-shop, .mall-modal) .mall-wishlists-manager__well { padding: 1.25rem; border-radius: var(--dawn-radius); background: var(--mall-tint); }
+:is(.mall-shop, .mall-modal) .mall-wishlists-manager__form { display: flex; flex-wrap: wrap; gap: .75rem; align-items: flex-end; }
+:is(.mall-shop, .mall-modal) .mall-wishlist-button__popup { margin-top: .75rem; padding: 1rem; border: 1px solid var(--dawn-line); border-radius: var(--dawn-radius); background: var(--mall-surface); }
+:is(.mall-shop, .mall-modal) .mall-currency-selector { display: inline-block; }
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 479.98px) {
+    /* Property rows stack label above value, still one striped block per row */
+    :is(.mall-shop, .mall-modal) .mall-product__properties-table th,
+    :is(.mall-shop, .mall-modal) .mall-product__properties-table td { display: block; width: auto; }
+    :is(.mall-shop, .mall-modal) .mall-product__properties-table th { padding-bottom: 0; font-size: .8rem; letter-spacing: .04em; text-transform: uppercase; color: var(--dawn-muted); }
+    :is(.mall-shop, .mall-modal) .mall-product__properties-table td { padding-top: .15rem; }
+    :is(.mall-shop, .mall-modal) .mall-product__properties-table tr:first-child > :last-child { border-top-right-radius: 0; }
+    :is(.mall-shop, .mall-modal) .mall-product__properties-table tr:first-child > :first-child { border-top-right-radius: 10px; }
+    :is(.mall-shop, .mall-modal) .mall-product__properties-table tr:last-child > :first-child { border-bottom-left-radius: 0; }
+    :is(.mall-shop, .mall-modal) .mall-product__properties-table tr:last-child > :last-child { border-bottom-left-radius: 10px; }
+}
+@media (max-width: 575.98px) {
+    :is(.mall-shop, .mall-modal) .mall-two-fields { grid-template-columns: 1fr; }
+}
+@media (min-width: 360px) {
+    :is(.mall-shop, .mall-modal) .mall-products__products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 767.98px) {
+    /* Cart rows become label/value pairs; the header is kept for screen readers only */
+    :is(.mall-shop, .mall-modal) .mall-cart__table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    :is(.mall-shop, .mall-modal) .mall-cart__table,
+    :is(.mall-shop, .mall-modal) .mall-cart__table tbody,
+    :is(.mall-shop, .mall-modal) .mall-cart__table tfoot,
+    :is(.mall-shop, .mall-modal) .mall-cart__table tr,
+    :is(.mall-shop, .mall-modal) .mall-cart__table td { display: block; width: auto; }
+    :is(.mall-shop, .mall-modal) .mall-cart__product { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: .35rem 1rem; padding: 1rem 0; border-bottom: 1px solid var(--dawn-line); }
+    :is(.mall-shop, .mall-modal) .mall-cart__product td { padding: 0; border: 0; text-align: left; }
+    :is(.mall-shop, .mall-modal) .mall-cart__product td:first-child { grid-row: 1 / span 4; }
+    :is(.mall-shop, .mall-modal) .mall-cart__product td[data-label]::before { content: attr(data-label) ": "; color: var(--dawn-muted); font-size: .85rem; }
+    :is(.mall-shop, .mall-modal) .mall-cart__table tfoot tr { display: flex; justify-content: space-between; gap: 1rem; padding: .35rem 0; }
+    :is(.mall-shop, .mall-modal) .mall-cart__table tfoot td { padding: 0; border: 0; }
+    :is(.mall-shop, .mall-modal) .mall-cart__table tfoot td:empty { display: none; }
+    :is(.mall-shop, .mall-modal) .mall-cart__grand-total { border-top: 2px solid var(--dawn-ink); margin-top: .5rem; padding-top: .75rem; }
+    :is(.mall-shop, .mall-modal) .mall-cart__grand-total td { border-top: 0; }
+}
+@media (min-width: 768px) {
+    :is(.mall-shop, .mall-modal) .mall-products__products { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--mall-gap); }
+    :is(.mall-shop, .mall-modal) .mall-products-item__info { padding: 1rem 1.1rem 1.15rem; }
+    :is(.mall-shop, .mall-modal) .mall-products-item__image img { padding: .75rem; }
+    :is(.mall-shop, .mall-modal) .mall-product { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
+    :is(.mall-shop, .mall-modal) .mall-product__info { grid-column: 1 / -1; }
+    :is(.mall-shop, .mall-modal) [data-mall-tabs-ready="tabs"] .mall-product__tablist { display: flex; flex-wrap: wrap; gap: .25rem; border-bottom: 1px solid var(--dawn-line); }
+    :is(.mall-shop, .mall-modal) [data-mall-tabs-ready="tabs"] .mall-product__panel { border-top: 0; }
+    :is(.mall-shop, .mall-modal) [data-mall-tabs-ready="tabs"] .mall-product__panel-heading { display: none; }
+    :is(.mall-shop, .mall-modal) .mall-signup { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    :is(.mall-shop, .mall-modal) .mall-my-account { grid-template-columns: 220px minmax(0, 1fr); }
+    :is(.mall-shop, .mall-modal) .mall-my-account__nav { flex-direction: column; position: sticky; top: calc(var(--dawn-nav-h) + 1rem); }
+}
+@media (max-width: 991.98px) {
+    /* The aside is only a column from lg; on phones the fixed panel must not leave an empty gutter row */
+    :is(.mall-shop, .mall-modal) .mall-filter-aside { display: contents; }
+    /* No JS (or no Bootstrap): the panel renders inline above the products, without dialog chrome */
+    html:not(.mall-filter-js) :is(.mall-shop, .mall-modal) .mall-filter-aside { display: block; width: 100%; }
+    html:not(.mall-filter-js) :is(.mall-shop, .mall-modal) .mall-filter-offcanvas {
+        position: static;
+        visibility: visible;
+        width: auto;
+        transform: none;
+        transition: none;
+        border: 1px solid var(--dawn-line);
+        border-radius: var(--dawn-radius);
+        box-shadow: none;
+    }
+    html:not(.mall-filter-js) :is(.mall-shop, .mall-modal) .mall-filter-offcanvas__head,
+    html:not(.mall-filter-js) :is(.mall-shop, .mall-modal) .mall-filter-offcanvas__foot,
+    html:not(.mall-filter-js) :is(.mall-shop, .mall-modal) .mall-filter-toggle { display: none; }
+    :is(.mall-shop, .mall-modal) .mall-pagination--products .page-link { min-width: 40px; min-height: 40px; padding: 0 .5rem; }
+}
+@media (min-width: 992px) {
+    :is(.mall-shop, .mall-modal) .mall-category-head { margin-bottom: 1.5rem; }
+    :is(.mall-shop, .mall-modal) .mall-filter-toggle { display: none; }
+    /* Static sticky sidebar; Bootstrap turns .offcanvas-body into a flex row here */
+    :is(.mall-shop, .mall-modal) .mall-filter-offcanvas {
+        position: sticky;
+        top: calc(var(--dawn-nav-h) + 1rem);
+        max-height: calc(100vh - var(--dawn-nav-h) - 2rem);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        box-shadow: none;
+    }
+    :is(.mall-shop, .mall-modal) .mall-filter-offcanvas__head,
+    :is(.mall-shop, .mall-modal) .mall-filter-offcanvas__foot { display: none; }
+    :is(.mall-shop, .mall-modal) .mall-filter-offcanvas__body { display: block; padding: 0 .25rem 0 0; overflow: visible; }
+    :is(.mall-shop, .mall-modal) .mall-filter-offcanvas .mall-filter__option { min-height: 36px; padding: .3rem .75rem; }
+    :is(.mall-shop, .mall-modal) .mall-quick-checkout { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
+    :is(.mall-shop, .mall-modal) .mall-quick-checkout .mall-cart-summary { position: sticky; top: calc(var(--dawn-nav-h) + 1rem); }
+}
+@media (min-width: 1400px) {
+    :is(.mall-shop, .mall-modal) .mall-products__products { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .mall-shop *, .mall-shop *::before, .mall-shop *::after { transition: none !important; animation: none !important; }
+    :is(.mall-shop, .mall-modal) .mall-products-item:hover { transform: none; }
+}
+@media print {
+    :is(.mall-shop, .mall-modal) .mall-btn, :is(.mall-shop, .mall-modal) .mall-cart-actions, :is(.mall-shop, .mall-modal) .mall-filter-offcanvas, :is(.mall-shop, .mall-modal) .mall-filter-toggle { display: none !important; }
+}
+
+/* ── Mobile overflow fixes ───────────────────────────────── */
+/* Inherited: long product names, e-mails and URLs break instead of pushing past the viewport */
+.mall-shop, .mall-modal { overflow-wrap: anywhere; }
+:is(.mall-shop, .mall-modal) :is(iframe, video, embed, object, svg:not(.mall-star)) { max-width: 100%; }
+:is(.mall-shop, .mall-modal) :is(select, input, textarea, .mall-selectbox-sm) { max-width: 100%; }
+:is(.mall-shop, .mall-modal) .mall-product__variant { min-width: 0; max-width: 100%; }
+:is(.mall-shop, .mall-modal) .mall-product__variant a { max-width: 100%; }
+:is(.mall-shop, .mall-modal) .mall-product__variant img { flex: 0 0 auto; }
+:is(.mall-shop, .mall-modal) .mall-product-service,
+:is(.mall-shop, .mall-modal) .mall-product-service-option,
+:is(.mall-shop, .mall-modal) .mall-products-item__info > *,
+:is(.mall-shop, .mall-modal) .mall-cart__product td,
+:is(.mall-shop, .mall-modal) .mall-order-details__row > * { min-width: 0; }
+:is(.mall-shop, .mall-modal) .mall-product-service-option > * { min-width: 0; }
+/* Order-details product list and address list ship without Mall's .mall-table-overflow wrapper */
+:is(.mall-shop, .mall-modal) .mall-table { max-width: 100%; }
+:is(.mall-shop, .mall-modal) .mall-address-list__table-actions { flex-wrap: wrap; }
+:is(.mall-shop, .mall-modal) .mall-product__description table { display: block; max-width: 100%; overflow-x: auto; }

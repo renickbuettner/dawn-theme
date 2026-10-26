@@ -1,0 +1,293 @@
+[
+    {
+        "id": 40,
+        "site_root_id": 40,
+        "title": "Frontend engineer (React)",
+        "slug": "frontend-engineer",
+        "is_enabled": 1,
+        "published_at": "2026-07-01 09:00:00",
+        "valid_through": "2026-12-31 00:00:00",
+        "department": "Engineering",
+        "excerpt": "You own the editor chrome: inspector, tree, preview. TypeScript, React, a soft spot for accessibility.",
+        "cover": "",
+        "employment_type": "FULL_TIME",
+        "workplace_type": "remote",
+        "applicant_location": "EU",
+        "job_city": "",
+        "job_region": "",
+        "job_country": "",
+        "salary_min": 60000,
+        "salary_max": 85000,
+        "salary_currency": "EUR",
+        "salary_unit": "YEAR",
+        "hiring_org_name": "Dawn",
+        "apply_url": "october://cms-page@link/page?path=contact",
+        "meta_title": "Frontend engineer (React) — Dawn",
+        "meta_description": "Build the block editor: inspector, tree and live preview in TypeScript and React. Remote within the EU.",
+        "content": {
+            "blocks": [
+                {
+                    "id": "b_jobfe00",
+                    "type": "heading",
+                    "enabled": true,
+                    "data": {
+                        "text": "About the role",
+                        "level": "h2"
+                    },
+                    "settings": {
+                        "spacing_bottom": "xs"
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_jobfe01",
+                    "type": "richtext",
+                    "enabled": true,
+                    "data": {
+                        "html": "<p>You own the editor chrome: inspector, tree, preview. TypeScript, React, and a soft spot for accessibility. You care about the details that make an editor feel instant.</p>"
+                    },
+                    "settings": {},
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_jobfe02",
+                    "type": "heading",
+                    "enabled": true,
+                    "data": {
+                        "text": "What you'll do",
+                        "level": "h2"
+                    },
+                    "settings": {
+                        "spacing_top": "lg",
+                        "spacing_bottom": "xs"
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_jobfe03",
+                    "type": "richtext",
+                    "enabled": true,
+                    "data": {
+                        "html": "<ul><li>Ship editor features end to end, from inspector fields to live preview.</li><li>Keep the block schema and the UI in lock-step.</li><li>Champion keyboard and screen-reader support.</li></ul>"
+                    },
+                    "settings": {},
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                }
+            ]
+        }
+    },
+    {
+        "id": 41,
+        "site_root_id": 41,
+        "title": "Content designer",
+        "slug": "content-designer",
+        "is_enabled": 1,
+        "published_at": "2026-07-01 09:00:00",
+        "valid_through": "2026-12-31 00:00:00",
+        "department": "Design",
+        "excerpt": "You shape the demo themes and block presets — the first thing every new user sees.",
+        "cover": "dawn/autumn-desk.jpg",
+        "employment_type": "FULL_TIME",
+        "workplace_type": "hybrid",
+        "applicant_location": "",
+        "job_city": "Berlin",
+        "job_region": "Berlin",
+        "job_country": "DE",
+        "salary_min": null,
+        "salary_max": null,
+        "salary_currency": "",
+        "salary_unit": "YEAR",
+        "hiring_org_name": "Dawn",
+        "apply_url": "october://cms-page@link/page?path=contact",
+        "meta_title": "Content designer — Dawn",
+        "meta_description": "Shape the demo themes and block presets new users meet first. Hybrid in Berlin.",
+        "content": {
+            "blocks": [
+                {
+                    "id": "b_jobcd00",
+                    "type": "heading",
+                    "enabled": true,
+                    "data": {
+                        "text": "About the role",
+                        "level": "h2"
+                    },
+                    "settings": {
+                        "spacing_bottom": "xs"
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_jobcd01",
+                    "type": "richtext",
+                    "enabled": true,
+                    "data": {
+                        "html": "<p>You shape the demo themes and block presets — the first thing every new user sees. You turn a blank page into a starting point people want to build on.</p>"
+                    },
+                    "settings": {},
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_jobcd02",
+                    "type": "heading",
+                    "enabled": true,
+                    "data": {
+                        "text": "What you'll do",
+                        "level": "h2"
+                    },
+                    "settings": {
+                        "spacing_top": "lg",
+                        "spacing_bottom": "xs"
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_jobcd03",
+                    "type": "richtext",
+                    "enabled": true,
+                    "data": {
+                        "html": "<ul><li>Design and maintain the demo pages and block presets.</li><li>Write the microcopy that guides first-time editors.</li><li>Partner with engineering on new blocks.</li></ul>"
+                    },
+                    "settings": {},
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                }
+            ]
+        }
+    },
+    {
+        "id": 42,
+        "site_root_id": 42,
+        "title": "Support engineer",
+        "slug": "support-engineer",
+        "is_enabled": 1,
+        "published_at": "2026-07-01 09:00:00",
+        "valid_through": "2026-12-31 00:00:00",
+        "department": "Support",
+        "excerpt": "You debug real installs with real customers, and turn every ticket into a test case.",
+        "cover": "",
+        "employment_type": "FULL_TIME",
+        "workplace_type": "remote",
+        "applicant_location": "EU",
+        "job_city": "",
+        "job_region": "",
+        "job_country": "",
+        "salary_min": null,
+        "salary_max": null,
+        "salary_currency": "",
+        "salary_unit": "YEAR",
+        "hiring_org_name": "Dawn",
+        "apply_url": "october://cms-page@link/page?path=contact",
+        "meta_title": "Support engineer — Dawn",
+        "meta_description": "Debug real installs with real customers and turn every ticket into a test case. Remote within the EU.",
+        "content": {
+            "blocks": [
+                {
+                    "id": "b_jobse00",
+                    "type": "heading",
+                    "enabled": true,
+                    "data": {
+                        "text": "About the role",
+                        "level": "h2"
+                    },
+                    "settings": {
+                        "spacing_bottom": "xs"
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_jobse01",
+                    "type": "richtext",
+                    "enabled": true,
+                    "data": {
+                        "html": "<p>You debug real installs with real customers, and turn every ticket into a test case. You are the shortest path between a confused user and a working page.</p>"
+                    },
+                    "settings": {},
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_jobse02",
+                    "type": "heading",
+                    "enabled": true,
+                    "data": {
+                        "text": "What you'll do",
+                        "level": "h2"
+                    },
+                    "settings": {
+                        "spacing_top": "lg",
+                        "spacing_bottom": "xs"
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_jobse03",
+                    "type": "richtext",
+                    "enabled": true,
+                    "data": {
+                        "html": "<ul><li>Own customer tickets from first reply to fix.</li><li>Reproduce issues and file crisp bug reports.</li><li>Grow the regression suite from real-world reports.</li></ul>"
+                    },
+                    "settings": {},
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                }
+            ]
+        }
+    }
+]

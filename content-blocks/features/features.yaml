@@ -1,0 +1,31 @@
+# Labels are theme lang keys (lang/{en,de}.json), resolved by the plugin's
+# BlockLabelTranslator at serialization time.
+handle: features
+name: dawn.block.features.name
+icon: icon-th-large
+group: Dawn
+version: 1
+settings: true
+fields:
+  columns:
+    label: dawn.block.features.columns
+    type: dropdown
+    options:
+      '2': dawn.block.features.columns_2
+      '3': dawn.block.features.columns_3
+      '4': dawn.block.features.columns_4
+    default: '3'
+  items:
+    label: dawn.block.features.items
+    type: repeater
+    fields:
+      icon:
+        label: dawn.block.features.icon
+        type: iconpicker
+      title:
+        label: dawn.block.features.title
+        type: text
+      text:
+        label: dawn.block.features.text
+        type: textarea
+        size: small

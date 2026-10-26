@@ -1,0 +1,20 @@
+{# Dawn override: sign-in / register panels become tabs below 768px (JS sets data-tab; without it both panels stay visible) #}
+<div class="mall-signup">
+    <div class="mall-signup__tabs" role="tablist" aria-label="{{ 'offline.mall::frontend.session.login_signup'|trans }}">
+        <button class="mall-signup__tab" type="button" role="tab" id="mall-signup-tab-signin"
+                aria-controls="mall-signup-panel-signin" aria-selected="true">
+            {{ 'offline.mall::frontend.form.signin'|trans }}
+        </button>
+        <button class="mall-signup__tab" type="button" role="tab" id="mall-signup-tab-signup"
+                aria-controls="mall-signup-panel-signup" aria-selected="false" tabindex="-1">
+            {{ 'offline.mall::frontend.form.signup'|trans }}
+        </button>
+    </div>
+    <div class="mall-signup__signin" id="mall-signup-panel-signin" role="tabpanel" aria-labelledby="mall-signup-tab-signin">
+        {% partial __SELF__ ~ '::signin' %}
+    </div>
+    <div class="mall-signup__signup mall-signup-form" id="mall-signup-panel-signup" role="tabpanel" aria-labelledby="mall-signup-tab-signup">
+        {% partial __SELF__ ~ '::signup' %}
+    </div>
+</div>
+{% partial __SELF__ ~ '::scripts' %}
