@@ -1,0 +1,142 @@
+{% set _u = this.page.baseUrl ?? '' %}
+{# dawnSettings (Dawn\Theme global, set by the layout) may be null, so every
+   value falls back: brand → theme customize → 'Dawn'; switches null → shown. #}
+{% set dawnBrand = dawnSettings.brand_name|default(this.theme.brand_name)|default('Dawn') %}
+{% set dawnLogo = dawnSettings.brand_logo|default('') %}
+{% set dawnShowCta = dawnSettings.show_header_cta ?? true %}
+{% set dawnShowLang = dawnSettings.show_language_chooser ?? true %}
+<header class="dawn-nav">
+    <div class="container d-flex align-items-center justify-content-between position-relative">
+        <a class="dawn-brand-mark" href="{{ 'index'|page }}">
+            {% if dawnLogo %}
+                <img class="dawn-brand-logo" src="{{ dawnLogo|media }}" alt="{{ dawnBrand }}">
+            {% else %}
+                <span class="dawn-brand-dot"></span>
+                {{ dawnBrand }}
+            {% endif %}
+        </a>
+
+        <button class="btn border-0 d-lg-none px-2" type="button"
+                data-dawn-nav-toggle aria-expanded="false" aria-controls="dawn-nav-menu"
+                aria-label="{{ 'dawn.front.nav.menu'|_ }}">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        {# Off-canvas backdrop (mobile); inert until the panel opens. #}
+        <div class="dawn-nav-backdrop" data-dawn-nav-backdrop hidden></div>
+
+        <nav id="dawn-nav-menu" class="dawn-nav-collapse d-lg-flex align-items-lg-center gap-lg-1" aria-label="{{ 'dawn.front.nav.primary'|_ }}">
+            {# Panel chrome, mobile only #}
+            <div class="dawn-nav-panel-head d-lg-none">
+                <span class="dawn-brand-mark">
+                    {% if dawnLogo %}
+                        <img class="dawn-brand-logo" src="{{ dawnLogo|media }}" alt="{{ dawnBrand }}">
+                    {% else %}
+                        <span class="dawn-brand-dot"></span>
+                        {{ dawnBrand }}
+                    {% endif %}
+                </span>
+                <button class="dawn-nav-close" type="button" data-dawn-nav-close
+                        aria-label="{{ 'dawn.front.nav.close_menu'|_ }}">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+                </button>
+            </div>
+
+            {# A non-empty dawnMegaItems (Dawn\Menu global, resolved in the layout)
+               REPLACES the automatic page-tree nav including the fixed Blog link. #}
+            <ul class="navbar-nav flex-lg-row list-unstyled d-flex flex-column mb-0 gap-lg-1 dawn-nav-list">
+                {% if dawnMegaItems|default([])|length %}
+                    {% for item in dawnMegaItems %}
+                        {% if item.children|length %}
+                            {# Disclosure pattern (W3C APG): the category is deliberately
+                               a button, not a link. `side` places the hero card on
+                               desktop; mobile always stacks links first. #}
+                            <li class="nav-item dawn-nav-item--mega" data-dawn-mega>
+                                <button class="nav-link dawn-nav-disclosure dawn-nav-disclosure--labelled" type="button" data-dawn-mega-toggle
+                                        aria-controls="dawn-mega-panel-{{ loop.index }}" aria-expanded="false">
+                                    {% if item.icon %}{{ rc_icon(item.icon, 16, 'dawn-nav-icon')|raw }}{% endif %}
+                                    {{ item.label }}
+                                    <svg class="dawn-nav-disclosure__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                                </button>
+                                <div id="dawn-mega-panel-{{ loop.index }}" class="dawn-megapanel" data-dawn-mega-panel hidden>
+                                    <div class="container">
+                                        <div class="dawn-megapanel__grid {{ item.content ? 'dawn-megapanel__grid--card-' ~ item.side }}">
+                                            <ul class="dawn-megapanel__list list-unstyled mb-0">
+                                                {% for child in item.children %}
+                                                    <li>
+                                                        <a class="dawn-megapanel__link {{ child.icon ? 'dawn-megapanel__link--icon' }}" href="{{ child.url }}">
+                                                            {% if child.icon %}<span class="dawn-megapanel__icon">{{ rc_icon(child.icon, 18)|raw }}</span>{% endif %}
+                                                            <span class="dawn-megapanel__label">{{ child.label }}</span>
+                                                            {% if child.description %}<span class="dawn-megapanel__desc">{{ child.description }}</span>{% endif %}
+                                                        </a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                            {% if item.content %}
+                                                <div class="dawn-megapanel__card">
+                                                    {% if item.content.image %}
+                                                        <img class="dawn-megapanel__card-img" src="{{ item.content.image|media|resize(640, 300, { mode: 'crop' }) }}" alt="" loading="lazy" width="640" height="300">
+                                                    {% endif %}
+                                                    {% if item.content.html %}
+                                                        <div class="dawn-megapanel__card-text">{{ item.content.html|raw }}</div>
+                                                    {% endif %}
+                                                    {% if item.content.button_label and item.content.button_url %}
+                                                        <a class="dawn-btn-grad dawn-megapanel__card-btn" href="{{ item.content.button_url }}">{{ item.content.button_label }}</a>
+                                                    {% endif %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link {{ item.url|trim('/') == dawnCurrentUrl|default('')|trim('/') ? 'active' }}" href="{{ item.url }}">{% if item.icon %}{{ rc_icon(item.icon, 16, 'dawn-nav-icon')|raw }}{% endif %}{{ item.label }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    {# Blog is a Tailor-driven listing page, not part of the
+                       Dawn\Page tree, so it stays a fixed nav item. #}
+                    {% for navPage in dawnNavPages|default([]) %}
+                        <li class="nav-item"><a class="nav-link {{ this.param.path == navPage.fullslug ? 'active' }}" href="{{ 'page'|page({ path: navPage.fullslug }) }}">{{ navPage.title }}</a></li>
+                    {% endfor %}
+                    <li class="nav-item"><a class="nav-link {{ this.page.id starts with 'blog' ? 'active' }}" href="{{ 'blog'|page }}">{{ 'dawn.front.nav.blog'|_ }}</a></li>
+                {% endif %}
+            </ul>
+
+            {# CTA + language picker: bottom of the panel on mobile, inline on
+               desktop (see .dawn-nav-panel-foot). #}
+            <div class="dawn-nav-panel-foot">
+                {% if dawnShowCta %}
+                    <a class="dawn-btn-grad ms-lg-3 d-inline-block text-center"
+                       href="{{ dawnSettings.header_cta_url|default('page'|page({ path: 'contact' })) }}">{{ dawnSettings.header_cta_label|default('dawn.front.nav.get_in_touch'|_) }}</a>
+                {% endif %}
+
+                {% set _current = dawnAlternates|default([])|filter(a => a.active)|first %}
+                {% if dawnShowLang and dawnAlternates|default([])|length %}
+                    <div class="dawn-langpicker ms-lg-3">
+                        {# No aria-label: WCAG 2.5.3 needs the visible "EN"/"DE" in the
+                           accessible name, hence the hidden "Language:" prefix. #}
+                        <button class="dawn-langpicker__toggle" type="button" data-dawn-lang-toggle
+                                aria-expanded="false" aria-controls="dawn-langpicker-menu">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
+                            <span class="visually-hidden">{{ 'dawn.front.nav.language'|_ }}:</span>
+                            <span>{{ (_current.label)|default('EN') }}</span>
+                            <svg class="dawn-langpicker__caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                        </button>
+                        {# A plain list of links (no menu roles): cross-locale visits bypass
+                           Turbo so <html lang> and the per-site assets reload for real. #}
+                        <ul id="dawn-langpicker-menu" class="dawn-langpicker__menu">
+                            {% for alt in dawnAlternates %}
+                                <li>
+                                    <a class="{{ alt.active ? 'active' }}" href="{{ alt.url }}" hreflang="{{ alt.hreflang }}" lang="{{ alt.locale }}" data-turbo="false"{{ alt.active ? ' aria-current="true"' }}>
+                                        {{ alt.label }}<span class="dawn-langpicker__name">{{ alt.locale == 'de' ? 'Deutsch' : (alt.locale == 'es' ? 'Español' : 'English') }}</span>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+        </nav>
+    </div>
+</header>

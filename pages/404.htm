@@ -1,0 +1,47 @@
+url = "/404"
+layout = "default"
+title = "Page not found"
+is_hidden = 0
+==
+function onStart()
+{
+    // Error pages carry no canonical and must stay out of the index.
+    $this['seoNoindex'] = true;
+}
+==
+{# Recursion stopper for the /:path* catch-all: page.htm and blog-post.htm hand
+   unresolved slugs to controller->run('404'), resolved here by the literal /404
+   URL (literal routes beat the catch-all). #}
+<section class="dawn-hero dawn-404" data-page="404">
+    <div class="container position-relative text-center">
+        {# Leaf split along the midrib so theme.css can crack the halves apart on
+           load (static under reduced motion). aria-hidden keeps it out of the
+           a11y tree, so no translate key is needed. #}
+        <svg class="dawn-404-leaf" viewBox="0 0 120 150" aria-hidden="true" focusable="false">
+            <defs>
+                <linearGradient id="dawn404LeafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color: var(--dawn-brand-2)"/>
+                    <stop offset="45%" style="stop-color: var(--dawn-brand)"/>
+                    <stop offset="100%" style="stop-color: var(--dawn-accent)"/>
+                </linearGradient>
+            </defs>
+            <g class="dawn-leaf-half dawn-leaf-half--l">
+                <path class="dawn-leaf-fill" d="M60,8 C30,20 12,55 20,85 C25,110 42,128 60,140 Z"/>
+                <path class="dawn-leaf-vein" d="M60,8 L60,140"/>
+                <path class="dawn-leaf-veinlets" d="M58,32 L36,52 M58,62 L33,78 M58,92 L40,108"/>
+            </g>
+            <g class="dawn-leaf-half dawn-leaf-half--r">
+                <path class="dawn-leaf-fill" d="M60,8 C90,20 108,55 100,85 C95,110 78,128 60,140 Z"/>
+                <path class="dawn-leaf-vein" d="M60,8 L60,140"/>
+                <path class="dawn-leaf-veinlets" d="M62,32 L84,52 M62,62 L87,78 M62,92 L80,108"/>
+            </g>
+        </svg>
+        <span class="dawn-kicker d-block mb-2">404</span>
+        <h1 class="display-5 mb-3">{{ 'dawn.front.error.title'|_ }}</h1>
+        <p class="dawn-lead mx-auto mb-4">{{ 'dawn.front.error.lead'|_ }}</p>
+        <div class="d-flex justify-content-center flex-wrap gap-2">
+            <a class="dawn-btn-grad" href="{{ 'index'|page }}">{{ 'dawn.front.error.home'|_ }}</a>
+            <a class="btn btn-outline-dark rounded-3 px-4" href="{{ 'blog'|page }}">{{ 'dawn.front.common.read_the_blog'|_ }}</a>
+        </div>
+    </div>
+</section>

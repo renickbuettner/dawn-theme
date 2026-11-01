@@ -1,0 +1,293 @@
+[
+    {
+        "id": 43,
+        "site_root_id": 40,
+        "title": "Frontend-Engineer (React)",
+        "slug": "frontend-engineer",
+        "is_enabled": 1,
+        "published_at": "2026-07-01 09:00:00",
+        "valid_through": "2026-12-31 00:00:00",
+        "department": "Engineering",
+        "excerpt": "Du verantwortest das Editor-Chrome: Inspector, Baum, Vorschau. TypeScript, React und ein Faible für Barrierefreiheit.",
+        "cover": "",
+        "employment_type": "FULL_TIME",
+        "workplace_type": "remote",
+        "applicant_location": "EU",
+        "job_city": "",
+        "job_region": "",
+        "job_country": "",
+        "salary_min": 60000,
+        "salary_max": 85000,
+        "salary_currency": "EUR",
+        "salary_unit": "YEAR",
+        "hiring_org_name": "Dawn",
+        "apply_url": "october://cms-page@link/page?path=contact",
+        "meta_title": "Frontend-Engineer (React) — Dawn",
+        "meta_description": "Baue den Block-Editor: Inspector, Baum und Live-Vorschau in TypeScript und React. Remote innerhalb der EU.",
+        "content": {
+            "blocks": [
+                {
+                    "id": "b_jobfe00",
+                    "type": "heading",
+                    "enabled": true,
+                    "data": {
+                        "text": "Über die Rolle",
+                        "level": "h2"
+                    },
+                    "settings": {
+                        "spacing_bottom": "xs"
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_jobfe01",
+                    "type": "richtext",
+                    "enabled": true,
+                    "data": {
+                        "html": "<p>Du verantwortest das Editor-Chrome: Inspector, Baum, Vorschau. TypeScript, React und ein Faible für Barrierefreiheit. Dir sind die Details wichtig, die einen Editor sofort reagieren lassen.</p>"
+                    },
+                    "settings": {},
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_jobfe02",
+                    "type": "heading",
+                    "enabled": true,
+                    "data": {
+                        "text": "Deine Aufgaben",
+                        "level": "h2"
+                    },
+                    "settings": {
+                        "spacing_top": "lg",
+                        "spacing_bottom": "xs"
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_jobfe03",
+                    "type": "richtext",
+                    "enabled": true,
+                    "data": {
+                        "html": "<ul><li>Editor-Funktionen von A bis Z umsetzen — vom Inspector-Feld bis zur Live-Vorschau.</li><li>Block-Schema und UI im Gleichschritt halten.</li><li>Tastatur- und Screenreader-Support vorantreiben.</li></ul>"
+                    },
+                    "settings": {},
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                }
+            ]
+        }
+    },
+    {
+        "id": 44,
+        "site_root_id": 41,
+        "title": "Content-Designer:in",
+        "slug": "content-designer",
+        "is_enabled": 1,
+        "published_at": "2026-07-01 09:00:00",
+        "valid_through": "2026-12-31 00:00:00",
+        "department": "Design",
+        "excerpt": "Du gestaltest die Demo-Themes und Block-Presets — das Erste, was neue Nutzer:innen sehen.",
+        "cover": "dawn/autumn-desk.jpg",
+        "employment_type": "FULL_TIME",
+        "workplace_type": "hybrid",
+        "applicant_location": "",
+        "job_city": "Berlin",
+        "job_region": "Berlin",
+        "job_country": "DE",
+        "salary_min": null,
+        "salary_max": null,
+        "salary_currency": "",
+        "salary_unit": "YEAR",
+        "hiring_org_name": "Dawn",
+        "apply_url": "october://cms-page@link/page?path=contact",
+        "meta_title": "Content-Designer:in — Dawn",
+        "meta_description": "Gestalte die Demo-Themes und Block-Presets, die neue Nutzer:innen zuerst sehen. Hybrid in Berlin.",
+        "content": {
+            "blocks": [
+                {
+                    "id": "b_jobcd00",
+                    "type": "heading",
+                    "enabled": true,
+                    "data": {
+                        "text": "Über die Rolle",
+                        "level": "h2"
+                    },
+                    "settings": {
+                        "spacing_bottom": "xs"
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_jobcd01",
+                    "type": "richtext",
+                    "enabled": true,
+                    "data": {
+                        "html": "<p>Du gestaltest die Demo-Themes und Block-Presets — das Erste, was neue Nutzer:innen sehen. Du machst aus einer leeren Seite einen Startpunkt, auf dem man gern aufbaut.</p>"
+                    },
+                    "settings": {},
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_jobcd02",
+                    "type": "heading",
+                    "enabled": true,
+                    "data": {
+                        "text": "Deine Aufgaben",
+                        "level": "h2"
+                    },
+                    "settings": {
+                        "spacing_top": "lg",
+                        "spacing_bottom": "xs"
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_jobcd03",
+                    "type": "richtext",
+                    "enabled": true,
+                    "data": {
+                        "html": "<ul><li>Demo-Seiten und Block-Presets gestalten und pflegen.</li><li>Die Microcopy schreiben, die Einsteiger:innen führt.</li><li>Mit dem Engineering an neuen Blöcken zusammenarbeiten.</li></ul>"
+                    },
+                    "settings": {},
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                }
+            ]
+        }
+    },
+    {
+        "id": 45,
+        "site_root_id": 42,
+        "title": "Support-Engineer",
+        "slug": "support-engineer",
+        "is_enabled": 1,
+        "published_at": "2026-07-01 09:00:00",
+        "valid_through": "2026-12-31 00:00:00",
+        "department": "Support",
+        "excerpt": "Du debuggst echte Installationen mit echten Kund:innen — und machst aus jedem Ticket einen Testfall.",
+        "cover": "",
+        "employment_type": "FULL_TIME",
+        "workplace_type": "remote",
+        "applicant_location": "EU",
+        "job_city": "",
+        "job_region": "",
+        "job_country": "",
+        "salary_min": null,
+        "salary_max": null,
+        "salary_currency": "",
+        "salary_unit": "YEAR",
+        "hiring_org_name": "Dawn",
+        "apply_url": "october://cms-page@link/page?path=contact",
+        "meta_title": "Support-Engineer — Dawn",
+        "meta_description": "Debugge echte Installationen mit echten Kund:innen und mach aus jedem Ticket einen Testfall. Remote innerhalb der EU.",
+        "content": {
+            "blocks": [
+                {
+                    "id": "b_jobse00",
+                    "type": "heading",
+                    "enabled": true,
+                    "data": {
+                        "text": "Über die Rolle",
+                        "level": "h2"
+                    },
+                    "settings": {
+                        "spacing_bottom": "xs"
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_jobse01",
+                    "type": "richtext",
+                    "enabled": true,
+                    "data": {
+                        "html": "<p>Du debuggst echte Installationen mit echten Kund:innen — und machst aus jedem Ticket einen Testfall. Du bist der kürzeste Weg zwischen einer ratlosen Person und einer funktionierenden Seite.</p>"
+                    },
+                    "settings": {},
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_jobse02",
+                    "type": "heading",
+                    "enabled": true,
+                    "data": {
+                        "text": "Deine Aufgaben",
+                        "level": "h2"
+                    },
+                    "settings": {
+                        "spacing_top": "lg",
+                        "spacing_bottom": "xs"
+                    },
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                },
+                {
+                    "id": "b_jobse03",
+                    "type": "richtext",
+                    "enabled": true,
+                    "data": {
+                        "html": "<ul><li>Kund:innen-Tickets von der ersten Antwort bis zum Fix betreuen.</li><li>Probleme reproduzieren und präzise Bug-Reports schreiben.</li><li>Die Regressions-Suite aus echten Meldungen wachsen lassen.</li></ul>"
+                    },
+                    "settings": {},
+                    "visibility": {
+                        "from": null,
+                        "until": null,
+                        "sites": null
+                    },
+                    "children": []
+                }
+            ]
+        }
+    }
+]

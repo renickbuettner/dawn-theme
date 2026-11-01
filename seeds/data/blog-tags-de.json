@@ -1,0 +1,37 @@
+[
+    {
+        "id": 7,
+        "site_root_id": 6,
+        "title": "Block-Editor",
+        "slug": "block-editor",
+        "is_enabled": 1
+    },
+    {
+        "id": 9,
+        "site_root_id": 8,
+        "title": "OctoberCMS",
+        "slug": "octobercms",
+        "is_enabled": 1
+    },
+    {
+        "id": 11,
+        "site_root_id": 10,
+        "title": "Webdesign",
+        "slug": "web-design",
+        "is_enabled": 1
+    },
+    {
+        "id": 13,
+        "site_root_id": 12,
+        "title": "Content-Ops",
+        "slug": "content-ops",
+        "is_enabled": 1
+    },
+    {
+        "id": 15,
+        "site_root_id": 14,
+        "title": "Performance",
+        "slug": "performance",
+        "is_enabled": 1
+    }
+]
