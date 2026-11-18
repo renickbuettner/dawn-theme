@@ -1,0 +1,89 @@
+url = "/jobs/:slug"
+layout = "default"
+title = "Job position"
+is_hidden = 0
+
+[section]
+handle = "Dawn\JobsPosition"
+isDefault = 1
+==
+function onStart()
+{
+    // The [section] component only binds this page as the Dawn\JobsPosition
+    // page-finder target (like pages/blog-post.htm) — routing stays manual.
+    $slug = $this->param('slug');
+
+    // Backend draft preview: a valid `_preview_token` wins over the slug
+    // lookup (see site/preview.php).
+    require_once dawn_path('partials/site/preview.php');
+    $position = dawn_preview_entry('Dawn\JobsPosition')
+        ?: \Tailor\Models\EntryRecord::inSection('Dawn\JobsPosition')
+            ->applyPublishedStatus()
+            ->where('slug', $slug)
+            ->first();
+
+    if (!$position) {
+        $this->setStatusCode(404);
+        return $this->controller->run('404');
+    }
+
+    $this['position'] = $position;
+
+    // Shared JobPosting SEO builder (sets seoTitle/…/seoJsonLd).
+    require_once dawn_path('partials/site/job-seo.php');
+    dawn_job_seo($this, $position, dawn_locale());
+
+    // Header labels resolved in PHP via the backend lang keys, so the job page
+    // needs no separate frontend translation seeding.
+    $emp = strtolower((string) $position->employment_type);
+    $work = (string) $position->workplace_type;
+    $this['applyLabel'] = trans('dawn.jobs.front.apply');
+    $this['backLabel'] = trans('dawn.jobs.front.back_to_jobs');
+    $this['postedLabel'] = trans('dawn.jobs.front.posted');
+    $this['employmentLabel'] = $emp ? trans('dawn.jobs.position.employment.' . $emp) : '';
+    $this['workplaceLabel'] = $work ? trans('dawn.jobs.position.workplace.' . $work) : '';
+
+    // "City, Country" for on-site/hybrid, the workplace label for remote.
+    $parts = array_filter([
+        trim((string) $position->job_city),
+        trim((string) $position->job_country),
+    ]);
+    $this['locationLabel'] = $work === 'remote'
+        ? trans('dawn.jobs.position.workplace.remote')
+        : ($parts ? implode(', ', $parts) : trim((string) $position->applicant_location));
+}
+==
+{% set dateFormat = (this.site.locale|default('en')) starts with 'de' ? 'd.m.Y' : 'F j, Y' %}
+{% if position %}
+<article>
+    {# Fixed jobs header #}
+    <header class="dawn-hero dawn-post-hero">
+        <div class="container position-relative">
+            <a class="dawn-eyebrow text-decoration-none" href="{{ 'page'|page({ path: 'jobs' }) }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="dawn-icon-inline me-1"><path d="M19 12H5m7 7-7-7 7-7"/></svg>{{ backLabel }}</a>
+            {% if position.department %}
+                <span class="dawn-kicker d-block mt-3">{{ position.department }}</span>
+            {% endif %}
+            <h1 class="display-5 mt-2 mb-3">{{ position.title }}</h1>
+            <div class="dawn-meta d-flex flex-wrap align-items-center gap-2 mb-4">
+                {% if employmentLabel %}<span class="dawn-chip">{{ employmentLabel }}</span>{% endif %}
+                {% if locationLabel %}<span class="dawn-chip">{{ locationLabel }}</span>{% endif %}
+                {% if position.published_at_date %}
+                    <time datetime="{{ position.published_at_date|date('Y-m-d') }}">{{ postedLabel }} {{ position.published_at_date|date(dateFormat) }}</time>
+                {% endif %}
+            </div>
+            {% if position.apply_url %}
+                <a class="dawn-btn-grad" href="{{ position.apply_url|rc_url }}">{{ applyLabel }}</a>
+            {% endif %}
+        </div>
+    </header>
+
+    {# Rendered block document #}
+    <div class="dawn-section pt-4">
+        <div class="container">
+            <div class="dawn-article">
+                {% component 'renickContent' document=position.content %}
+            </div>
+        </div>
+    </div>
+</article>
+{% endif %}

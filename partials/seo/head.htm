@@ -1,0 +1,77 @@
+{# Optional seo* vars are set by the layout/page; everything falls back to the
+   page viewBag (meta_title/meta_description) then the page title. #}
+{% set _siteName = dawnSettings.brand_name|default(this.theme.brand_name)|default('Dawn') %}
+{% set _locale = this.site.locale|default('en') %}
+{# Page title/description need the |_ filter; entry-driven seo* are per-site already. #}
+{% set _title = seoTitle
+    ?? (this.page.meta_title ?? this.page.viewBag.meta_title ?? this.page.title)|_ %}
+{# Append " — Brand" unless the title already carries it. Whole-word test, not a
+   substring `in`: brand "Co" would otherwise match "Contact". #}
+{% set _brandSuffix = ' — ' ~ _siteName %}
+{% set _hasBrandWord = _siteName in _title|split(' ') %}
+{% set _fullTitle = (_title == _siteName or _title ends with _brandSuffix or _hasBrandWord) ? _title : _title ~ _brandSuffix %}
+{% set _desc = seoDescription
+    ?? (this.page.meta_description
+        ?? this.page.viewBag.meta_description
+        ?? 'A modern showcase of the Renick.Content block editor for OctoberCMS.')|_ %}
+{# seoUrl (layout, query stripped) — per-route canonical, not the site root. #}
+{% set _url = seoUrl ?? url(this.url) %}
+{# Articles bring their cover; everything else gets the default social image. #}
+{% set _image = seoImage
+    ? (seoImage starts with 'http' ? seoImage : url(seoImage))
+    : 'assets/images/dawn/autumn-desk.jpg'|theme %}
+{% set _type = seoType|default('website') %}
+
+<title>{{ _fullTitle }}</title>
+<meta name="description" content="{{ _desc }}">
+{% if not seoNoindex %}<link rel="canonical" href="{{ _url }}">{% endif %}
+
+{# Icons #}
+<link rel="icon" href="{{ 'assets/images/favicon.svg'|theme }}" type="image/svg+xml">
+<link rel="icon" href="{{ 'assets/images/favicon-32.png'|theme }}" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="{{ 'assets/images/apple-touch-icon.png'|theme }}" sizes="180x180">
+{% if seoNoindex %}<meta name="robots" content="noindex, nofollow">{% else %}<meta name="robots" content="index, follow">{% endif %}
+
+{# Open Graph #}
+<meta property="og:type" content="{{ _type }}">
+<meta property="og:site_name" content="{{ _siteName }}">
+<meta property="og:title" content="{{ _title }}">
+<meta property="og:description" content="{{ _desc }}">
+<meta property="og:url" content="{{ _url }}">
+<meta property="og:locale" content="{{ _locale }}">
+{% if _image %}<meta property="og:image" content="{{ _image }}">{% endif %}
+{% if _type == 'article' %}
+    {% if seoPublished %}<meta property="article:published_time" content="{{ seoPublished }}">{% endif %}
+    {% if seoModified %}<meta property="article:modified_time" content="{{ seoModified }}">{% endif %}
+    {% for tag in seoTags|default([]) %}<meta property="article:tag" content="{{ tag }}">{% endfor %}
+{% endif %}
+
+{# Twitter Card #}
+<meta name="twitter:card" content="{{ _image ? 'summary_large_image' : 'summary' }}">
+<meta name="twitter:title" content="{{ _title }}">
+<meta name="twitter:description" content="{{ _desc }}">
+{% if _image %}<meta name="twitter:image" content="{{ _image }}">{% endif %}
+
+{# Hreflang alternates across the active site group (computed in the layout). #}
+{% for alt in dawnAlternates|default([]) %}
+    <link rel="alternate" hreflang="{{ alt.hreflang }}" href="{{ alt.url }}">
+{% endfor %}
+{% if dawnAlternates|default([])|length %}
+    <link rel="alternate" hreflang="x-default" href="{{ dawnAlternates[0].url }}">
+{% endif %}
+
+{# JSON-LD is emitted |raw inside <script>, so it must escape `<`/`&`
+   (JSON_HEX_TAG|JSON_HEX_AMP) or an author value with `</script>` breaks out.
+   seoJsonLd is pre-encoded with those flags in page-seo.php. #}
+{% set _ldFlags = constant('JSON_UNESCAPED_SLASHES') b-or constant('JSON_UNESCAPED_UNICODE') b-or constant('JSON_HEX_TAG') b-or constant('JSON_HEX_AMP') %}
+{% if seoJsonLd %}
+    <script type="application/ld+json">{{ seoJsonLd|raw }}</script>
+{% else %}
+    <script type="application/ld+json">{{ {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        'name': _siteName,
+        'url': url('/'),
+        'inLanguage': _locale
+    }|json_encode(_ldFlags)|raw }}</script>
+{% endif %}

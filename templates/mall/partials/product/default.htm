@@ -1,0 +1,20 @@
+{# Dawn override of Mall's product partial: gallery | buy box, details below #}
+<div class="mall-product">
+    <div class="mall-product__gallery">
+        {% partial __SELF__ ~ '::images' images=item.all_images %}
+    </div>
+    <div class="mall-product__cart">
+        <h1 class="mall-product__name">{{ item.name }}</h1>
+        {% if item.description_short|default(null) %}
+            <p class="mall-product__description-short">{{ item.description_short|nl2br }}</p>
+        {% endif %}
+        {% partial __SELF__ ~ '::cart' %}
+    </div>
+    <div class="mall-product__info" id="mall-product-info">
+        {% partial __SELF__ ~ '::info' %}
+    </div>
+</div>
+{% partial __SELF__ ~ '::scripts' %}
+{% if dataLayer|default(false) %}
+    {% partial __SELF__ ~ '::datalayer' %}
+{% endif %}

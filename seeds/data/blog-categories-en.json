@@ -1,0 +1,26 @@
+[
+    {
+        "id": 4,
+        "site_root_id": 4,
+        "title": "Guides",
+        "slug": "guides",
+        "is_enabled": 1,
+        "description": "Hands-on walkthroughs and how-tos."
+    },
+    {
+        "id": 6,
+        "site_root_id": 6,
+        "title": "Product",
+        "slug": "product",
+        "is_enabled": 1,
+        "description": "Release notes and product thinking."
+    },
+    {
+        "id": 8,
+        "site_root_id": 8,
+        "title": "Design",
+        "slug": "design",
+        "is_enabled": 1,
+        "description": "Visual craft, layout and typography."
+    }
+]

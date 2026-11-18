@@ -1,0 +1,116 @@
+# Multisite global: one menu record per site. menu_items uses repeater groups —
+# `page` is a link, `category` is a label-only disclosure and deliberately NOT a
+# link. Links use the page finder (october:// schema), resolved per site.
+uuid: dawnmenu00075a1b8c2d9e3f00000007
+handle: Dawn\Menu
+type: global
+name: Menu
+multisite: all
+
+navigation:
+    parent: Dawn\Page
+    label: dawn.menu.nav.menu
+    icon: icon-bars
+    order: 310
+
+fields:
+    menu_mode:
+        label: dawn.menu.field.mode
+        commentAbove: dawn.menu.field.mode_comment
+        type: balloon-selector
+        default: normal
+        options:
+            normal: dawn.menu.field.mode_normal
+            mega: dawn.menu.field.mode_mega
+
+    menu_items:
+        label: dawn.menu.field.items
+        commentAbove: dawn.menu.field.items_comment
+        type: repeater
+        titleFrom: label
+        trigger:
+            action: show
+            field: menu_mode
+            condition: value[mega]
+        groups:
+            page:
+                name: dawn.menu.group.page
+                description: dawn.menu.group.page_desc
+                icon: icon-file-text-o
+                fields:
+                    label:
+                        label: dawn.menu.field.item_label
+                        comment: dawn.menu.field.item_label_comment
+                        type: text
+                    link:
+                        label: dawn.menu.field.item_link
+                        comment: dawn.menu.field.item_link_comment
+                        type: pagefinder
+                    icon:
+                        label: dawn.menu.field.item_icon
+                        comment: dawn.menu.field.item_icon_comment
+                        type: rciconpicker
+            category:
+                name: dawn.menu.group.category
+                description: dawn.menu.group.category_desc
+                icon: icon-folder-o
+                fields:
+                    label:
+                        label: dawn.menu.field.item_label
+                        comment: dawn.menu.field.category_label_comment
+                        type: text
+                    icon:
+                        label: dawn.menu.field.item_icon
+                        comment: dawn.menu.field.item_icon_comment
+                        type: rciconpicker
+                    children:
+                        label: dawn.menu.field.item_children
+                        commentAbove: dawn.menu.field.item_children_comment
+                        type: repeater
+                        titleFrom: label
+                        form:
+                            fields:
+                                label:
+                                    label: dawn.menu.field.item_label
+                                    comment: dawn.menu.field.item_label_comment
+                                    type: text
+                                link:
+                                    label: dawn.menu.field.item_link
+                                    comment: dawn.menu.field.item_link_comment
+                                    type: pagefinder
+                                description:
+                                    label: dawn.menu.field.item_description
+                                    comment: dawn.menu.field.item_description_comment
+                                    type: text
+                                icon:
+                                    label: dawn.menu.field.item_icon
+                                    comment: dawn.menu.field.item_icon_comment
+                                    type: rciconpicker
+                    content_side:
+                        label: dawn.menu.field.content_side
+                        commentAbove: dawn.menu.field.content_side_comment
+                        type: balloon-selector
+                        default: right
+                        options:
+                            right: dawn.menu.field.content_side_right
+                            left: dawn.menu.field.content_side_left
+                    content_image:
+                        label: dawn.menu.field.content_image
+                        type: mediafinder
+                        mode: image
+                        maxItems: 1
+                        span: left
+                    content_text:
+                        label: dawn.menu.field.content_text
+                        comment: dawn.menu.field.content_text_comment
+                        type: richeditor
+                        size: small
+                        span: right
+                    content_button_label:
+                        label: dawn.menu.field.content_button_label
+                        type: text
+                        span: left
+                    content_button_link:
+                        label: dawn.menu.field.content_button_link
+                        type: pagefinder
+                        span: right

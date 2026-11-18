@@ -1,0 +1,24 @@
+uuid: dawnblogcat00024a1b8c2d9e3f00000002
+handle: Dawn\BlogCategory
+type: structure
+name: Category
+drafts: false
+multisite: all
+
+navigation:
+    parent: Dawn\BlogPost
+    label: dawn.blog.nav.categories
+    icon: icon-folder-open
+    order: 200
+
+fields:
+    title:
+        label: dawn.blog.category.field.name
+        type: text
+        required: true
+
+    description:
+        label: dawn.blog.category.field.description
+        type: text
+        span: full
+        column: false
