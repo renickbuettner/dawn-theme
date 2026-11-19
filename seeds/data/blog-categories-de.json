@@ -1,0 +1,26 @@
+[
+    {
+        "id": 5,
+        "site_root_id": 4,
+        "title": "Anleitungen",
+        "slug": "guides",
+        "is_enabled": 1,
+        "description": "Praxisnahe Walkthroughs und How-tos."
+    },
+    {
+        "id": 7,
+        "site_root_id": 6,
+        "title": "Produkt",
+        "slug": "product",
+        "is_enabled": 1,
+        "description": "Release-Notes und Produktgedanken."
+    },
+    {
+        "id": 9,
+        "site_root_id": 8,
+        "title": "Design",
+        "slug": "design",
+        "is_enabled": 1,
+        "description": "Visuelles Handwerk, Layout und Typografie."
+    }
+]

@@ -1,0 +1,33 @@
+{# Dawn override: description | properties | reviews as a Shopware-style tab strip on desktop; the sections
+   stack under their headings on phones and without JS. Mall re-renders this block via AJAX on variant change. #}
+{% set hasProperties = item.grouped_properties|default([])|length > 0 %}
+{% set hasReviews = __SELF__.showReviews|default(false) %}
+<div class="mall-product__tabs" data-mall-tabs>
+    <div class="mall-product__tablist" role="tablist">
+        <button type="button" class="mall-product__tab" role="tab" id="mall-tab-description" aria-controls="mall-panel-description" aria-selected="true">{{ 'offline.mall::lang.product.description'|trans }}</button>
+        {% if hasProperties %}
+            <button type="button" class="mall-product__tab" role="tab" id="mall-tab-properties" aria-controls="mall-panel-properties" aria-selected="false" tabindex="-1">{{ 'offline.mall::lang.product.properties'|trans }}</button>
+        {% endif %}
+        {% if hasReviews %}
+            <button type="button" class="mall-product__tab" role="tab" id="mall-tab-reviews" aria-controls="mall-panel-reviews" aria-selected="false" tabindex="-1">{{ 'offline.mall::frontend.reviews.heading'|trans }}</button>
+        {% endif %}
+    </div>
+    <section class="mall-product__panel" role="tabpanel" id="mall-panel-description" aria-labelledby="mall-tab-description">
+        <h2 class="mall-product__panel-heading">{{ 'offline.mall::lang.product.description'|trans }}</h2>
+        <div class="mall-product__description">
+            {{ item.description|raw }}
+        </div>
+    </section>
+    {% if hasProperties %}
+        <section class="mall-product__panel" role="tabpanel" id="mall-panel-properties" aria-labelledby="mall-tab-properties">
+            <h2 class="mall-product__panel-heading">{{ 'offline.mall::lang.product.properties'|trans }}</h2>
+            {% partial __SELF__ ~ '::propertyvalues' %}
+        </section>
+    {% endif %}
+    {% if hasReviews %}
+        {# Mall's reviews partial brings its own heading #}
+        <section class="mall-product__panel" role="tabpanel" id="mall-panel-reviews" aria-labelledby="mall-tab-reviews">
+            {% component 'productReviews' %}
+        </section>
+    {% endif %}
+</div>

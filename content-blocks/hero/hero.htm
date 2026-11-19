@@ -1,0 +1,81 @@
+{# Dawn hero header. Layout + media type are whitelisted; URLs go through
+   rc_url; everything else is autoescaped. The slider reuses the plugin's
+   Splide contract (data-rc-splide — mounted by the site-wide frontend
+   bundle), so no extra JS ships with the theme. #}
+{% set layout = data.layout|default('split') %}
+{% if layout not in ['split', 'left', 'centered'] %}{% set layout = 'split' %}{% endif %}
+{% set media = data.media|default('none') %}
+{% if media not in ['none', 'image', 'video', 'slider'] %}{% set media = 'none' %}{% endif %}
+{% if media == 'image' and not data.image %}{% set media = 'none' %}{% endif %}
+{% if media == 'video' and not data.video %}{% set media = 'none' %}{% endif %}
+{% if media == 'slider' and (data.slides|default([])|length) == 0 %}{% set media = 'none' %}{% endif %}
+{% set url1 = data.primary_url|rc_url %}
+{% set url2 = data.secondary_url|rc_url %}
+{% set split = layout == 'split' and media != 'none' %}
+{# priority comes from Renick.Content 1.1+ (block sits at the top of the page); older versions keep the eager hero #}
+{% set lcp = priority is not defined or priority %}
+{% set heroWidths = [480, 720, 960, 1320] %}
+{% set heroSizes = split ? '(min-width: 1400px) 636px, (min-width: 992px) 50vw, 100vw' : '(min-width: 1400px) 1296px, 100vw' %}
+{% macro srcset(path, widths, ext) %}{% for w in widths %}{{ path|rc_resize(w, (w * 500 / 880)|round, { mode: 'crop', quality: 80, extension: ext }) }} {{ w }}w{{ loop.last ? '' : ', ' }}{% endfor %}{% endmacro %}
+{% import _self as hero %}
+
+<section {{ attributes|replace({'class="': 'class="dawn-hero dawn-hero-block '})|raw }} data-hero-layout="{{ layout }}">
+    <span class="dawn-blob dawn-blob-1 dawn-float" aria-hidden="true"></span>
+    <span class="dawn-blob dawn-blob-2 dawn-float" aria-hidden="true"></span>
+    <div class="container position-relative">
+        <div class="{{ split ? 'row align-items-center g-5' : '' }}{{ layout == 'centered' ? ' text-center' : '' }}">
+            <div class="{{ split ? 'col-lg-6' : '' }}">
+                {% if data.eyebrow %}<span class="dawn-eyebrow">{{ data.eyebrow }}</span>{% endif %}
+                {% if data.title or data.title_accent %}
+                    <h1 class="{{ split ? 'display-4' : 'display-5' }} mb-3 {{ layout == 'left' ? 'dawn-hero-title-narrow' : '' }}">
+                        {{- data.title -}}
+                        {%- if data.title_accent %} <span class="dawn-gradient-text">{{ data.title_accent }}</span>{% endif -%}
+                    </h1>
+                {% endif %}
+                {% if data.lead %}<p class="dawn-lead mb-4 {{ layout == 'centered' ? 'mx-auto' : '' }}">{{ data.lead|nl2br }}</p>{% endif %}
+                {% if (data.primary_label and url1) or (data.secondary_label and url2) %}
+                    <div class="dawn-hero__actions d-flex flex-wrap gap-2 {{ layout == 'centered' ? 'justify-content-center' : '' }}">
+                        {% if data.primary_label and url1 %}<a class="dawn-btn-grad" href="{{ url1 }}">{{ data.primary_label }}</a>{% endif %}
+                        {% if data.secondary_label and url2 %}<a class="btn btn-outline-dark rounded-3 px-4 dawn-btn-outline" href="{{ url2 }}">{{ data.secondary_label }}</a>{% endif %}
+                    </div>
+                {% endif %}
+            </div>
+            {% if media != 'none' %}
+                <div class="{{ split ? 'col-lg-6' : 'dawn-hero__media-below mt-4' }}">
+                    {% if media == 'image' %}
+                        <picture>
+                            <source type="image/webp" srcset="{{ hero.srcset(data.image, heroWidths, 'webp') }}" sizes="{{ heroSizes }}">
+                            <img src="{{ data.image|rc_resize(880, 500, { mode: 'crop' }) }}" srcset="{{ hero.srcset(data.image, heroWidths, 'auto') }}" sizes="{{ heroSizes }}" alt="{{ data.title|default('') }}"
+                                 class="img-fluid rounded-4 shadow-lg dawn-float" {% if lcp %}fetchpriority="high"{% else %}loading="lazy"{% endif %} width="880" height="500">
+                        </picture>
+                    {% elseif media == 'video' %}
+                        <video class="dawn-hero__video img-fluid rounded-4 shadow-lg" autoplay muted loop playsinline
+                               {% if data.video_poster %}poster="{{ data.video_poster|media }}"{% endif %}>
+                            <source src="{{ data.video|media }}">
+                        </video>
+                    {% elseif media == 'slider' %}
+                        <div class="dawn-hero__slider">
+                            <div class="splide" data-rc-splide='{"type": "loop", "perPage": 1, "gap": "1rem", "autoplay": true, "arrows": false, "pagination": true}' aria-label="{{ data.title|default('Hero slider') }}">
+                                <div class="splide__track">
+                                    <ul class="splide__list">
+                                        {% for slide in data.slides %}
+                                            {% if slide.image %}
+                                                <li class="splide__slide">
+                                                    <picture>
+                                                        <source type="image/webp" srcset="{{ hero.srcset(slide.image, heroWidths, 'webp') }}" sizes="{{ heroSizes }}">
+                                                        <img src="{{ slide.image|rc_resize(880, 500, { mode: 'crop' }) }}" srcset="{{ hero.srcset(slide.image, heroWidths, 'auto') }}" sizes="{{ heroSizes }}" alt="{{ slide.alt|default('') }}"
+                                                             class="img-fluid rounded-4" {% if loop.first and lcp %}fetchpriority="high"{% else %}loading="lazy"{% endif %} width="880" height="500">
+                                                    </picture>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>

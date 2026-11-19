@@ -1,0 +1,8 @@
+{# Shared body for Dawn\Page entries; the caller resolves the entry and sets the
+   SEO vars. No outer container: width/banding is decided per block (rc-w-*), and
+   rootWidth gives root blocks that store no width the container the editor shows. #}
+{% if entry %}
+    <article class="dawn-page rc-document">
+        {% component 'renickContent' document=entry.content rootWidth='container' %}
+    </article>
+{% endif %}
